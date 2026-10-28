@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BassVillainApp
 {
-    public partial class TelaInicial : Form
+    public partial class TelaInicial : FormularioBase
     {
         #region Variaveis Globais
         frm_TelaSelecaoMusica PagSelecaoMusc;
@@ -29,15 +29,6 @@ namespace BassVillainApp
         private void configDaPagina()
         {
             btn_Iniciar.Focus();
-
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.ShowIcon = false;
-
-            this.FormClosing += new FormClosingEventHandler(TelaInicial_FormClosing);
-
-
         }
 
         private void configEventoDosBotoes()
@@ -75,20 +66,7 @@ namespace BassVillainApp
         #endregion
 
         #region Propriedades do Formulário
-        private void TelaInicial_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                DialogResult result = msgBox("Deseja realmente sair?",
-                    "Confirmação",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-                if (result == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-        }
+
         #endregion
 
         #region MessageBoxOptions

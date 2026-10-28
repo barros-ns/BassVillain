@@ -10,27 +10,16 @@ using System.Windows.Forms;
 
 namespace BassVillainApp
 {
-    public partial class frm_TelaSelecaoMusica : Form
+    public partial class frm_TelaSelecaoMusica : FormularioBase
     {
+
+        #region Inicialização
         public frm_TelaSelecaoMusica(TelaInicial telaInicial)
         {
             InitializeComponent();
-            configDaPagina();
         }
 
-        private void configDaPagina()
-        {
-            btn_Msc1.Focus();
-
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.ShowIcon = false;
-
-            this.FormClosing += new FormClosingEventHandler(TelaSelecaoMusica_FormClosing);
-
-
-        }
+        #endregion
 
         #region Propriedades do Formulário
         private void TelaSelecaoMusica_FormClosing(object sender, FormClosingEventArgs e)
