@@ -63,11 +63,11 @@
             // 
             // btn_config
             // 
-            this.btn_config.Location = new System.Drawing.Point(731, 12);
+            this.btn_config.Location = new System.Drawing.Point(723, 12);
             this.btn_config.Name = "btn_config";
-            this.btn_config.Size = new System.Drawing.Size(57, 23);
+            this.btn_config.Size = new System.Drawing.Size(65, 23);
             this.btn_config.TabIndex = 3;
-            this.btn_config.Text = "Iniciar";
+            this.btn_config.Text = "Config";
             this.btn_config.UseVisualStyleBackColor = true;
             // 
             // TelaInicial
