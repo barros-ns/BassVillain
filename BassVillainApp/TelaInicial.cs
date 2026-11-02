@@ -13,7 +13,7 @@ namespace BassVillainApp
     public partial class TelaInicial : FormularioBase
     {
         #region Variaveis Globais
-        frm_TelaSelecaoMusica PagSelecaoMusc;
+        
         #endregion
 
         #region Incialização do Formulário
@@ -22,7 +22,6 @@ namespace BassVillainApp
             InitializeComponent();
             configDaPagina();
             configEventoDosBotoes();
-            configOutrasPag();
 
         }
 
@@ -33,15 +32,11 @@ namespace BassVillainApp
 
         private void configEventoDosBotoes()
         {
-            btn_config.Click += new EventHandler(btn_config_Click);
-            btn_Iniciar.Click += new EventHandler(btn_Iniciar_Click);
-            btn_estatisticas.Click += new EventHandler(btn_estatisticas_Click);
+            btn_config.Click += btn_config_Click;
+            btn_Iniciar.Click += btn_Iniciar_Click;
+            btn_estatisticas.Click += btn_estatisticas_Click;
         }
 
-        private void configOutrasPag()
-        {
-            PagSelecaoMusc = new frm_TelaSelecaoMusica(this);
-        }
         #endregion
 
         #region Evento dos Botões do Formulário
@@ -53,6 +48,7 @@ namespace BassVillainApp
 
         private void btn_Iniciar_Click(object sender, EventArgs e)
         {
+            frm_TelaSelecaoMusica PagSelecaoMusc = new frm_TelaSelecaoMusica(this);
             PagSelecaoMusc.Show();
             this.Hide();
         }

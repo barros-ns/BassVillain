@@ -24,11 +24,12 @@ namespace BassVillainApp
 
         public TelaSelecaoDificuldade(String musica, frm_TelaSelecaoMusica telaSelecaoMusica)
         {
-            InitializeComponent();
             musicaSelecionada = musica;
             telaAnterior = telaSelecaoMusica;
+            InitializeComponent();
             MudarNomeDoFormulario();
             checarNiveisDesbloqueados();
+            configEventoDosBotoes();
         }
 
         private void MudarNomeDoFormulario()
@@ -58,6 +59,13 @@ namespace BassVillainApp
             }
         }
 
+        private void configEventoDosBotoes()
+        {
+            btn_facil.Click += btn_facil_Click;
+            btn_medio.Click += btn_medio_Click;
+            btn_dificil.Click += btn_dificil_Click;
+            btn_voltar.Click += btn_voltar_Click;
+        }
         #endregion
 
         #region Checador de Níveis Desbloqueados Por Música
@@ -85,7 +93,27 @@ namespace BassVillainApp
 
         #endregion
 
+        #region Evento dos Botões
 
+        private void btn_facil_Click(object sender, EventArgs e)
+        {
+            // Lógica para iniciar o jogo no nível fácil com a música selecionada  
+        }
+        private void btn_medio_Click(object sender, EventArgs e)
+        {
+            // Lógica para iniciar o jogo no nível médio com a música selecionada  
+        }
+
+        private void btn_dificil_Click(object sender, EventArgs e)
+        {
+            // Lógica para iniciar o jogo no nível difícil com a música selecionada  
+        }
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            telaAnterior.Show();
+            this.Hide();
+        }
+        #endregion
         #region Propriedades do Formulário
         #endregion
 
