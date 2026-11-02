@@ -14,8 +14,7 @@ namespace BassVillainApp
     public partial class frm_TelaSelecaoMusica : FormularioBase
     {
         #region Variaveis Globais
-        bool DarkNecessitiesFacilDesbloqueada = Properties.Settings.Default.DarkNecessitiesFacilDesbloqueada;
-        bool SevenNationArmyFacilDesbloqueada = Properties.Settings.Default.SevenNationArmyFacilDesbloqueada;
+        TelaInicial telaInicial;
         #endregion
 
 
@@ -24,6 +23,9 @@ namespace BassVillainApp
         {
             InitializeComponent();
             checarDesbloqueioMusicas();
+            configEventoDosBotoes();
+            this.telaInicial = telaInicial;
+
         }
 
         #endregion
@@ -31,10 +33,17 @@ namespace BassVillainApp
         #region Propriedades do Formulário
         private void checarDesbloqueioMusicas()
         {
-            btn_Msc2.Enabled = DarkNecessitiesFacilDesbloqueada;
-            btn_Msc3.Enabled = SevenNationArmyFacilDesbloqueada;
+            btn_Msc2.Enabled = Properties.Settings.Default.DarkNecessitiesFacilDesbloqueada;
+            btn_Msc3.Enabled = Properties.Settings.Default.SevenNationArmyFacilDesbloqueada;
         }
 
+        private void configEventoDosBotoes()
+        {
+            btn_Msc1.Click += btn_Msc1_Click;
+            btn_Msc2.Click += btn_Msc2_Click;
+            btn_Msc3.Click += btn_Msc3_Click; 
+            btn_voltar.Click += btn_voltar_Click;
+        }
 
 
         #endregion
@@ -43,22 +52,37 @@ namespace BassVillainApp
         #region Eventos Botões
         private void btn_Msc1_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar a música 1
-            MessageBox.Show("Iniciando música 1: 'Song Title 1'");
+            criarTelaDificuldade("Sultans of Swing");
         }
 
         private void btn_Msc2_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar a música 2
-            MessageBox.Show("Iniciando música 2: 'Dark Necessities'");
+           criarTelaDificuldade("Dark Necessities");
         }
 
         private void btn_Msc3_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar a música 3
-            MessageBox.Show("Iniciando música 3: 'Seven Nation Army'");
+            criarTelaDificuldade("Seven Nation Army");
+        }
+
+        private void btn_voltar_Click(object sender, EventArgs e)
+        {
+            telaInicial.Show();
+            this.Hide();
+        }
+
+        #endregion
+
+        #region Criar Tela
+        private void criarTelaDificuldade(string musicaSelecionada)
+        {
+            TelaSelecaoDificuldade telaDificuldade = new TelaSelecaoDificuldade(musicaSelecionada, this);
+            telaDificuldade.Show();
+            this.Hide();
         }
         #endregion
+
+
         #region MessageBoxOptions
         private DialogResult msgBox(string message, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
         {

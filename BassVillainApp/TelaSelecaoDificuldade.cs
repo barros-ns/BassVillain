@@ -10,11 +10,85 @@ using System.Windows.Forms;
 
 namespace BassVillainApp
 {
-    public partial class TelaSelecaoDificuldade : Form
+
+    public partial class TelaSelecaoDificuldade : FormularioBase
     {
-        public TelaSelecaoDificuldade()
+
+        #region Variaveis Globais
+        private string musicaSelecionada;
+        frm_TelaSelecaoMusica telaAnterior;
+        #endregion
+
+
+        #region Inicialização
+
+        public TelaSelecaoDificuldade(String musica, frm_TelaSelecaoMusica telaSelecaoMusica)
         {
             InitializeComponent();
+            musicaSelecionada = musica;
+            telaAnterior = telaSelecaoMusica;
+            MudarNomeDoFormulario();
+            checarNiveisDesbloqueados();
         }
+
+        private void MudarNomeDoFormulario()
+        {
+            lbl_nomeDaMusica.Text = musicaSelecionada;
+        }
+
+        private void checarNiveisDesbloqueados()
+        {
+            btn_facil.Enabled = false;
+            btn_medio.Enabled = false;
+            btn_dificil.Enabled = false;
+
+            switch (musicaSelecionada)
+            {
+                case "Sultans of Swing":
+                    checarSultansOfSwing();
+                    break;
+                case "Dark Necessities":
+                    checarDarkNecessities();
+                    break;
+                case "Seven Nation Army":
+                    checarSevenNationArmy();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Checador de Níveis Desbloqueados Por Música
+
+        private void checarSultansOfSwing()
+        {
+            btn_facil.Enabled = Properties.Settings.Default.SultansOfSwingFacilDesbloqueada;
+            btn_medio.Enabled = Properties.Settings.Default.SultansOfSwingMedioDesbloqueada;
+            btn_dificil.Enabled = Properties.Settings.Default.SultansOfSwingDificilDesbloqueada;
+        }
+        
+        private void checarDarkNecessities()
+        {
+            btn_facil.Enabled = Properties.Settings.Default.DarkNecessitiesFacilDesbloqueada;
+            btn_medio.Enabled = Properties.Settings.Default.DarkNecessitiesMedioDesbloqueada;
+            btn_dificil.Enabled = Properties.Settings.Default.DarkNecessitiesDificilDesbloqueada;
+        }
+
+        private void checarSevenNationArmy()
+        {
+            btn_facil.Enabled = Properties.Settings.Default.SevenNationArmyFacilDesbloqueada;
+            btn_medio.Enabled = Properties.Settings.Default.SevenNationArmyMedioDesbloqueada;
+            btn_dificil.Enabled = Properties.Settings.Default.SevenNationArmyDificilDesbloqueada;
+        }
+
+        #endregion
+
+
+        #region Propriedades do Formulário
+        #endregion
+
+
     }
 }

@@ -38,12 +38,12 @@ namespace BassVillainApp.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool DarkNecessitiesMediaDesbloqueada {
+        public bool DarkNecessitiesMedioDesbloqueada {
             get {
-                return ((bool)(this["DarkNecessitiesMediaDesbloqueada"]));
+                return ((bool)(this["DarkNecessitiesMedioDesbloqueada"]));
             }
             set {
-                this["DarkNecessitiesMediaDesbloqueada"] = value;
+                this["DarkNecessitiesMedioDesbloqueada"] = value;
             }
         }
         
