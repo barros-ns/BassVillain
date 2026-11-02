@@ -68,7 +68,7 @@ namespace BassVillainApp
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             telaInicial.Show();
-            this.Hide();
+            FecharParaVoltar();
         }
 
         #endregion

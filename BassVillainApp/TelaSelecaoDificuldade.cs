@@ -111,7 +111,7 @@ namespace BassVillainApp
         private void btn_voltar_Click(object sender, EventArgs e)
         {
             telaAnterior.Show();
-            this.Hide();
+            FecharParaVoltar();
         }
         #endregion
         #region Propriedades do Formulário

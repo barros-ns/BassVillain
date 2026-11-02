@@ -9,6 +9,7 @@ namespace BassVillainApp
 {
     public  class FormularioBase : Form
     {
+        private bool fechandoParaVoltar;
         public FormularioBase()
         {
             StartPosition = FormStartPosition.CenterScreen;
@@ -19,6 +20,11 @@ namespace BassVillainApp
         }
         public void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (fechandoParaVoltar)
+            {
+                return;
+            }
+
             // O encerramento do aplicativo não deve pedir confirmação de novo.
             if (e.CloseReason != CloseReason.UserClosing)
                 return;
@@ -39,6 +45,12 @@ namespace BassVillainApp
                 // Encerra o aplicativo depois que este evento terminar.
                 BeginInvoke(new MethodInvoker(Application.Exit));
             }
+        }
+
+        protected void FecharParaVoltar()
+        {
+            fechandoParaVoltar = true;
+            Close();
         }
     }
 }
