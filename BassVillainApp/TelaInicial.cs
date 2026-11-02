@@ -53,7 +53,6 @@ namespace BassVillainApp
 
         private void btn_Iniciar_Click(object sender, EventArgs e)
         {
-            msgBox("Botão Iniciar clicado!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             PagSelecaoMusc.Show();
             this.Hide();
         }
@@ -66,6 +65,7 @@ namespace BassVillainApp
         #endregion
 
         #region Propriedades do Formulário
+        
 
         #endregion
 

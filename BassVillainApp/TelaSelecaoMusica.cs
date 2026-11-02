@@ -12,6 +12,10 @@ namespace BassVillainApp
 {
     public partial class frm_TelaSelecaoMusica : FormularioBase
     {
+        #region Variaveis Globais
+
+        #endregion
+
 
         #region Inicialização
         public frm_TelaSelecaoMusica(TelaInicial telaInicial)
@@ -22,21 +26,7 @@ namespace BassVillainApp
         #endregion
 
         #region Propriedades do Formulário
-        private void TelaSelecaoMusica_FormClosing(object sender, FormClosingEventArgs e)
-        {
-                if(msgBox("Deseja realmente sair?",
-                    "Confirmação",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    Application.Exit();
-                }
-            else
-            {
-                e.Cancel = true;
-            }
-            
-        }
+
         #endregion
 
         #region MessageBoxOptions
