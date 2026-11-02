@@ -118,5 +118,17 @@ namespace BassVillainApp.Properties {
                 this["SultansOfSwingDificilDesbloqueada"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SultansOfSwingFacilDesbloqueada {
+            get {
+                return ((bool)(this["SultansOfSwingFacilDesbloqueada"]));
+            }
+            set {
+                this["SultansOfSwingFacilDesbloqueada"] = value;
+            }
+        }
     }
 }
