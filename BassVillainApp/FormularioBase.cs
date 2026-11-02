@@ -17,15 +17,27 @@ namespace BassVillainApp
             ShowIcon = false;
             FormClosing += new FormClosingEventHandler(FormularioBase_FormClosing);
         }
-        public static void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)
+        public void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Deseja realmente sair?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            // O encerramento do aplicativo não deve pedir confirmação de novo.
+            if (e.CloseReason != CloseReason.UserClosing)
+                return;
+
+            DialogResult resposta = MessageBox.Show(
+                this,
+                "Deseja realmente sair?",
+                "Confirmação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Cancela este fechamento individual.
+            e.Cancel = true;
+
+            if (resposta == DialogResult.Yes)
             {
-                
-            }
-            else
-            {
-                e.Cancel = true;
+                // Encerra o aplicativo depois que este evento terminar.
+                BeginInvoke(new MethodInvoker(Application.Exit));
             }
         }
     }
