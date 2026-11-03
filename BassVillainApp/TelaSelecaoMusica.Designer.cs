@@ -34,6 +34,7 @@
             this.btn_Msc1 = new System.Windows.Forms.Button();
             this.btn_Msc2 = new System.Windows.Forms.Button();
             this.btn_Msc3 = new System.Windows.Forms.Button();
+            this.btn_voltar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_msc1
@@ -90,11 +91,21 @@
             this.btn_Msc3.Text = "Iniciar";
             this.btn_Msc3.UseVisualStyleBackColor = true;
             // 
+            // btn_voltar
+            // 
+            this.btn_voltar.Location = new System.Drawing.Point(22, 27);
+            this.btn_voltar.Name = "btn_voltar";
+            this.btn_voltar.Size = new System.Drawing.Size(75, 23);
+            this.btn_voltar.TabIndex = 6;
+            this.btn_voltar.Text = "Voltar";
+            this.btn_voltar.UseVisualStyleBackColor = true;
+            // 
             // frm_TelaSelecaoMusica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_voltar);
             this.Controls.Add(this.btn_Msc3);
             this.Controls.Add(this.btn_Msc2);
             this.Controls.Add(this.btn_Msc1);
@@ -116,5 +127,6 @@
         private System.Windows.Forms.Button btn_Msc1;
         private System.Windows.Forms.Button btn_Msc2;
         private System.Windows.Forms.Button btn_Msc3;
+        private System.Windows.Forms.Button btn_voltar;
     }
 }

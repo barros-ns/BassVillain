@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace BassVillainApp
 {
-    public partial class TelaInicial : Form
+    public partial class TelaInicial : FormularioBase
     {
         #region Variaveis Globais
-        frm_TelaSelecaoMusica PagSelecaoMusc;
+        
         #endregion
 
         #region Incialização do Formulário
@@ -22,35 +22,21 @@ namespace BassVillainApp
             InitializeComponent();
             configDaPagina();
             configEventoDosBotoes();
-            configOutrasPag();
 
         }
 
         private void configDaPagina()
         {
             btn_Iniciar.Focus();
-
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.ShowIcon = false;
-
-            this.FormClosing += new FormClosingEventHandler(TelaInicial_FormClosing);
-
-
         }
 
         private void configEventoDosBotoes()
         {
-            btn_config.Click += new EventHandler(btn_config_Click);
-            btn_Iniciar.Click += new EventHandler(btn_Iniciar_Click);
-            btn_estatisticas.Click += new EventHandler(btn_estatisticas_Click);
+            btn_config.Click += btn_config_Click;
+            btn_Iniciar.Click += btn_Iniciar_Click;
+            btn_estatisticas.Click += btn_estatisticas_Click;
         }
 
-        private void configOutrasPag()
-        {
-            PagSelecaoMusc = new frm_TelaSelecaoMusica(this);
-        }
         #endregion
 
         #region Evento dos Botões do Formulário
@@ -62,7 +48,7 @@ namespace BassVillainApp
 
         private void btn_Iniciar_Click(object sender, EventArgs e)
         {
-            msgBox("Botão Iniciar clicado!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frm_TelaSelecaoMusica PagSelecaoMusc = new frm_TelaSelecaoMusica(this);
             PagSelecaoMusc.Show();
             this.Hide();
         }
@@ -75,20 +61,8 @@ namespace BassVillainApp
         #endregion
 
         #region Propriedades do Formulário
-        private void TelaInicial_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                DialogResult result = msgBox("Deseja realmente sair?",
-                    "Confirmação",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-                if (result == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-            }
-        }
+        
+
         #endregion
 
         #region MessageBoxOptions

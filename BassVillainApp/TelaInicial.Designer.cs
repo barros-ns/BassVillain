@@ -80,7 +80,7 @@
             this.Controls.Add(this.btn_Iniciar);
             this.Controls.Add(this.lbl_Titulo);
             this.Name = "TelaInicial";
-            this.Text = "frm_TelaInicial";
+            this.Text = "TelaInicial";
             this.ResumeLayout(false);
             this.PerformLayout();
 
