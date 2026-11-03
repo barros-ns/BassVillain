@@ -17,6 +17,7 @@ namespace BassVillainApp
             MinimizeBox = false;
             ShowIcon = false;
             FormClosing += new FormClosingEventHandler(FormularioBase_FormClosing);
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
         public void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)
         {
