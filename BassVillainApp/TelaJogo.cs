@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
+using MediaPlayer = System.Windows.Media.MediaPlayer;
 
 namespace BassVillainApp
 {
@@ -25,6 +27,10 @@ namespace BassVillainApp
 
         ResultadoPartida resultadoPartida = new ResultadoPartida();
 
+        private readonly MediaPlayer playerMusica = new MediaPlayer();
+
+        private bool partidaEmAndamento;
+
         List<Nota> notas = new List<Nota>
         {
             new Nota(0, 2000),
@@ -38,12 +44,20 @@ namespace BassVillainApp
 
         #endregion
 
+        #region Inicialização
+
         public TelaJogo()
         {
             InitializeComponent();
+            DeclararComponentesJogo();
+            DeclararComponentesMusica();
+        }
+
+        private void DeclararComponentesJogo() 
+        {
             KeyPreview = true;
-            
-            pnl_Jogo.Paint+=pnl_Jogo_Paint;
+
+            pnl_Jogo.Paint += pnl_Jogo_Paint;
 
             timerJogo.Interval = 16;
             timerJogo.Tick += timerJogo_Tick;
@@ -54,15 +68,81 @@ namespace BassVillainApp
             KeyDown += TelaJogo_KeyDown;
         }
 
+        private void DeclararComponentesMusica() 
+        {
+            playerMusica.Volume = 0.7;
+
+            playerMusica.MediaOpened += PlayerMusica_MediaOpened;
+            playerMusica.MediaFailed += PlayerMusica_MediaFailed;
+            playerMusica.MediaEnded += PlayerMusica_MediaEnded;
+        }
+        #endregion
+
+        #region Musica
+        private void PlayerMusica_MediaOpened(object sender, EventArgs e)
+        {
+            playerMusica.Position = TimeSpan.Zero;
+
+            playerMusica.Play();
+            relogio.Restart();
+
+            partidaEmAndamento = true;
+            timerJogo.Start();
+        }
+
+        private void PlayerMusica_MediaFailed(object sender, System.Windows.Media.ExceptionEventArgs e)
+        {
+            partidaEmAndamento = false;
+
+            timerJogo.Stop();
+            relogio.Stop();
+            playerMusica.Close();
+
+            MessageBox.Show(
+                this,
+                "Não foi possível reproduzir a música:\n"
+                + e.ErrorException.Message,
+                "Erro de áudio",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+        }
+
+        private void PlayerMusica_MediaEnded(object sender, EventArgs e)
+        {
+            partidaEmAndamento = false;
+
+            timerJogo.Stop();
+            relogio.Stop();
+
+            // Depois vamos finalizar os resultados e abrir a próxima tela.
+        }
+
+
+        #endregion
+
         #region Eventos do Jogo
         private void TelaJogo_Shown(object sender, EventArgs e)
         {
-            relogio.Restart();
-            timerJogo.Start();
+            string caminho = Directory.GetCurrentDirectory()+"\\Musicas\\SultansOfSwing.mp3";
+
+            if (!File.Exists(caminho))
+            {
+                MessageBox.Show(
+                    this,
+                    "Arquivo de música não encontrado:\n" + caminho
+                );
+
+                return;
+            }
+
+            playerMusica.Open(new Uri(caminho, UriKind.Absolute));
         }
 
         private void timerJogo_Tick(object sender, EventArgs e)
         {
+            if (!partidaEmAndamento)
+                return;
             long tempoAtualMs = relogio.ElapsedMilliseconds;
 
             foreach (Nota nota in notas)
@@ -170,7 +250,7 @@ namespace BassVillainApp
         private void TelaJogo_KeyDown(object sender, KeyEventArgs e)
         {
 
-            switch(e.KeyCode)
+            switch (e.KeyCode)
             {
                 case Keys.A:
                     VerificarAcerto(0);
