@@ -17,18 +17,32 @@ namespace BassVillainApp
         #region Variaveis do Jogo
         private readonly Stopwatch relogio = new Stopwatch();
 
-        private readonly System.Windows.Forms.Timer timerJogo =
-            new System.Windows.Forms.Timer();
-
         private readonly Nota notaTeste = new Nota(1, 3000);
 
         private const int TempoDeQuedaMs = 1500;
+
+        private const int ToleranciaAcertoMs = 150;
+
+        ResultadoPartida resultadoPartida = new ResultadoPartida();
+
+        List<Nota> notas = new List<Nota>
+        {
+            new Nota(0, 2000),
+            new Nota(1, 2500),
+            new Nota(2, 3000),
+            new Nota(3, 3500),
+            new Nota(1, 4000),
+            new Nota(2, 4500),
+            new Nota(0, 5000)
+        };
+
         #endregion
 
         public TelaJogo()
         {
             InitializeComponent();
-            DoubleBuffered = true;
+            KeyPreview = true;
+            
             pnl_Jogo.Paint+=pnl_Jogo_Paint;
 
             timerJogo.Interval = 16;
@@ -36,6 +50,8 @@ namespace BassVillainApp
 
             Shown += TelaJogo_Shown;
             FormClosed += TelaJogo_FormClosed;
+
+            KeyDown += TelaJogo_KeyDown;
         }
 
         #region Eventos do Jogo
@@ -47,6 +63,19 @@ namespace BassVillainApp
 
         private void timerJogo_Tick(object sender, EventArgs e)
         {
+            long tempoAtualMs = relogio.ElapsedMilliseconds;
+
+            foreach (Nota nota in notas)
+            {
+                if (!nota.Acertada &&
+                    !nota.Perdida &&
+                    tempoAtualMs > nota.TempoAcertoMs + ToleranciaAcertoMs)
+                {
+                    nota.Perdida = true;
+                    resultadoPartida.Miss++;
+                }
+            }
+            atualizarPlacar();
             pnl_Jogo.Invalidate();
         }
 
@@ -100,36 +129,116 @@ namespace BassVillainApp
 
             long tempoAtualMs = relogio.ElapsedMilliseconds;
 
-            float progresso =
-                1f - (notaTeste.TempoAcertoMs - tempoAtualMs)
-                / (float)TempoDeQuedaMs;
-
-            // Desenha apenas durante o percurso até a linha.
-            if (progresso >= 0f && progresso <= 1f)
+            foreach (Nota nota in notas)
             {
-                float distanciaQueda = yAlvo - inicioY;
+                if(nota.Acertada || nota.Perdida)
+                    continue;
 
-                float yNota = inicioY + progresso * distanciaQueda;
-                float xNota = inicioX + notaTeste.Pista * larguraPista;
+                float progresso = 1f - (nota.TempoAcertoMs - tempoAtualMs) / (float)TempoDeQuedaMs;
 
-                const float alturaNota = 20f;
+                // Desenha apenas durante o percurso até a linha.
+                if (progresso < 0f)
+                    continue;
+                
+                    float distanciaQueda = yAlvo - inicioY;
 
-                using (Brush pincel = new SolidBrush(Color.DeepSkyBlue))
-                {
-                    g.FillRectangle(
-                        pincel,
-                        xNota + 10f,
-                        yNota - alturaNota / 2f,
-                        larguraPista - 20f,
-                        alturaNota
-                    );
-                }
+                    float yNota = inicioY + progresso * distanciaQueda;
+                    float xNota = inicioX + nota.Pista * larguraPista;
+
+                    const float alturaNota = 20f;
+
+                    using (Brush pincel = new SolidBrush(Color.DeepSkyBlue))
+                    {
+                        g.FillRectangle(
+                            pincel,
+                            xNota + 10f,
+                            yNota - alturaNota / 2f,
+                            larguraPista - 20f,
+                            alturaNota
+                        );
+                    }
+                
+
             }
 
 
+        }
 
+        #endregion
 
+        #region Comandos do Jogo
+        private void TelaJogo_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch(e.KeyCode)
+            {
+                case Keys.A:
+                    VerificarAcerto(0);
+                    break;
+                case Keys.S:
+                    VerificarAcerto(1); 
+                    break;
+                case Keys.K:
+                    VerificarAcerto(2); 
+                    break;
+                case Keys.L:
+                    VerificarAcerto(3); 
+                    break;
+            }
         }
         #endregion
+
+
+        #region Verificador de Acertos
+        private void VerificarAcerto(int pista)
+        {
+            long tempoAtualMs = relogio.ElapsedMilliseconds;
+
+            Nota notaMaisProxima = null;
+            long menorDiferenca = long.MaxValue;
+
+            foreach (Nota nota in notas)
+            {
+                // Considera apenas notas pendentes da pista pressionada.
+                if (nota.Pista != pista || nota.Acertada || nota.Perdida)
+                    continue;
+
+                long diferenca = Math.Abs(tempoAtualMs - nota.TempoAcertoMs);
+
+                if (diferenca < menorDiferenca)
+                {
+                    menorDiferenca = diferenca;
+                    notaMaisProxima = nota;
+                }
+            }
+
+            if (notaMaisProxima != null &&
+                menorDiferenca <= ToleranciaAcertoMs)
+            {
+                if (menorDiferenca <= 50)
+                    resultadoPartida.Perfect++;
+                else if (menorDiferenca <= 100)
+                    resultadoPartida.Great++;
+                else
+                    resultadoPartida.Good++;
+                notaMaisProxima.Acertada = true;
+
+                atualizarPlacar();
+                pnl_Jogo.Invalidate();
+            }
+        }
+        #endregion
+
+        #region Placar
+
+        private void atualizarPlacar()
+        {
+            lbl_Perfect.Text = $"Perfect: {resultadoPartida.Perfect}";
+            lbl_Great.Text = $"Great: {resultadoPartida.Great}";
+            lbl_Good.Text = $"Good: {resultadoPartida.Good}";
+            lbl_Miss.Text = $"Miss: {resultadoPartida.Miss}";
+        }
+        #endregion
+
     }
 }

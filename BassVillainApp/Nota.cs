@@ -10,6 +10,10 @@ namespace BassVillainApp
     {
         public int Pista { get; set; }
         public int TempoAcertoMs { get; set; }
+        public bool Acertada { get; set; }
+        public bool Perdida { get; set; }
+
+
 
         public Nota(int pista, int tempoAcertoMs)
         {

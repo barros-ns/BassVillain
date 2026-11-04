@@ -50,6 +50,7 @@
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ResultadoPartida.cs" />
     <Compile Include="TelaConfiguracoes.cs">
       <SubType>Form</SubType>
     </Compile>
