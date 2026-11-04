@@ -124,7 +124,12 @@ namespace BassVillainApp
         #region Eventos do Jogo
         private void TelaJogo_Shown(object sender, EventArgs e)
         {
-            string caminho = Directory.GetCurrentDirectory()+"\\Musicas\\SultansOfSwing.mp3";
+            string caminho = Path.Combine(
+            Application.StartupPath,
+            "MusicasMp3",
+            "SultansOfSwing.mp3"
+        );
+
 
             if (!File.Exists(caminho))
             {
