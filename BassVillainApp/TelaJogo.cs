@@ -1,0 +1,244 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace BassVillainApp
+{
+    public partial class TelaJogo : FormularioBase
+    {
+
+        #region Variaveis do Jogo
+        private readonly Stopwatch relogio = new Stopwatch();
+
+        private readonly Nota notaTeste = new Nota(1, 3000);
+
+        private const int TempoDeQuedaMs = 1500;
+
+        private const int ToleranciaAcertoMs = 150;
+
+        ResultadoPartida resultadoPartida = new ResultadoPartida();
+
+        List<Nota> notas = new List<Nota>
+        {
+            new Nota(0, 2000),
+            new Nota(1, 2500),
+            new Nota(2, 3000),
+            new Nota(3, 3500),
+            new Nota(1, 4000),
+            new Nota(2, 4500),
+            new Nota(0, 5000)
+        };
+
+        #endregion
+
+        public TelaJogo()
+        {
+            InitializeComponent();
+            KeyPreview = true;
+            
+            pnl_Jogo.Paint+=pnl_Jogo_Paint;
+
+            timerJogo.Interval = 16;
+            timerJogo.Tick += timerJogo_Tick;
+
+            Shown += TelaJogo_Shown;
+            FormClosed += TelaJogo_FormClosed;
+
+            KeyDown += TelaJogo_KeyDown;
+        }
+
+        #region Eventos do Jogo
+        private void TelaJogo_Shown(object sender, EventArgs e)
+        {
+            relogio.Restart();
+            timerJogo.Start();
+        }
+
+        private void timerJogo_Tick(object sender, EventArgs e)
+        {
+            long tempoAtualMs = relogio.ElapsedMilliseconds;
+
+            foreach (Nota nota in notas)
+            {
+                if (!nota.Acertada &&
+                    !nota.Perdida &&
+                    tempoAtualMs > nota.TempoAcertoMs + ToleranciaAcertoMs)
+                {
+                    nota.Perdida = true;
+                    resultadoPartida.Miss++;
+                }
+            }
+            atualizarPlacar();
+            pnl_Jogo.Invalidate();
+        }
+
+        private void TelaJogo_FormClosed(object sender,FormClosedEventArgs e)
+        {
+            timerJogo.Stop();
+            timerJogo.Dispose();
+            relogio.Stop();
+        }
+        #endregion
+
+        #region Desenho do Jogo
+        private void pnl_Jogo_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            float inicioX = pnl_Jogo.Width * 0.10f;
+            float inicioY = 20f;
+
+            float largura = pnl_Jogo.Width * 0.80f;
+            float altura = pnl_Jogo.Height -40f;
+
+            float larguraPista = largura / 4f;
+            float yAlvo = inicioY + altura - 80f;
+
+            using (Pen contorno = new Pen(Color.Gray, 2))
+            using (Pen linhaAlvo = new Pen(Color.Red, 3))
+            {
+                // Contorno do cenário.
+                g.DrawRectangle(
+                    contorno, inicioX, inicioY, largura, altura
+                );
+
+                // Três divisórias formam quatro pistas.
+                for (int i = 1; i < 4; i++)
+                {
+                    float x = inicioX + i * larguraPista;
+
+                    g.DrawLine(
+                        contorno,
+                        x, inicioY,
+                        x, inicioY + altura
+                    );
+                }
+                g.DrawLine(
+                linhaAlvo,
+                inicioX, yAlvo,
+                inicioX + largura, yAlvo
+            );
+            }
+
+            long tempoAtualMs = relogio.ElapsedMilliseconds;
+
+            foreach (Nota nota in notas)
+            {
+                if(nota.Acertada || nota.Perdida)
+                    continue;
+
+                float progresso = 1f - (nota.TempoAcertoMs - tempoAtualMs) / (float)TempoDeQuedaMs;
+
+                // Desenha apenas durante o percurso até a linha.
+                if (progresso < 0f)
+                    continue;
+                
+                    float distanciaQueda = yAlvo - inicioY;
+
+                    float yNota = inicioY + progresso * distanciaQueda;
+                    float xNota = inicioX + nota.Pista * larguraPista;
+
+                    const float alturaNota = 20f;
+
+                    using (Brush pincel = new SolidBrush(Color.DeepSkyBlue))
+                    {
+                        g.FillRectangle(
+                            pincel,
+                            xNota + 10f,
+                            yNota - alturaNota / 2f,
+                            larguraPista - 20f,
+                            alturaNota
+                        );
+                    }
+                
+
+            }
+
+
+        }
+
+        #endregion
+
+        #region Comandos do Jogo
+        private void TelaJogo_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch(e.KeyCode)
+            {
+                case Keys.A:
+                    VerificarAcerto(0);
+                    break;
+                case Keys.S:
+                    VerificarAcerto(1); 
+                    break;
+                case Keys.K:
+                    VerificarAcerto(2); 
+                    break;
+                case Keys.L:
+                    VerificarAcerto(3); 
+                    break;
+            }
+        }
+        #endregion
+
+
+        #region Verificador de Acertos
+        private void VerificarAcerto(int pista)
+        {
+            long tempoAtualMs = relogio.ElapsedMilliseconds;
+
+            Nota notaMaisProxima = null;
+            long menorDiferenca = long.MaxValue;
+
+            foreach (Nota nota in notas)
+            {
+                // Considera apenas notas pendentes da pista pressionada.
+                if (nota.Pista != pista || nota.Acertada || nota.Perdida)
+                    continue;
+
+                long diferenca = Math.Abs(tempoAtualMs - nota.TempoAcertoMs);
+
+                if (diferenca < menorDiferenca)
+                {
+                    menorDiferenca = diferenca;
+                    notaMaisProxima = nota;
+                }
+            }
+
+            if (notaMaisProxima != null &&
+                menorDiferenca <= ToleranciaAcertoMs)
+            {
+                if (menorDiferenca <= 50)
+                    resultadoPartida.Perfect++;
+                else if (menorDiferenca <= 100)
+                    resultadoPartida.Great++;
+                else
+                    resultadoPartida.Good++;
+                notaMaisProxima.Acertada = true;
+
+                atualizarPlacar();
+                pnl_Jogo.Invalidate();
+            }
+        }
+        #endregion
+
+        #region Placar
+
+        private void atualizarPlacar()
+        {
+            lbl_Perfect.Text = $"Perfect: {resultadoPartida.Perfect}";
+            lbl_Great.Text = $"Great: {resultadoPartida.Great}";
+            lbl_Good.Text = $"Good: {resultadoPartida.Good}";
+            lbl_Miss.Text = $"Miss: {resultadoPartida.Miss}";
+        }
+        #endregion
+
+    }
+}

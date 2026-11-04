@@ -98,6 +98,10 @@ namespace BassVillainApp
         private void btn_facil_Click(object sender, EventArgs e)
         {
             // Lógica para iniciar o jogo no nível fácil com a música selecionada  
+            TelaJogo telaJogo = new TelaJogo();
+            telaJogo.Show();
+            this.Hide();
+
         }
         private void btn_medio_Click(object sender, EventArgs e)
         {
