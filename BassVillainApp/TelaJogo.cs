@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using MediaPlayer = System.Windows.Media.MediaPlayer;
+using BassVillainApp.Properties;
+using System.Web.Script.Serialization;
+
 
 namespace BassVillainApp
 {
@@ -31,16 +34,9 @@ namespace BassVillainApp
 
         private bool partidaEmAndamento;
 
-        List<Nota> notas = new List<Nota>
-        {
-            new Nota(0, 2000),
-            new Nota(1, 2500),
-            new Nota(2, 3000),
-            new Nota(3, 3500),
-            new Nota(1, 4000),
-            new Nota(2, 4500),
-            new Nota(0, 5000)
-        };
+        List<Nota> notas = new List<Nota>();
+
+        String caminho;
 
         #endregion
 
@@ -75,6 +71,8 @@ namespace BassVillainApp
             playerMusica.MediaOpened += PlayerMusica_MediaOpened;
             playerMusica.MediaFailed += PlayerMusica_MediaFailed;
             playerMusica.MediaEnded += PlayerMusica_MediaEnded;
+
+            
         }
         #endregion
 
@@ -114,6 +112,7 @@ namespace BassVillainApp
 
             timerJogo.Stop();
             relogio.Stop();
+            pnl_Jogo.Invalidate();
 
             // Depois vamos finalizar os resultados e abrir a próxima tela.
         }
@@ -124,11 +123,8 @@ namespace BassVillainApp
         #region Eventos do Jogo
         private void TelaJogo_Shown(object sender, EventArgs e)
         {
-            string caminho = Path.Combine(
-            Application.StartupPath,
-            "MusicasMp3",
-            "SultansOfSwing.mp3"
-        );
+            caminho = CatalogoMusicas.GetMusica();
+        
 
 
             if (!File.Exists(caminho))
@@ -140,6 +136,22 @@ namespace BassVillainApp
 
                 return;
             }
+
+            const string nomeDoMapa = "SultansOfSwing.Medio.json";
+
+            try
+            {
+                notas = CarregarMapa(nomeDoMapa);
+            }
+            catch (Exception ex) when (ex is IOException ||
+                                       ex is UnauthorizedAccessException ||
+                                       ex is ArgumentException ||
+                                       ex is InvalidOperationException)
+            {
+                MessageBox.Show(this, "Erro ao carregar " + nomeDoMapa + "\n" + ex.Message);
+                return;
+            }
+
 
             playerMusica.Open(new Uri(caminho, UriKind.Absolute));
         }
@@ -214,6 +226,8 @@ namespace BassVillainApp
 
             long tempoAtualMs = relogio.ElapsedMilliseconds;
 
+            DesenharTempoRestante(e.Graphics);
+
             foreach (Nota nota in notas)
             {
                 if(nota.Acertada || nota.Perdida)
@@ -249,6 +263,32 @@ namespace BassVillainApp
 
         }
 
+        private void DesenharTempoRestante(Graphics g)
+        {
+            if (!playerMusica.NaturalDuration.HasTimeSpan)
+                return;
+
+            double total = playerMusica.NaturalDuration.TimeSpan.TotalSeconds;
+            if (total <= 0)
+                return;
+
+            double restante = Math.Max(
+                0, Math.Min(total, total - playerMusica.Position.TotalSeconds));
+
+            const float largura = 10f;
+            const float topo = 20f;
+
+            float altura = pnl_Jogo.ClientSize.Height - 2 * topo;
+            if (altura <= 0)
+                return;
+
+            float x = pnl_Jogo.ClientSize.Width * 0.95f - largura / 2f;
+            float preenchimento = altura * (float)(restante / total);
+
+            g.FillRectangle(Brushes.DimGray, x, topo, largura, altura);
+            g.FillRectangle(Brushes.DeepSkyBlue,
+                x, topo + altura - preenchimento, largura, preenchimento);
+        }
         #endregion
 
         #region Comandos do Jogo
@@ -325,5 +365,41 @@ namespace BassVillainApp
         }
         #endregion
 
+        #region Converter Objetos Json
+
+        public sealed class NotaDoMapa
+        {
+            public int? pista { get; set; }
+            public int? tempoAcertoMs { get; set; }
+        }
+
+        private static List<Nota> CarregarMapa(string nomeDoArquivo)
+        {
+            string caminho = Path.Combine(
+                Application.StartupPath, "Mapas", nomeDoArquivo);
+
+            string json = File.ReadAllText(caminho);
+            var entradas = new JavaScriptSerializer().Deserialize<List<NotaDoMapa>>(json);
+
+            if (entradas == null || entradas.Count == 0)
+                throw new InvalidDataException("O mapa está vazio.");
+
+            var mapa = new List<Nota>();
+
+            foreach (NotaDoMapa entrada in entradas)
+            {
+                if (entrada == null ||
+                    !entrada.pista.HasValue || entrada.pista.Value < 0 || entrada.pista.Value > 3 ||
+                    !entrada.tempoAcertoMs.HasValue || entrada.tempoAcertoMs.Value < 0)
+                {
+                    throw new InvalidDataException("Há uma nota com pista ou tempo inválido.");
+                }
+
+                mapa.Add(new Nota(entrada.pista.Value, entrada.tempoAcertoMs.Value));
+            }
+
+            return mapa;
+        }
+        #endregion
     }
 }

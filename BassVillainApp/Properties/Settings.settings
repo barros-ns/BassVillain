@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DarkNecessitiesFacilDesbloqueada" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DarkNecessitiesMedioDesbloqueada" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -12,7 +12,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="SevenNationArmyFacilDesbloqueada" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SevenNationArmyMedioDesbloqueada" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -28,6 +28,9 @@
     </Setting>
     <Setting Name="SultansOfSwingFacilDesbloqueada" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MusicaSelecionada" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

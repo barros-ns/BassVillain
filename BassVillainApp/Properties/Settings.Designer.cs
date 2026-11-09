@@ -25,7 +25,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool DarkNecessitiesFacilDesbloqueada {
             get {
                 return ((bool)(this["DarkNecessitiesFacilDesbloqueada"]));
@@ -61,7 +61,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool SevenNationArmyFacilDesbloqueada {
             get {
                 return ((bool)(this["SevenNationArmyFacilDesbloqueada"]));
@@ -128,6 +128,18 @@ namespace BassVillainApp.Properties {
             }
             set {
                 this["SultansOfSwingFacilDesbloqueada"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MusicaSelecionada {
+            get {
+                return ((int)(this["MusicaSelecionada"]));
+            }
+            set {
+                this["MusicaSelecionada"] = value;
             }
         }
     }

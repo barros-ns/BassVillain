@@ -52,17 +52,17 @@ namespace BassVillainApp
         #region Eventos Botões
         private void btn_Msc1_Click(object sender, EventArgs e)
         {
-            criarTelaDificuldade("Sultans of Swing");
+            criarTelaDificuldade(EnumMusica.SultansOfSwing, "Sultans of Swing");
         }
 
         private void btn_Msc2_Click(object sender, EventArgs e)
         {
-           criarTelaDificuldade("Dark Necessities");
+           criarTelaDificuldade(EnumMusica.DarkNecessities, "Dark Necessities");
         }
 
         private void btn_Msc3_Click(object sender, EventArgs e)
         {
-            criarTelaDificuldade("Seven Nation Army");
+            criarTelaDificuldade(EnumMusica.SevenNationArmy, "Seven Nation Army");
         }
 
         private void btn_voltar_Click(object sender, EventArgs e)
@@ -74,9 +74,9 @@ namespace BassVillainApp
         #endregion
 
         #region Criar Tela
-        private void criarTelaDificuldade(string musicaSelecionada)
+        private void criarTelaDificuldade(EnumMusica enumMusica, String musicaSelecionada)
         {
-            TelaSelecaoDificuldade telaDificuldade = new TelaSelecaoDificuldade(musicaSelecionada, this);
+            TelaSelecaoDificuldade telaDificuldade = new TelaSelecaoDificuldade(enumMusica,musicaSelecionada, this);
             telaDificuldade.Show();
             this.Hide();
         }

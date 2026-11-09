@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnl_Pontuacao = new System.Windows.Forms.Panel();
+            this.lbl_Miss = new System.Windows.Forms.Label();
+            this.lbl_Good = new System.Windows.Forms.Label();
+            this.lbl_Great = new System.Windows.Forms.Label();
+            this.lbl_Perfect = new System.Windows.Forms.Label();
             this.timerJogo = new System.Windows.Forms.Timer(this.components);
             this.pnl_Jogo = new BassVillainApp.PainelJogo();
-            this.lbl_Perfect = new System.Windows.Forms.Label();
-            this.lbl_Great = new System.Windows.Forms.Label();
-            this.lbl_Good = new System.Windows.Forms.Label();
-            this.lbl_Miss = new System.Windows.Forms.Label();
             this.pnl_Pontuacao.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,46 @@
             this.pnl_Pontuacao.Size = new System.Drawing.Size(800, 100);
             this.pnl_Pontuacao.TabIndex = 0;
             // 
+            // lbl_Miss
+            // 
+            this.lbl_Miss.AutoSize = true;
+            this.lbl_Miss.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Miss.Location = new System.Drawing.Point(657, 37);
+            this.lbl_Miss.Name = "lbl_Miss";
+            this.lbl_Miss.Size = new System.Drawing.Size(29, 31);
+            this.lbl_Miss.TabIndex = 7;
+            this.lbl_Miss.Text = "0";
+            // 
+            // lbl_Good
+            // 
+            this.lbl_Good.AutoSize = true;
+            this.lbl_Good.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Good.Location = new System.Drawing.Point(466, 37);
+            this.lbl_Good.Name = "lbl_Good";
+            this.lbl_Good.Size = new System.Drawing.Size(29, 31);
+            this.lbl_Good.TabIndex = 6;
+            this.lbl_Good.Text = "0";
+            // 
+            // lbl_Great
+            // 
+            this.lbl_Great.AutoSize = true;
+            this.lbl_Great.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Great.Location = new System.Drawing.Point(275, 37);
+            this.lbl_Great.Name = "lbl_Great";
+            this.lbl_Great.Size = new System.Drawing.Size(29, 31);
+            this.lbl_Great.TabIndex = 5;
+            this.lbl_Great.Text = "0";
+            // 
+            // lbl_Perfect
+            // 
+            this.lbl_Perfect.AutoSize = true;
+            this.lbl_Perfect.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Perfect.Location = new System.Drawing.Point(84, 37);
+            this.lbl_Perfect.Name = "lbl_Perfect";
+            this.lbl_Perfect.Size = new System.Drawing.Size(29, 31);
+            this.lbl_Perfect.TabIndex = 4;
+            this.lbl_Perfect.Text = "0";
+            // 
             // timerJogo
             // 
             this.timerJogo.Enabled = true;
@@ -64,42 +104,6 @@
             this.pnl_Jogo.Name = "pnl_Jogo";
             this.pnl_Jogo.Size = new System.Drawing.Size(800, 514);
             this.pnl_Jogo.TabIndex = 1;
-            // 
-            // lbl_Perfect
-            // 
-            this.lbl_Perfect.AutoSize = true;
-            this.lbl_Perfect.Location = new System.Drawing.Point(112, 45);
-            this.lbl_Perfect.Name = "lbl_Perfect";
-            this.lbl_Perfect.Size = new System.Drawing.Size(13, 13);
-            this.lbl_Perfect.TabIndex = 4;
-            this.lbl_Perfect.Text = "0";
-            // 
-            // lbl_Great
-            // 
-            this.lbl_Great.AutoSize = true;
-            this.lbl_Great.Location = new System.Drawing.Point(248, 45);
-            this.lbl_Great.Name = "lbl_Great";
-            this.lbl_Great.Size = new System.Drawing.Size(13, 13);
-            this.lbl_Great.TabIndex = 5;
-            this.lbl_Great.Text = "0";
-            // 
-            // lbl_Good
-            // 
-            this.lbl_Good.AutoSize = true;
-            this.lbl_Good.Location = new System.Drawing.Point(390, 45);
-            this.lbl_Good.Name = "lbl_Good";
-            this.lbl_Good.Size = new System.Drawing.Size(13, 13);
-            this.lbl_Good.TabIndex = 6;
-            this.lbl_Good.Text = "0";
-            // 
-            // lbl_Miss
-            // 
-            this.lbl_Miss.AutoSize = true;
-            this.lbl_Miss.Location = new System.Drawing.Point(517, 45);
-            this.lbl_Miss.Name = "lbl_Miss";
-            this.lbl_Miss.Size = new System.Drawing.Size(13, 13);
-            this.lbl_Miss.TabIndex = 7;
-            this.lbl_Miss.Text = "0";
             // 
             // TelaJogo
             // 

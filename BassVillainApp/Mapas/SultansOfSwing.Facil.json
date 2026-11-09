@@ -1,0 +1,1258 @@
+[
+  {
+    "pista": 0,
+    "tempoAcertoMs": 1407
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 2245
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 3038
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 3846
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 4669
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 5473
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 6276
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 7079
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 7882
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 8685
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 9493
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 10097
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 11095
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 11903
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 12731
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 13684
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 14896
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 15709
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 16512
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 17316
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 18298
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 18907
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 19905
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 20713
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 21506
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 22329
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 22913
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 23906
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 24704
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 25522
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 26310
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 26919
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 27742
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 29363
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 30171
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 30970
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 31758
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 32556
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 33574
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 34980
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 35789
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 36791
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 37420
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 38418
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 39410
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 40428
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 41436
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 42254
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 42878
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 43531
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 44673
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 45482
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 46484
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 47283
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 48081
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 48894
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 49517
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 50490
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 51308
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 52117
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 52910
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 53703
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 54516
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 55319
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 56132
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 56916
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 57744
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 58527
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 59171
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 59974
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 60772
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 61565
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 62373
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 62997
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 63800
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 64598
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 65401
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 66639
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 67452
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 68444
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 69871
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 70694
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 71667
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 72510
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 73318
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 74112
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 74935
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 75693
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 76346
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 77100
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 77763
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 78776
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 79684
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 80402
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 81255
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 82039
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 82822
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 83650
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 84458
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 85241
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 86229
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 86863
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 87865
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 88659
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 89292
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 90100
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 90898
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 91702
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 92515
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 93323
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 94121
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 94934
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 95737
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 96551
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 97364
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 98142
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 98950
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 99758
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 100586
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 101395
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 102023
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 103021
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 103784
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 104657
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 105640
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 106368
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 107286
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 108149
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 108942
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 110130
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 111142
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 111961
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 112769
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 113781
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 114794
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 115602
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 116455
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 117283
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 118087
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 118895
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 119912
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 120930
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 121564
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 122367
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 123375
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 124213
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 125016
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 125839
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 126632
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 127445
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 128249
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 128877
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 129685
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 130498
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 131327
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 132329
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 133137
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 133776
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 134549
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 135367
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 136180
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 136999
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 137807
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 138610
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 139458
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 140466
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 141279
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 142097
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 143105
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 144337
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 145355
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 146332
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 146981
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 147774
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 148602
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 149226
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 149994
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 150837
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 151610
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 152459
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 153436
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 154374
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 155063
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 155886
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 156674
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 157462
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 158265
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 159078
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 159847
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 160675
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 161468
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 162466
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 163693
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 164322
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 165140
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 165763
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 166786
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 167584
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 168402
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 169235
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 169864
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 171091
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 171924
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 172742
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 173366
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 174404
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 175147
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 176030
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 176654
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 177452
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 178280
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 179093
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 180101
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 180889
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 181722
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 182735
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 183777
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 184580
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 185389
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 186401
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 187220
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 187973
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 188631
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 189844
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 190856
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 191879
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 192887
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 193705
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 194523
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 195331
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 195965
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 196728
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 197516
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 198155
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 198968
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 200180
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 201188
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 201996
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 202634
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 203433
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 204246
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 205049
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 205882
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 206655
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 207678
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 208716
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 209524
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 210352
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 211150
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 211953
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 212756
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 213570
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 214373
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 215176
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 215979
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 216603
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 217381
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 218209
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 219217
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 220030
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 220828
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 221616
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 222255
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 223043
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 223861
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 224679
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 225488
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 226116
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 226914
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 227712
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 228436
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 229134
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 230341
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 231344
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 232152
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 232961
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 233589
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 234392
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 235200
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 236009
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 236832
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 237625
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 238438
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 239451
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 240454
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 241077
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 241875
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 242768
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 243492
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 244290
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 244913
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 245911
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 247333
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 248136
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 248919
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 249543
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 250346
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 251174
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 251977
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 252990
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 253978
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 254811
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 255634
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 256452
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 257255
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 258288
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 259505
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 260229
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 260917
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 261935
+  },
+  {
+    "pista": 1,
+    "tempoAcertoMs": 262748
+  },
+  {
+    "pista": 0,
+    "tempoAcertoMs": 263756
+  },
+  {
+    "pista": 2,
+    "tempoAcertoMs": 264499
+  },
+  {
+    "pista": 3,
+    "tempoAcertoMs": 265382
+  }
+]
