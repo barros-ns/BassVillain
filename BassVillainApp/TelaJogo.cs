@@ -117,6 +117,68 @@ namespace BassVillainApp
             // Depois vamos finalizar os resultados e abrir a próxima tela.
         }
 
+        #region GetMusica Pela dificuldade
+        private string getMusicaByDificuldade(int dificuldade)
+        {
+            switch (dificuldade)
+            {
+                case 0:
+                    return getSultansByDificuldade(dificuldade);
+                case 1:
+                    return getDarkNecessitiesByDificuldade(dificuldade);
+                case 2:
+                    return getSevenNationArmyByDificuldade(dificuldade);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(dificuldade), "Dificuldade inválida.");
+            }
+        }
+
+        private String getSultansByDificuldade(int dificuldade)
+        {
+                       switch (dificuldade)
+            {
+                case 0:
+                    return "SultansOfSwing.Facil.json";
+                case 1:
+                    return "SultansOfSwing.Medio.json";
+                case 2:
+                    return "SultansOfSwing.Dificil.json";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(dificuldade), "Dificuldade inválida.");
+            }
+        }
+
+        private String getDarkNecessitiesByDificuldade(int dificuldade)
+        {
+            switch (dificuldade)
+            {
+                case 0:
+                    return "DarkNecessities.Facil.json";
+                case 1:
+                    return "DarkNecessities.Medio.json";
+                case 2:
+                    return "DarkNecessities.Dificil.json";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(dificuldade), "Dificuldade inválida.");
+            }
+        }
+
+        private String getSevenNationArmyByDificuldade(int dificuldade)
+        {
+            switch (dificuldade)
+            {
+                case 0:
+                    return "SevenNationArmy.Facil.json";
+                case 1:
+                    return "SevenNationArmy.Medio.json";
+                case 2:
+                    return "SevenNationArmy.Dificil.json";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(dificuldade), "Dificuldade inválida.");
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -124,7 +186,8 @@ namespace BassVillainApp
         private void TelaJogo_Shown(object sender, EventArgs e)
         {
             caminho = CatalogoMusicas.GetMusica();
-        
+            int dificuldade = Settings.Default.DificuldadeSelecionada;
+            string nomeDoMapa = getMusicaByDificuldade(dificuldade);
 
 
             if (!File.Exists(caminho))
@@ -136,8 +199,6 @@ namespace BassVillainApp
 
                 return;
             }
-
-            const string nomeDoMapa = "DarkNecessities.Medio.json";
 
             try
             {
@@ -312,7 +373,6 @@ namespace BassVillainApp
             }
         }
         #endregion
-
 
         #region Verificador de Acertos
         private void VerificarAcerto(int pista)

@@ -104,7 +104,7 @@ namespace BassVillainApp
 
         private void btn_facil_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar o jogo no nível fácil com a música selecionada  
+            Settings.Default.DificuldadeSelecionada = 0;
             TelaJogo telaJogo = new TelaJogo();
             telaJogo.Show();
             this.Hide();
@@ -112,6 +112,7 @@ namespace BassVillainApp
         }
         private void btn_medio_Click(object sender, EventArgs e)
         {
+            Settings.Default.DificuldadeSelecionada = 1;
             TelaJogo telaJogo = new TelaJogo();
             telaJogo.Show();
             this.Hide();
@@ -119,6 +120,7 @@ namespace BassVillainApp
 
         private void btn_dificil_Click(object sender, EventArgs e)
         {
+            Settings.Default.DificuldadeSelecionada = 2;
             TelaJogo telaJogo = new TelaJogo();
             telaJogo.Show();
             this.Hide();
