@@ -66,8 +66,10 @@ namespace BassVillainApp
 
             KeyDown += TelaJogo_KeyDown;
 
-            btn_skip.Click += btn_skip_Click;
-            btn_skip.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
+            btn_skipPass.Click += btn_skipPass_Click;
+            btn_skipPass.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
+            btn_skipFail.Click += btn_skipFail_Click;
+            btn_skipFail.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
         }
 
         private void DeclararComponentesMusica() 
@@ -403,13 +405,16 @@ namespace BassVillainApp
                     VerificarAcerto(0);
                     break;
                 case Keys.S:
-                    VerificarAcerto(1); 
+                    VerificarAcerto(1);
                     break;
                 case Keys.K:
-                    VerificarAcerto(2); 
+                    VerificarAcerto(2);
                     break;
                 case Keys.L:
-                    VerificarAcerto(3); 
+                    VerificarAcerto(3);
+                    break;
+                case Keys.Escape:
+                    pausarJogo();
                     break;
             }
         }
@@ -521,8 +526,42 @@ namespace BassVillainApp
         }
         #endregion
 
+        #region Pausar
+        private void pausarJogo()
+        {
+            if (!partidaEmAndamento)
+                return;
+            partidaEmAndamento = false;
+            timerJogo.Stop();
+            relogio.Stop();
+            playerMusica.Pause();
+            
+            DialogResult msgb = MessageBox.Show(
+                this,
+                "Jogo pausado. Deseja Continuar?",
+                "Pausa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information
+            );
+
+            if (msgb == DialogResult.No)
+            {
+                
+                TelaInicial telaInicial = new TelaInicial(); //melhorar isso aqui mas tem que alterar mta coisa
+                telaInicial.Show();
+                this.Hide();
+                playerMusica.Stop();
+                return; 
+            }
+            partidaEmAndamento = true;
+            relogio.Start();
+            playerMusica.Play();
+            timerJogo.Start();
+        }
+        #endregion
+
         #region Debug
-       private void btn_skip_Click(object sender, EventArgs e)
+        private void btn_skipPass_Click(object sender, EventArgs e)
         {
             partidaEmAndamento = false;
 
@@ -530,6 +569,23 @@ namespace BassVillainApp
             relogio.Stop();
             playerMusica.Stop();
             pnl_Jogo.Invalidate();
+
+
+            resultadoPartida.Perfect = resultadoPartida.tamanhoDaMusica;
+
+            mostrarTelaResultados();
+        }
+
+        private void btn_skipFail_Click(object sender, EventArgs e)
+        {
+            partidaEmAndamento = false;
+
+            timerJogo.Stop();
+            relogio.Stop();
+            playerMusica.Stop();
+            pnl_Jogo.Invalidate();
+
+            resultadoPartida.Miss = resultadoPartida.tamanhoDaMusica;
 
             mostrarTelaResultados();
         }
