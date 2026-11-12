@@ -55,6 +55,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ResultadoPartida.cs" />
+    <Compile Include="TelaConclusao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaConclusao.Designer.cs">
+      <DependentUpon>TelaConclusao.cs</DependentUpon>
+    </Compile>
     <Compile Include="TelaConfiguracoes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="TelaConclusao.resx">
+      <DependentUpon>TelaConclusao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TelaConfiguracoes.resx">
       <DependentUpon>TelaConfiguracoes.cs</DependentUpon>
     </EmbeddedResource>

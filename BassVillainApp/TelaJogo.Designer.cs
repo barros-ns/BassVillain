@@ -30,10 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnl_Pontuacao = new System.Windows.Forms.Panel();
-            this.lbl_Miss = new System.Windows.Forms.Label();
-            this.lbl_Good = new System.Windows.Forms.Label();
-            this.lbl_Great = new System.Windows.Forms.Label();
-            this.lbl_Perfect = new System.Windows.Forms.Label();
+            this.lbl_Pontuacao = new System.Windows.Forms.Label();
+            this.lbl_ComboMax = new System.Windows.Forms.Label();
+            this.lbl_ComboAtual = new System.Windows.Forms.Label();
+            this.lbl_Erros = new System.Windows.Forms.Label();
+            this.lbl_Acertos = new System.Windows.Forms.Label();
             this.timerJogo = new System.Windows.Forms.Timer(this.components);
             this.pnl_Jogo = new BassVillainApp.PainelJogo();
             this.pnl_Pontuacao.SuspendLayout();
@@ -42,55 +43,66 @@
             // pnl_Pontuacao
             // 
             this.pnl_Pontuacao.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnl_Pontuacao.Controls.Add(this.lbl_Miss);
-            this.pnl_Pontuacao.Controls.Add(this.lbl_Good);
-            this.pnl_Pontuacao.Controls.Add(this.lbl_Great);
-            this.pnl_Pontuacao.Controls.Add(this.lbl_Perfect);
+            this.pnl_Pontuacao.Controls.Add(this.lbl_Pontuacao);
+            this.pnl_Pontuacao.Controls.Add(this.lbl_ComboMax);
+            this.pnl_Pontuacao.Controls.Add(this.lbl_ComboAtual);
+            this.pnl_Pontuacao.Controls.Add(this.lbl_Erros);
+            this.pnl_Pontuacao.Controls.Add(this.lbl_Acertos);
             this.pnl_Pontuacao.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Pontuacao.Location = new System.Drawing.Point(0, 0);
             this.pnl_Pontuacao.Name = "pnl_Pontuacao";
             this.pnl_Pontuacao.Size = new System.Drawing.Size(800, 100);
             this.pnl_Pontuacao.TabIndex = 0;
             // 
-            // lbl_Miss
+            // lbl_Pontuacao
             // 
-            this.lbl_Miss.AutoSize = true;
-            this.lbl_Miss.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Miss.Location = new System.Drawing.Point(657, 37);
-            this.lbl_Miss.Name = "lbl_Miss";
-            this.lbl_Miss.Size = new System.Drawing.Size(29, 31);
-            this.lbl_Miss.TabIndex = 7;
-            this.lbl_Miss.Text = "0";
+            this.lbl_Pontuacao.AutoSize = true;
+            this.lbl_Pontuacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Pontuacao.Location = new System.Drawing.Point(535, 34);
+            this.lbl_Pontuacao.Name = "lbl_Pontuacao";
+            this.lbl_Pontuacao.Size = new System.Drawing.Size(24, 25);
+            this.lbl_Pontuacao.TabIndex = 8;
+            this.lbl_Pontuacao.Text = "0";
             // 
-            // lbl_Good
+            // lbl_ComboMax
             // 
-            this.lbl_Good.AutoSize = true;
-            this.lbl_Good.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Good.Location = new System.Drawing.Point(466, 37);
-            this.lbl_Good.Name = "lbl_Good";
-            this.lbl_Good.Size = new System.Drawing.Size(29, 31);
-            this.lbl_Good.TabIndex = 6;
-            this.lbl_Good.Text = "0";
+            this.lbl_ComboMax.AutoSize = true;
+            this.lbl_ComboMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ComboMax.Location = new System.Drawing.Point(319, 52);
+            this.lbl_ComboMax.Name = "lbl_ComboMax";
+            this.lbl_ComboMax.Size = new System.Drawing.Size(24, 25);
+            this.lbl_ComboMax.TabIndex = 7;
+            this.lbl_ComboMax.Text = "0";
             // 
-            // lbl_Great
+            // lbl_ComboAtual
             // 
-            this.lbl_Great.AutoSize = true;
-            this.lbl_Great.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Great.Location = new System.Drawing.Point(275, 37);
-            this.lbl_Great.Name = "lbl_Great";
-            this.lbl_Great.Size = new System.Drawing.Size(29, 31);
-            this.lbl_Great.TabIndex = 5;
-            this.lbl_Great.Text = "0";
+            this.lbl_ComboAtual.AutoSize = true;
+            this.lbl_ComboAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ComboAtual.Location = new System.Drawing.Point(319, 9);
+            this.lbl_ComboAtual.Name = "lbl_ComboAtual";
+            this.lbl_ComboAtual.Size = new System.Drawing.Size(24, 25);
+            this.lbl_ComboAtual.TabIndex = 6;
+            this.lbl_ComboAtual.Text = "0";
             // 
-            // lbl_Perfect
+            // lbl_Erros
             // 
-            this.lbl_Perfect.AutoSize = true;
-            this.lbl_Perfect.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Perfect.Location = new System.Drawing.Point(84, 37);
-            this.lbl_Perfect.Name = "lbl_Perfect";
-            this.lbl_Perfect.Size = new System.Drawing.Size(29, 31);
-            this.lbl_Perfect.TabIndex = 4;
-            this.lbl_Perfect.Text = "0";
+            this.lbl_Erros.AutoSize = true;
+            this.lbl_Erros.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Erros.Location = new System.Drawing.Point(58, 52);
+            this.lbl_Erros.Name = "lbl_Erros";
+            this.lbl_Erros.Size = new System.Drawing.Size(24, 25);
+            this.lbl_Erros.TabIndex = 5;
+            this.lbl_Erros.Text = "0";
+            // 
+            // lbl_Acertos
+            // 
+            this.lbl_Acertos.AutoSize = true;
+            this.lbl_Acertos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Acertos.Location = new System.Drawing.Point(58, 9);
+            this.lbl_Acertos.Name = "lbl_Acertos";
+            this.lbl_Acertos.Size = new System.Drawing.Size(24, 25);
+            this.lbl_Acertos.TabIndex = 4;
+            this.lbl_Acertos.Text = "0";
             // 
             // timerJogo
             // 
@@ -125,9 +137,10 @@
         private System.Windows.Forms.Panel pnl_Pontuacao;
         private System.Windows.Forms.Timer timerJogo;
         private PainelJogo pnl_Jogo;
-        private System.Windows.Forms.Label lbl_Miss;
-        private System.Windows.Forms.Label lbl_Good;
-        private System.Windows.Forms.Label lbl_Great;
-        private System.Windows.Forms.Label lbl_Perfect;
+        private System.Windows.Forms.Label lbl_ComboMax;
+        private System.Windows.Forms.Label lbl_ComboAtual;
+        private System.Windows.Forms.Label lbl_Erros;
+        private System.Windows.Forms.Label lbl_Acertos;
+        private System.Windows.Forms.Label lbl_Pontuacao;
     }
 }

@@ -12,6 +12,7 @@ using System.IO;
 using MediaPlayer = System.Windows.Media.MediaPlayer;
 using BassVillainApp.Properties;
 using System.Web.Script.Serialization;
+using System.Runtime.InteropServices;
 
 
 namespace BassVillainApp
@@ -34,9 +35,11 @@ namespace BassVillainApp
 
         private bool partidaEmAndamento;
 
-        List<Nota> notas = new List<Nota>();
+        private List<Nota> notas = new List<Nota>();
 
-        String caminho;
+        private String caminho;
+
+        private int comboAtual = 0;
 
         #endregion
 
@@ -232,6 +235,7 @@ namespace BassVillainApp
                 {
                     nota.Perdida = true;
                     resultadoPartida.Miss++;
+                    comboAtual = 0;
                 }
             }
             atualizarPlacar();
@@ -404,6 +408,7 @@ namespace BassVillainApp
 
             Nota notaMaisProxima = null;
             long menorDiferenca = long.MaxValue;
+            int pontos = 0;
 
             foreach (Nota nota in notas)
             {
@@ -423,15 +428,31 @@ namespace BassVillainApp
             if (notaMaisProxima != null &&
                 menorDiferenca <= ToleranciaAcertoMs)
             {
+                comboAtual ++;
+
                 if (menorDiferenca <= 50)
+                {
                     resultadoPartida.Perfect++;
+                    pontos = 100;
+                }
+                    
                 else if (menorDiferenca <= 100)
+                {
                     resultadoPartida.Great++;
+                    pontos = 70;
+                }
                 else
+                {
                     resultadoPartida.Good++;
+                    pontos = 40;
+                }
+
+
                 notaMaisProxima.Acertada = true;
 
                 atualizarPlacar();
+                resultadoPartida.MaiorCombo = Math.Max(resultadoPartida.MaiorCombo, comboAtual);
+                resultadoPartida.Pontuacao += pontos;
                 pnl_Jogo.Invalidate();
             }
         }
@@ -441,10 +462,11 @@ namespace BassVillainApp
 
         private void atualizarPlacar()
         {
-            lbl_Perfect.Text = $"Perfect: {resultadoPartida.Perfect}";
-            lbl_Great.Text = $"Great: {resultadoPartida.Great}";
-            lbl_Good.Text = $"Good: {resultadoPartida.Good}";
-            lbl_Miss.Text = $"Miss: {resultadoPartida.Miss}";
+            lbl_Acertos.Text = $"Acertadas: {resultadoPartida.NotasAcertadasResultadoPartida}";
+            lbl_Erros.Text = $"Erradas: {resultadoPartida.Miss}";
+            lbl_ComboAtual.Text = $"Combo Atual: {comboAtual}";
+            lbl_ComboMax.Text = $"Combo Máximo: {resultadoPartida.MaiorCombo}";
+            lbl_Pontuacao.Text = $"Pontuação: {resultadoPartida.Pontuacao}";
         }
         #endregion
 
