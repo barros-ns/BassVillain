@@ -120,7 +120,8 @@ namespace BassVillainApp
         #region GetMusica Pela dificuldade
         private string getMusicaByDificuldade(int dificuldade)
         {
-            switch (dificuldade)
+            int musica = Settings.Default.MusicaSelecionada;
+            switch (musica)
             {
                 case 0:
                     return getSultansByDificuldade(dificuldade);
@@ -129,7 +130,7 @@ namespace BassVillainApp
                 case 2:
                     return getSevenNationArmyByDificuldade(dificuldade);
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(dificuldade), "Dificuldade inválida.");
+                    throw new ArgumentOutOfRangeException(nameof(musica), "Dificuldade inválida.");
             }
         }
 
