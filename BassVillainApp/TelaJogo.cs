@@ -66,8 +66,10 @@ namespace BassVillainApp
 
             KeyDown += TelaJogo_KeyDown;
 
-            btn_skip.Click += btn_skip_Click;
-            btn_skip.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
+            btn_skipPass.Click += btn_skipPass_Click;
+            btn_skipPass.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
+            btn_skipFail.Click += btn_skipFail_Click;
+            btn_skipFail.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
         }
 
         private void DeclararComponentesMusica() 
@@ -558,9 +560,8 @@ namespace BassVillainApp
         }
         #endregion
 
-
         #region Debug
-        private void btn_skip_Click(object sender, EventArgs e)
+        private void btn_skipPass_Click(object sender, EventArgs e)
         {
             partidaEmAndamento = false;
 
@@ -568,6 +569,23 @@ namespace BassVillainApp
             relogio.Stop();
             playerMusica.Stop();
             pnl_Jogo.Invalidate();
+
+
+            resultadoPartida.Perfect = resultadoPartida.tamanhoDaMusica;
+
+            mostrarTelaResultados();
+        }
+
+        private void btn_skipFail_Click(object sender, EventArgs e)
+        {
+            partidaEmAndamento = false;
+
+            timerJogo.Stop();
+            relogio.Stop();
+            playerMusica.Stop();
+            pnl_Jogo.Invalidate();
+
+            resultadoPartida.Miss = resultadoPartida.tamanhoDaMusica;
 
             mostrarTelaResultados();
         }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnl_Pontuacao = new System.Windows.Forms.Panel();
+            this.btn_skipPass = new System.Windows.Forms.Button();
             this.lbl_Pontuacao = new System.Windows.Forms.Label();
             this.lbl_ComboMax = new System.Windows.Forms.Label();
             this.lbl_ComboAtual = new System.Windows.Forms.Label();
@@ -37,14 +38,15 @@
             this.lbl_Acertos = new System.Windows.Forms.Label();
             this.timerJogo = new System.Windows.Forms.Timer(this.components);
             this.pnl_Jogo = new BassVillainApp.PainelJogo();
-            this.btn_skip = new System.Windows.Forms.Button();
+            this.btn_skipFail = new System.Windows.Forms.Button();
             this.pnl_Pontuacao.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_Pontuacao
             // 
             this.pnl_Pontuacao.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnl_Pontuacao.Controls.Add(this.btn_skip);
+            this.pnl_Pontuacao.Controls.Add(this.btn_skipFail);
+            this.pnl_Pontuacao.Controls.Add(this.btn_skipPass);
             this.pnl_Pontuacao.Controls.Add(this.lbl_Pontuacao);
             this.pnl_Pontuacao.Controls.Add(this.lbl_ComboMax);
             this.pnl_Pontuacao.Controls.Add(this.lbl_ComboAtual);
@@ -55,6 +57,15 @@
             this.pnl_Pontuacao.Name = "pnl_Pontuacao";
             this.pnl_Pontuacao.Size = new System.Drawing.Size(800, 100);
             this.pnl_Pontuacao.TabIndex = 0;
+            // 
+            // btn_skipPass
+            // 
+            this.btn_skipPass.Location = new System.Drawing.Point(518, 56);
+            this.btn_skipPass.Name = "btn_skipPass";
+            this.btn_skipPass.Size = new System.Drawing.Size(75, 23);
+            this.btn_skipPass.TabIndex = 0;
+            this.btn_skipPass.Text = "Vencer";
+            this.btn_skipPass.UseVisualStyleBackColor = true;
             // 
             // lbl_Pontuacao
             // 
@@ -119,14 +130,14 @@
             this.pnl_Jogo.Size = new System.Drawing.Size(800, 514);
             this.pnl_Jogo.TabIndex = 1;
             // 
-            // btn_skip
+            // btn_skipFail
             // 
-            this.btn_skip.Location = new System.Drawing.Point(518, 56);
-            this.btn_skip.Name = "btn_skip";
-            this.btn_skip.Size = new System.Drawing.Size(75, 23);
-            this.btn_skip.TabIndex = 0;
-            this.btn_skip.Text = "Skipar";
-            this.btn_skip.UseVisualStyleBackColor = true;
+            this.btn_skipFail.Location = new System.Drawing.Point(618, 54);
+            this.btn_skipFail.Name = "btn_skipFail";
+            this.btn_skipFail.Size = new System.Drawing.Size(75, 23);
+            this.btn_skipFail.TabIndex = 9;
+            this.btn_skipFail.Text = "Perder";
+            this.btn_skipFail.UseVisualStyleBackColor = true;
             // 
             // TelaJogo
             // 
@@ -153,6 +164,7 @@
         private System.Windows.Forms.Label lbl_Erros;
         private System.Windows.Forms.Label lbl_Acertos;
         private System.Windows.Forms.Label lbl_Pontuacao;
-        private System.Windows.Forms.Button btn_skip;
+        private System.Windows.Forms.Button btn_skipPass;
+        private System.Windows.Forms.Button btn_skipFail;
     }
 }

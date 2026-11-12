@@ -25,7 +25,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DarkNecessitiesFacilDesbloqueada {
             get {
                 return ((bool)(this["DarkNecessitiesFacilDesbloqueada"]));
@@ -37,7 +37,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DarkNecessitiesMedioDesbloqueada {
             get {
                 return ((bool)(this["DarkNecessitiesMedioDesbloqueada"]));
@@ -49,7 +49,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool DarkNecessitiesDificilDesbloqueada {
             get {
                 return ((bool)(this["DarkNecessitiesDificilDesbloqueada"]));
@@ -61,7 +61,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SevenNationArmyFacilDesbloqueada {
             get {
                 return ((bool)(this["SevenNationArmyFacilDesbloqueada"]));
@@ -73,7 +73,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SevenNationArmyMedioDesbloqueada {
             get {
                 return ((bool)(this["SevenNationArmyMedioDesbloqueada"]));
@@ -85,7 +85,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SevenNationArmyDificilDesbloqueada {
             get {
                 return ((bool)(this["SevenNationArmyDificilDesbloqueada"]));
@@ -97,7 +97,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SultansOfSwingMedioDesbloqueada {
             get {
                 return ((bool)(this["SultansOfSwingMedioDesbloqueada"]));
@@ -109,7 +109,7 @@ namespace BassVillainApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SultansOfSwingDificilDesbloqueada {
             get {
                 return ((bool)(this["SultansOfSwingDificilDesbloqueada"]));
