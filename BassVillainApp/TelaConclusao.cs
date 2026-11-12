@@ -30,6 +30,11 @@ namespace BassVillainApp
         #region Mostrar Resultado
         private void mostrarResultado(ResultadoPartida resultado)
         {
+            int totalNotas = resultado.tamanhoDaMusica;
+            int acertos = resultado.NotasAcertadasResultadoPartida;
+            double pctg = totalNotas > 0 ? 100.0 * acertos / totalNotas: 0.0;
+            bool passou = pctg > 70;
+
             lbl_NomeMusica.Text = resultado.NomeMusica;
             lb_resultados.Items.Add($"Perfect: {resultado.Perfect}");
             lb_resultados.Items.Add($"Great: {resultado.Great}");
@@ -37,6 +42,8 @@ namespace BassVillainApp
             lb_resultados.Items.Add($"Miss: {resultado.Miss}");
             lb_resultados.Items.Add($"Pontuação: {resultado.Pontuacao}");
             lb_resultados.Items.Add($"Maior Combo: {resultado.MaiorCombo}");
+            lb_resultados.Items.Add($"% de Acerto: {pctg.ToString("F2")}%");
+            lb_resultados.Items.Add($"Passou: {passou}");
         }
 
         #endregion

@@ -15,7 +15,7 @@ namespace BassVillainApp
         public int Pontuacao { get; set; }
         public int MaiorCombo { get; set; }
         public String NomeMusica { get; set; }
-
+        public int tamanhoDaMusica { get; set; }
 
         public int NotasAcertadasResultadoPartida
         {

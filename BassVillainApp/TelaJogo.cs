@@ -213,6 +213,7 @@ namespace BassVillainApp
             try
             {
                 notas = CarregarMapa(nomeDoMapa);
+                resultadoPartida.tamanhoDaMusica = notas.Count;
             }
             catch (Exception ex) when (ex is IOException ||
                                        ex is UnauthorizedAccessException ||
