@@ -14,7 +14,7 @@ namespace BassVillainApp
     {
 
         #region Globais
-        ResultadoPartida resultado;
+        
         #endregion
 
         #region Inicialização
@@ -30,12 +30,13 @@ namespace BassVillainApp
         #region Mostrar Resultado
         private void mostrarResultado(ResultadoPartida resultado)
         {
-            this.resultado = resultado;
-            lb_resultados.Items.Add("Perfect: " + resultado.Perfect);
-            lb_resultados.Items.Add("Great: " + resultado.Great);
-            lb_resultados.Items.Add("Good: " + resultado.Good);
-            lb_resultados.Items.Add("Miss: " + resultado.Miss);
-            lb_resultados.Items.Add("Pontuação: " + resultado.Pontuacao);
+            lbl_NomeMusica.Text = resultado.NomeMusica;
+            lb_resultados.Items.Add($"Perfect: {resultado.Perfect}");
+            lb_resultados.Items.Add($"Great: {resultado.Great}");
+            lb_resultados.Items.Add($"Good: {resultado.Good}");
+            lb_resultados.Items.Add($"Miss: {resultado.Miss}");
+            lb_resultados.Items.Add($"Pontuação: {resultado.Pontuacao}");
+            lb_resultados.Items.Add($"Maior Combo: {resultado.MaiorCombo}");
         }
 
         #endregion

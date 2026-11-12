@@ -37,12 +37,14 @@
             this.lbl_Acertos = new System.Windows.Forms.Label();
             this.timerJogo = new System.Windows.Forms.Timer(this.components);
             this.pnl_Jogo = new BassVillainApp.PainelJogo();
+            this.btn_skip = new System.Windows.Forms.Button();
             this.pnl_Pontuacao.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_Pontuacao
             // 
             this.pnl_Pontuacao.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_Pontuacao.Controls.Add(this.btn_skip);
             this.pnl_Pontuacao.Controls.Add(this.lbl_Pontuacao);
             this.pnl_Pontuacao.Controls.Add(this.lbl_ComboMax);
             this.pnl_Pontuacao.Controls.Add(this.lbl_ComboAtual);
@@ -117,6 +119,15 @@
             this.pnl_Jogo.Size = new System.Drawing.Size(800, 514);
             this.pnl_Jogo.TabIndex = 1;
             // 
+            // btn_skip
+            // 
+            this.btn_skip.Location = new System.Drawing.Point(518, 56);
+            this.btn_skip.Name = "btn_skip";
+            this.btn_skip.Size = new System.Drawing.Size(75, 23);
+            this.btn_skip.TabIndex = 0;
+            this.btn_skip.Text = "Skipar";
+            this.btn_skip.UseVisualStyleBackColor = true;
+            // 
             // TelaJogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,5 +153,6 @@
         private System.Windows.Forms.Label lbl_Erros;
         private System.Windows.Forms.Label lbl_Acertos;
         private System.Windows.Forms.Label lbl_Pontuacao;
+        private System.Windows.Forms.Button btn_skip;
     }
 }

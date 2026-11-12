@@ -65,6 +65,9 @@ namespace BassVillainApp
             FormClosed += TelaJogo_FormClosed;
 
             KeyDown += TelaJogo_KeyDown;
+
+            btn_skip.Click += btn_skip_Click;
+            btn_skip.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
         }
 
         private void DeclararComponentesMusica() 
@@ -120,7 +123,7 @@ namespace BassVillainApp
             mostrarTelaResultados();
         }
 
-        
+        #endregion
 
         #region GetMusica Pela dificuldade
         private string getMusicaByDificuldade(int dificuldade)
@@ -129,10 +132,13 @@ namespace BassVillainApp
             switch (musica)
             {
                 case 0:
+                    resultadoPartida.NomeMusica = "Sultans of Swing";
                     return getSultansByDificuldade(dificuldade);
                 case 1:
+                    resultadoPartida.NomeMusica = "Dark Necessities";
                     return getDarkNecessitiesByDificuldade(dificuldade);
                 case 2:
+                    resultadoPartida.NomeMusica = "Seven Nation Army";
                     return getSevenNationArmyByDificuldade(dificuldade);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(musica), "Dificuldade inválida.");
@@ -183,8 +189,6 @@ namespace BassVillainApp
                     throw new ArgumentOutOfRangeException(nameof(dificuldade), "Dificuldade inválida.");
             }
         }
-
-        #endregion
 
         #endregion
 
@@ -513,6 +517,20 @@ namespace BassVillainApp
             }
 
             return mapa;
+        }
+        #endregion
+
+        #region Debug
+       private void btn_skip_Click(object sender, EventArgs e)
+        {
+            partidaEmAndamento = false;
+
+            timerJogo.Stop();
+            relogio.Stop();
+            playerMusica.Stop();
+            pnl_Jogo.Invalidate();
+
+            mostrarTelaResultados();
         }
         #endregion
     }

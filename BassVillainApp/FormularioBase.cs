@@ -25,7 +25,7 @@ namespace BassVillainApp
 
         protected override void OnLoad(EventArgs e) //Define um tamanho fixo de formulário
         {
-            Size = new System.Drawing.Size(800, 700);
+            Size = new System.Drawing.Size(800, 750);
             base.OnLoad(e);
         }
         public void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)
