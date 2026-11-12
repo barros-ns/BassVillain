@@ -52,7 +52,7 @@ namespace BassVillainApp
             int totalNotas = resultado.tamanhoDaMusica;
             int acertos = resultado.NotasAcertadasResultadoPartida;
             pctgAcertos = totalNotas > 0 ? 100.0 * acertos / totalNotas: 0.0;
-            bool passou = pctgAcertos > 70;
+            bool passou = pctgAcertos >= 70;
 
             lbl_NomeMusica.Text = resultado.NomeMusica;
             lb_resultados.Items.Add($"Perfect: {resultado.Perfect}");
