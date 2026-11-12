@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,14 @@ namespace BassVillainApp
             ShowIcon = false;
             FormClosing += new FormClosingEventHandler(FormularioBase_FormClosing);
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            
+
+        }
+
+        protected override void OnLoad(EventArgs e) //Define um tamanho fixo de formulário
+        {
+            Size = new System.Drawing.Size(800, 700);
+            base.OnLoad(e);
         }
         public void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)
         {

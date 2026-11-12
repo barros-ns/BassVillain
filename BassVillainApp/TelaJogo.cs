@@ -117,8 +117,10 @@ namespace BassVillainApp
             relogio.Stop();
             pnl_Jogo.Invalidate();
 
-            // Depois vamos finalizar os resultados e abrir a próxima tela.
+            mostrarTelaResultados();
         }
+
+        
 
         #region GetMusica Pela dificuldade
         private string getMusicaByDificuldade(int dificuldade)
@@ -247,6 +249,13 @@ namespace BassVillainApp
             timerJogo.Stop();
             timerJogo.Dispose();
             relogio.Stop();
+        }
+
+        private void mostrarTelaResultados()
+        {
+            TelaConclusao telaConclusao = new TelaConclusao(resultadoPartida);
+            telaConclusao.Show();
+            this.Hide();
         }
         #endregion
 

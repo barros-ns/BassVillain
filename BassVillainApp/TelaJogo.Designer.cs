@@ -58,7 +58,7 @@
             // 
             this.lbl_Pontuacao.AutoSize = true;
             this.lbl_Pontuacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Pontuacao.Location = new System.Drawing.Point(535, 34);
+            this.lbl_Pontuacao.Location = new System.Drawing.Point(537, 9);
             this.lbl_Pontuacao.Name = "lbl_Pontuacao";
             this.lbl_Pontuacao.Size = new System.Drawing.Size(24, 25);
             this.lbl_Pontuacao.TabIndex = 8;
