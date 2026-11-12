@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BassVillainApp.Properties;
 
 namespace BassVillainApp
 {
@@ -15,16 +16,21 @@ namespace BassVillainApp
     {
 
         #region Variaveis Globais
-        private string musicaSelecionada;
+
+        private String nomeMusicaSelecionada;
+        private EnumMusica musicaEnum;
         frm_TelaSelecaoMusica telaAnterior;
+
         #endregion
 
 
         #region Inicialização
 
-        public TelaSelecaoDificuldade(String musica, frm_TelaSelecaoMusica telaSelecaoMusica)
+        public TelaSelecaoDificuldade(EnumMusica musicaEnum, String musica, frm_TelaSelecaoMusica telaSelecaoMusica)
         {
-            musicaSelecionada = musica;
+
+            nomeMusicaSelecionada = musica;
+            this.musicaEnum = musicaEnum;
             telaAnterior = telaSelecaoMusica;
             InitializeComponent();
             MudarNomeDoFormulario();
@@ -34,7 +40,7 @@ namespace BassVillainApp
 
         private void MudarNomeDoFormulario()
         {
-            lbl_nomeDaMusica.Text = musicaSelecionada;
+            lbl_nomeDaMusica.Text = nomeMusicaSelecionada;
         }
 
         private void checarNiveisDesbloqueados()
@@ -43,12 +49,12 @@ namespace BassVillainApp
             btn_medio.Enabled = false;
             btn_dificil.Enabled = false;
 
-            switch (musicaSelecionada)
+            switch (nomeMusicaSelecionada)
             {
                 case "Sultans of Swing":
                     checarSultansOfSwing();
                     break;
-                case "Dark Necessities":
+                case "Dark Necessities"     :
                     checarDarkNecessities();
                     break;
                 case "Seven Nation Army":
@@ -57,6 +63,7 @@ namespace BassVillainApp
                 default:
                     break;
             }
+            Settings.Default.MusicaSelecionada = getMusica(musicaEnum);
         }
 
         private void configEventoDosBotoes()
@@ -97,7 +104,7 @@ namespace BassVillainApp
 
         private void btn_facil_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar o jogo no nível fácil com a música selecionada  
+            Settings.Default.DificuldadeSelecionada = 0;
             TelaJogo telaJogo = new TelaJogo();
             telaJogo.Show();
             this.Hide();
@@ -105,12 +112,18 @@ namespace BassVillainApp
         }
         private void btn_medio_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar o jogo no nível médio com a música selecionada  
+            Settings.Default.DificuldadeSelecionada = 1;
+            TelaJogo telaJogo = new TelaJogo();
+            telaJogo.Show();
+            this.Hide();
         }
 
         private void btn_dificil_Click(object sender, EventArgs e)
         {
-            // Lógica para iniciar o jogo no nível difícil com a música selecionada  
+            Settings.Default.DificuldadeSelecionada = 2;
+            TelaJogo telaJogo = new TelaJogo();
+            telaJogo.Show();
+            this.Hide();
         }
         private void btn_voltar_Click(object sender, EventArgs e)
         {
@@ -121,6 +134,22 @@ namespace BassVillainApp
         #region Propriedades do Formulário
         #endregion
 
+        #region Pegar nome da msuica
+        private int getMusica(EnumMusica musicaEnum)
+        {
+            switch (musicaEnum)
+            {
+                case EnumMusica.SultansOfSwing:
+                    return 0;
+                case EnumMusica.DarkNecessities:
+                    return 1;
+                case EnumMusica.SevenNationArmy:
+                    return 2;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(musicaEnum), musicaEnum, null);
+            }
+        }
+        #endregion
 
     }
 }
