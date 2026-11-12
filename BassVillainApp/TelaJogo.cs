@@ -261,7 +261,7 @@ namespace BassVillainApp
             float yAlvo = inicioY + altura - 80f;
 
             using (Pen contorno = new Pen(Color.Gray, 2))
-            using (Pen linhaAlvo = new Pen(Color.Red, 3))
+            using (Pen linhaAlvo = new Pen(Color.Red, 10))
             {
                 // Contorno do cenário.
                 g.DrawRectangle(
@@ -306,7 +306,7 @@ namespace BassVillainApp
                     float yNota = inicioY + progresso * distanciaQueda;
                     float xNota = inicioX + nota.Pista * larguraPista;
 
-                    const float alturaNota = 20f;
+                    const float alturaNota = 28f;
 
                     using (Brush pincel = new SolidBrush(Color.DeepSkyBlue))
                     {
@@ -322,6 +322,7 @@ namespace BassVillainApp
 
             }
 
+            DesenharTeclasDasPistas(e.Graphics, inicioX, larguraPista, yAlvo);
 
         }
 
@@ -350,6 +351,27 @@ namespace BassVillainApp
             g.FillRectangle(Brushes.DimGray, x, topo, largura, altura);
             g.FillRectangle(Brushes.DeepSkyBlue,
                 x, topo + altura - preenchimento, largura, preenchimento);
+        }
+
+        private void DesenharTeclasDasPistas(
+        Graphics g, float inicioX, float larguraPista, float yAlvo)
+        {
+            string[] teclas = { "A", "S", "K", "L" };
+
+            using (var fonte = new Font(Font.FontFamily, 16f, FontStyle.Bold))
+            using (var formato = new StringFormat())
+            {
+                formato.Alignment = StringAlignment.Center;
+                formato.LineAlignment = StringAlignment.Center;
+
+                for (int pista = 0; pista < teclas.Length; pista++)
+                {
+                    float x = inicioX + pista * larguraPista;
+                    var area = new RectangleF(x, yAlvo + 12f, larguraPista, 32f);
+
+                    g.DrawString(teclas[pista], fonte, Brushes.Black, area, formato);
+                }
+            }
         }
         #endregion
 
