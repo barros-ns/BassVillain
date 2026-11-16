@@ -41,6 +41,9 @@ namespace BassVillainApp
 
         private int comboAtual = 0;
 
+        // Teclas das pistas, lidas das configurações ao abrir a tela.
+        private Keys[] teclas;
+
         // Teclas já pressionadas (evita que segurar a tecla conte como várias batidas).
         private readonly HashSet<Keys> teclasSegurando = new HashSet<Keys>();
 
@@ -58,6 +61,9 @@ namespace BassVillainApp
         private void DeclararComponentesJogo() 
         {
             KeyPreview = true;
+
+            teclas = Configuracoes.Teclas;
+            relogio.OffsetMs = Configuracoes.OffsetMs;
 
             pnl_Jogo.Paint += pnl_Jogo_Paint;
 
@@ -79,7 +85,7 @@ namespace BassVillainApp
 
         private void DeclararComponentesMusica() 
         {
-            playerMusica.Volume = 0.7;
+            playerMusica.Volume = Configuracoes.Volume / 100.0;
 
             playerMusica.MediaOpened += PlayerMusica_MediaOpened;
             playerMusica.MediaFailed += PlayerMusica_MediaFailed;
@@ -384,8 +390,6 @@ namespace BassVillainApp
         private void DesenharTeclasDasPistas(
         Graphics g, float inicioX, float larguraPista, float yAlvo)
         {
-            string[] teclas = { "A", "S", "K", "L" };
-
             using (var fonte = new Font(Font.FontFamily, 16f, FontStyle.Bold))
             using (var formato = new StringFormat())
             {
@@ -397,7 +401,7 @@ namespace BassVillainApp
                     float x = inicioX + pista * larguraPista;
                     var area = new RectangleF(x, yAlvo + 12f, larguraPista, 32f);
 
-                    g.DrawString(teclas[pista], fonte, Brushes.Black, area, formato);
+                    g.DrawString(Configuracoes.NomeDaTecla(teclas[pista]), fonte, Brushes.Black, area, formato);
                 }
             }
         }
@@ -415,24 +419,16 @@ namespace BassVillainApp
             if (e.KeyCode != Keys.Escape && !teclasSegurando.Add(e.KeyCode))
                 return;
 
-            switch (e.KeyCode)
+            if (e.KeyCode == Keys.Escape)
             {
-                case Keys.A:
-                    VerificarAcerto(0);
-                    break;
-                case Keys.S:
-                    VerificarAcerto(1);
-                    break;
-                case Keys.K:
-                    VerificarAcerto(2);
-                    break;
-                case Keys.L:
-                    VerificarAcerto(3);
-                    break;
-                case Keys.Escape:
-                    pausarJogo();
-                    break;
+                pausarJogo();
+                return;
             }
+
+            // A posição da tecla na lista é o número da pista.
+            int pista = Array.IndexOf(teclas, e.KeyCode);
+            if (pista >= 0)
+                VerificarAcerto(pista);
         }
         #endregion
 

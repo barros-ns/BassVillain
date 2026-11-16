@@ -42,8 +42,9 @@ namespace BassVillainApp
         #region Evento dos Botões do Formulário
         private void btn_config_Click(object sender, EventArgs e)
         {
-            msgBox("Botão Configurações clicado!", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            frm_Configuracoes telaConfig = new frm_Configuracoes(this);
+            telaConfig.Show();
+            this.Hide();
         }
 
         private void btn_Iniciar_Click(object sender, EventArgs e)
