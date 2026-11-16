@@ -1,33 +1,42 @@
 IMAGENS DO BASS VILLAIN
 =======================
-Basta colocar os arquivos .png nas pastas abaixo, com EXATAMENTE estes nomes,
-e dar Rebuild. O que não existir é desenhado só com as cores do TemaVisual.cs.
+Coloque arquivos .png nas pastas abaixo, com EXATAMENTE estes nomes, e dê Rebuild.
+O que não existir é desenhado só com as cores/formas do TemaVisual.cs (nada quebra).
 
-Pasta                      Usada em
--------------------------  -----------------------------------------------
-Imagens\Menu\              Menu inicial, seleção de música/dificuldade,
-                           configurações e tela de resultados
-Imagens\SultansOfSwing\    Tela de jogo de Sultans of Swing
-Imagens\DarkNecessities\   Tela de jogo de Dark Necessities
-Imagens\SevenNationArmy\   Tela de jogo de Seven Nation Army
+PASTAS
+  Imagens\Menu\              menus (inicial, seleção, configurações, resultados)
+  Imagens\SultansOfSwing\    jogo: Sultans of Swing
+  Imagens\DarkNecessities\   jogo: Dark Necessities
+  Imagens\SevenNationArmy\   jogo: Seven Nation Army
 
-Arquivo     Tamanho sugerido   O que é
-----------  -----------------  ---------------------------------------------
-fundo.png   800 x 750          Fundo da tela (é esticado para caber)
-nota.png    140 x 28           Imagem de uma nota caindo (todas as pistas)
-alvo.png    640 x 20           Faixa da linha onde se aperta a tecla
+OS fundo.png QUE JÁ ESTÃO AQUI SÃO PROVISÓRIOS (gerados para o projeto). Pode trocar à vontade.
 
-Se todos os níveis tiverem a MESMA estética: copie os mesmos arquivos para
-as quatro pastas (ou ajuste CriarTema em TemaVisual.cs para usar a pasta "Menu").
+ARQUIVOS (todos opcionais, em cada pasta)
+  fundo.png            960 x 900   Fundo da tela (é esticado para caber)
+  painel.png           750 x 84    Painel de informações no topo (pontuação, combo...)
 
-RANK DO COMBO (opcional, em cada pasta de nível; sem imagem aparece a letra)
-Arquivo          Aparece quando o combo chega a  (ajustável em RankCombo.cs)
----------------  ------------------------------
-rank_C.png       10
-rank_B.png       25
-rank_A.png       50
-rank_Aplus.png   75
-rank_S.png       100
-rank_SS.png      150
-rank_SSplus.png  200
-Tamanho sugerido: 128 x 128 com fundo transparente (é desenhado em 64 x 64).
+  botao.png            128 x 128   Botão de acerto parado (fundo transparente)
+  botao_press.png      128 x 128   Botão enquanto a tecla está apertada
+  nota.png             128 x 128   Nota que desce (é achatada e reduzida pela perspectiva)
+
+  Por pista (0 a 3, da esquerda para a direita): use o número no nome e a pista ganha
+  imagem própria; sem número vale para todas.
+     botao_0.png ... botao_3.png      botao_press_0.png ... botao_press_3.png
+     nota_0.png  ... nota_3.png
+  Sem "botao_press", o botão apertado usa a imagem "botao" com um brilho por cima.
+
+  num_0.png ... num_9.png  (altura ~64, largura proporcional)
+                       Dígitos do painel (pontuação, combo, acertos...). Só são usados
+                       se TODOS os 10 existirem; senão o jogo desenha texto estilizado.
+
+  rank_C.png rank_B.png rank_A.png rank_Aplus.png rank_S.png rank_SS.png rank_SSplus.png
+                       128 x 128, desenhados em 64 x 64. Aparecem quando o combo chega a
+                       10 / 25 / 50 / 75 / 100 / 150 / 200 (ajustável em RankCombo.cs).
+
+ONDE MEXER NO CÓDIGO
+  TemaVisual.cs (CriarTema)   cores, 4 cores das pistas e a FONTE de cada música
+  RenderizadorJogo.cs         ajustes no topo: inclinação da pista (EscalaLonge), largura
+                              (LarguraPistaRel), achatamento das notas, triângulos para
+                              cima/baixo (TrianguloParaCima)
+  Todos os níveis iguais?     copie os mesmos arquivos para as quatro pastas e use as
+                              mesmas cores/fonte em CriarTema.

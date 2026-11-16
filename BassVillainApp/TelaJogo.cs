@@ -44,6 +44,13 @@ namespace BassVillainApp
         // Teclas das pistas, lidas das configurações ao abrir a tela.
         private Keys[] teclas;
 
+        // Desenho do jogo e o estado que ele recebe a cada frame.
+        private RenderizadorJogo renderizador;
+        private readonly EstadoRender estadoRender = new EstadoRender();
+
+        // Relógio só para animações de tela (brilho dos botões).
+        private readonly Stopwatch relogioVisual = Stopwatch.StartNew();
+
         // Combo animado (C, B, A, A+, S, SS, SS+).
         private readonly AnimacaoRank animacaoRank = new AnimacaoRank();
 
@@ -75,6 +82,19 @@ namespace BassVillainApp
 
             teclas = Configuracoes.Teclas;
             pnl_Jogo.BackColor = TemaDaTela.CorFundo;
+            renderizador = new RenderizadorJogo(TemaDaTela);
+
+            // O painel de informações agora é desenhado junto da pista (RenderizadorJogo);
+            // o painel antigo some e o canvas ocupa a tela toda.
+            pnl_Pontuacao.Visible = false;
+            foreach (Button debug in new[] { btn_skipPass, btn_skipFail })
+            {
+                pnl_Pontuacao.Controls.Remove(debug);
+                pnl_Jogo.Controls.Add(debug);
+                debug.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            }
+            btn_skipPass.Location = new Point(10, pnl_Jogo.Height - 35);
+            btn_skipFail.Location = new Point(95, pnl_Jogo.Height - 35);
             relogio.OffsetMs = Configuracoes.OffsetMs;
 
             pnl_Jogo.Paint += pnl_Jogo_Paint;
@@ -282,6 +302,7 @@ namespace BassVillainApp
             timerJogo.Stop();
             timerJogo.Dispose();
             relogio.Stop();
+            renderizador.Dispose();
         }
 
         private void mostrarTelaResultados()
@@ -293,144 +314,44 @@ namespace BassVillainApp
         #endregion
 
         #region Desenho do Jogo
+        // O desenho (pista em perspectiva, botões, notas e painel) está em RenderizadorJogo.
+        // Aqui só se entrega o estado atual do jogo a cada frame.
         private void pnl_Jogo_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
+            EstadoRender estado = estadoRender;
 
-            float inicioX = pnl_Jogo.Width * 0.10f;
-            float inicioY = 20f;
+            estado.Notas = notas;
+            estado.TempoAtualMs = relogio.ElapsedMilliseconds;
+            estado.TempoDeQuedaMs = TempoDeQuedaMs;
+            estado.AgoraMs = relogioVisual.ElapsedMilliseconds;
 
-            float largura = pnl_Jogo.Width * 0.80f;
-            float altura = pnl_Jogo.Height -40f;
-
-            float larguraPista = largura / 4f;
-            float yAlvo = inicioY + altura - 80f;
-
-            // Fundo do tema (se houver imagem).
-            if (tema.ImagemFundo != null)
-                g.DrawImage(tema.ImagemFundo, pnl_Jogo.ClientRectangle);
-
-            using (Pen contorno = new Pen(tema.CorContorno, 2))
-            using (Pen linhaAlvo = new Pen(tema.CorLinhaAlvo, 10))
+            for (int pista = 0; pista < teclas.Length; pista++)
             {
-                // Contorno do cenário.
-                g.DrawRectangle(
-                    contorno, inicioX, inicioY, largura, altura
-                );
-
-                // Três divisórias formam quatro pistas.
-                for (int i = 1; i < 4; i++)
-                {
-                    float x = inicioX + i * larguraPista;
-
-                    g.DrawLine(
-                        contorno,
-                        x, inicioY,
-                        x, inicioY + altura
-                    );
-                }
-                if (tema.ImagemAlvo != null)
-                    g.DrawImage(tema.ImagemAlvo, inicioX, yAlvo - 10f, largura, 20f);
-                else
-                    g.DrawLine(
-                        linhaAlvo,
-                        inicioX, yAlvo,
-                        inicioX + largura, yAlvo
-                    );
+                estado.Pressionada[pista] = teclasSegurando.Contains(teclas[pista]);
+                estado.NomesTeclas[pista] = Configuracoes.NomeDaTecla(teclas[pista]);
             }
 
-            long tempoAtualMs = relogio.ElapsedMilliseconds;
+            estado.Pontuacao = resultadoPartida.Pontuacao;
+            estado.Acertos = resultadoPartida.NotasAcertadasResultadoPartida;
+            estado.Erros = resultadoPartida.Miss;
+            estado.ComboAtual = comboAtual;
+            estado.ComboMaximo = resultadoPartida.MaiorCombo;
+            estado.ProgressoMusica = ProgressoDaMusica();
+            estado.Rank = animacaoRank;
 
-            DesenharTempoRestante(e.Graphics);
-
-            foreach (Nota nota in notas)
-            {
-                if(nota.Acertada || nota.Perdida)
-                    continue;
-
-                float progresso = 1f - (nota.TempoAcertoMs - tempoAtualMs) / (float)TempoDeQuedaMs;
-
-                // Desenha apenas durante o percurso até a linha.
-                if (progresso < 0f)
-                    continue;
-                
-                    float distanciaQueda = yAlvo - inicioY;
-
-                    float yNota = inicioY + progresso * distanciaQueda;
-                    float xNota = inicioX + nota.Pista * larguraPista;
-
-                    const float alturaNota = 28f;
-
-                    var areaNota = new RectangleF(
-                        xNota + 10f,
-                        yNota - alturaNota / 2f,
-                        larguraPista - 20f,
-                        alturaNota);
-
-                    if (tema.ImagemNota != null)
-                    {
-                        g.DrawImage(tema.ImagemNota, areaNota);
-                    }
-                    else
-                    {
-                        using (Brush pincel = new SolidBrush(tema.CorNota(nota.Pista)))
-                            g.FillRectangle(pincel, areaNota);
-                    }
-                
-
-            }
-
-            DesenharTeclasDasPistas(e.Graphics, inicioX, larguraPista, yAlvo);
-
-            // Rank do combo na margem esquerda, ao lado das pistas.
-            animacaoRank.Desenhar(g, new RectangleF(0f, inicioY + altura * 0.25f, inicioX, 110f), tema);
+            renderizador.Desenhar(e.Graphics, pnl_Jogo.ClientSize, estado);
         }
 
-        private void DesenharTempoRestante(Graphics g)
+        private float ProgressoDaMusica()
         {
             if (!playerMusica.NaturalDuration.HasTimeSpan)
-                return;
+                return 0f;
 
             double total = playerMusica.NaturalDuration.TimeSpan.TotalSeconds;
             if (total <= 0)
-                return;
+                return 0f;
 
-            double restante = Math.Max(
-                0, Math.Min(total, total - playerMusica.Position.TotalSeconds));
-
-            const float largura = 10f;
-            const float topo = 20f;
-
-            float altura = pnl_Jogo.ClientSize.Height - 2 * topo;
-            if (altura <= 0)
-                return;
-
-            float x = pnl_Jogo.ClientSize.Width * 0.95f - largura / 2f;
-            float preenchimento = altura * (float)(restante / total);
-
-            g.FillRectangle(Brushes.DimGray, x, topo, largura, altura);
-            g.FillRectangle(Brushes.DeepSkyBlue,
-                x, topo + altura - preenchimento, largura, preenchimento);
-        }
-
-        private void DesenharTeclasDasPistas(
-        Graphics g, float inicioX, float larguraPista, float yAlvo)
-        {
-            using (var fonte = new Font(Font.FontFamily, 16f, FontStyle.Bold))
-            using (var formato = new StringFormat())
-            {
-                formato.Alignment = StringAlignment.Center;
-                formato.LineAlignment = StringAlignment.Center;
-
-                for (int pista = 0; pista < teclas.Length; pista++)
-                {
-                    float x = inicioX + pista * larguraPista;
-                    var area = new RectangleF(x, yAlvo + 12f, larguraPista, 32f);
-
-                    using (Brush pincelTexto = new SolidBrush(tema.CorTexto))
-                        g.DrawString(Configuracoes.NomeDaTecla(teclas[pista]), fonte, pincelTexto, area, formato);
-                }
-            }
+            return (float)Math.Max(0, Math.Min(1, playerMusica.Position.TotalSeconds / total));
         }
         #endregion
 
@@ -488,6 +409,7 @@ namespace BassVillainApp
             {
                 comboAtual ++;
                 animacaoRank.Pulsar();
+                estadoRender.UltimoAcertoMs[pista] = relogioVisual.ElapsedMilliseconds;
 
                 if (menorDiferenca <= 50)
                 {

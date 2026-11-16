@@ -78,7 +78,7 @@ namespace BassVillainApp
         private const int DuracaoSubidaMs = 450;
         private const int DuracaoQuedaMs = 400;
         private const int DuracaoPulsoMs = 140;
-        private const float TamanhoFonte = 22f;
+        private const float TamanhoFonte = 40f;
         private const float TamanhoImagem = 64f;
 
         // Animação em tempo real (independe do relógio da música).
@@ -87,7 +87,6 @@ namespace BassVillainApp
         private RankCombo.Rank atual = RankCombo.Rank.Nenhum;
         private RankCombo.Rank anterior = RankCombo.Rank.Nenhum;
         private bool subiu;
-        private int combo;
 
         private long inicioMudancaMs = -100000;
         private long inicioPulsoMs = -100000;
@@ -95,7 +94,6 @@ namespace BassVillainApp
         /// <summary>Chamar sempre que o combo mudar (ou a cada tick: só reage a mudança de rank).</summary>
         public void Atualizar(int comboAtual)
         {
-            combo = comboAtual;
             RankCombo.Rank novo = RankCombo.Obter(comboAtual);
 
             if (novo == atual)
@@ -147,14 +145,13 @@ namespace BassVillainApp
                 DesenharRank(g, area, tema, atual, escala, opacidade, brilho);
             }
 
-            DesenharCombo(g, area, tema);
         }
 
         private void DesenharRank(Graphics g, RectangleF area, TemaVisual tema,
                                   RankCombo.Rank rank, float escala, float opacidade, float brilho)
         {
             float cx = area.X + area.Width / 2f;
-            float cy = area.Y + area.Height * 0.35f;
+            float cy = area.Y + area.Height * 0.5f;
             int alfa = (int)(255 * Math.Max(0f, Math.Min(1f, opacidade)));
 
             Image imagem = tema.ImagemRank(rank);
@@ -183,8 +180,8 @@ namespace BassVillainApp
 
             using (var caminho = new GraphicsPath())
             {
-                caminho.AddString(RankCombo.Nome(rank), FontFamily.GenericSansSerif,
-                                  (int)FontStyle.Bold, TamanhoFonte, PointF.Empty,
+                caminho.AddString(RankCombo.Nome(rank), tema.Familia,
+                                  (int)tema.EstiloFonte, TamanhoFonte, PointF.Empty,
                                   StringFormat.GenericTypographic);
 
                 RectangleF limites = caminho.GetBounds();
@@ -210,8 +207,11 @@ namespace BassVillainApp
                     }
                 }
 
+                RectangleF limitesFinais = caminho.GetBounds();
                 using (var contorno = new Pen(Color.FromArgb(alfa, Color.Black), 4f))
-                using (var preenchimento = new SolidBrush(Color.FromArgb(alfa, cor)))
+                using (var preenchimento = new LinearGradientBrush(limitesFinais,
+                           Color.FromArgb(alfa, TextoEstilizado.Clarear(cor, 0.55f)),
+                           Color.FromArgb(alfa, cor), LinearGradientMode.Vertical))
                 {
                     contorno.LineJoin = LineJoin.Round;
                     g.DrawPath(contorno, caminho);
@@ -220,23 +220,6 @@ namespace BassVillainApp
             }
 
             g.SmoothingMode = modoAnterior;
-        }
-
-        private void DesenharCombo(Graphics g, RectangleF area, TemaVisual tema)
-        {
-            if (combo <= 0)
-                return;
-
-            using (var fonte = new Font(FontFamily.GenericSansSerif, 11f, FontStyle.Bold))
-            using (var pincel = new SolidBrush(tema.CorTexto))
-            using (var formato = new StringFormat())
-            {
-                formato.Alignment = StringAlignment.Center;
-                formato.LineAlignment = StringAlignment.Center;
-
-                var areaTexto = new RectangleF(area.X, area.Y + area.Height * 0.35f + 40f, area.Width, 24f);
-                g.DrawString("x" + combo, fonte, pincel, areaTexto, formato);
-            }
         }
     }
 }

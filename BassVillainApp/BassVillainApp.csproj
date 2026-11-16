@@ -55,6 +55,8 @@
     <Compile Include="Configuracoes.cs" />
     <Compile Include="TemaVisual.cs" />
     <Compile Include="RankCombo.cs" />
+    <Compile Include="TextoEstilizado.cs" />
+    <Compile Include="RenderizadorJogo.cs" />
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>
     </Compile>
