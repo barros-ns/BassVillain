@@ -44,6 +44,14 @@ namespace BassVillainApp
         // Teclas das pistas, lidas das configurações ao abrir a tela.
         private Keys[] teclas;
 
+        // Tema da música que está tocando (cores e imagens opcionais).
+        private TemaVisual tema;
+
+        protected override TemaVisual TemaDaTela
+        {
+            get { return tema ?? (tema = TemaVisual.ParaMusica(Settings.Default.MusicaSelecionada)); }
+        }
+
         // Teclas já pressionadas (evita que segurar a tecla conte como várias batidas).
         private readonly HashSet<Keys> teclasSegurando = new HashSet<Keys>();
 
@@ -63,6 +71,7 @@ namespace BassVillainApp
             KeyPreview = true;
 
             teclas = Configuracoes.Teclas;
+            pnl_Jogo.BackColor = TemaDaTela.CorFundo;
             relogio.OffsetMs = Configuracoes.OffsetMs;
 
             pnl_Jogo.Paint += pnl_Jogo_Paint;
@@ -294,8 +303,12 @@ namespace BassVillainApp
             float larguraPista = largura / 4f;
             float yAlvo = inicioY + altura - 80f;
 
-            using (Pen contorno = new Pen(Color.Gray, 2))
-            using (Pen linhaAlvo = new Pen(Color.Red, 10))
+            // Fundo do tema (se houver imagem).
+            if (tema.ImagemFundo != null)
+                g.DrawImage(tema.ImagemFundo, pnl_Jogo.ClientRectangle);
+
+            using (Pen contorno = new Pen(tema.CorContorno, 2))
+            using (Pen linhaAlvo = new Pen(tema.CorLinhaAlvo, 10))
             {
                 // Contorno do cenário.
                 g.DrawRectangle(
@@ -313,11 +326,14 @@ namespace BassVillainApp
                         x, inicioY + altura
                     );
                 }
-                g.DrawLine(
-                linhaAlvo,
-                inicioX, yAlvo,
-                inicioX + largura, yAlvo
-            );
+                if (tema.ImagemAlvo != null)
+                    g.DrawImage(tema.ImagemAlvo, inicioX, yAlvo - 10f, largura, 20f);
+                else
+                    g.DrawLine(
+                        linhaAlvo,
+                        inicioX, yAlvo,
+                        inicioX + largura, yAlvo
+                    );
             }
 
             long tempoAtualMs = relogio.ElapsedMilliseconds;
@@ -342,15 +358,20 @@ namespace BassVillainApp
 
                     const float alturaNota = 28f;
 
-                    using (Brush pincel = new SolidBrush(Color.DeepSkyBlue))
+                    var areaNota = new RectangleF(
+                        xNota + 10f,
+                        yNota - alturaNota / 2f,
+                        larguraPista - 20f,
+                        alturaNota);
+
+                    if (tema.ImagemNota != null)
                     {
-                        g.FillRectangle(
-                            pincel,
-                            xNota + 10f,
-                            yNota - alturaNota / 2f,
-                            larguraPista - 20f,
-                            alturaNota
-                        );
+                        g.DrawImage(tema.ImagemNota, areaNota);
+                    }
+                    else
+                    {
+                        using (Brush pincel = new SolidBrush(tema.CorNota(nota.Pista)))
+                            g.FillRectangle(pincel, areaNota);
                     }
                 
 
@@ -401,7 +422,8 @@ namespace BassVillainApp
                     float x = inicioX + pista * larguraPista;
                     var area = new RectangleF(x, yAlvo + 12f, larguraPista, 32f);
 
-                    g.DrawString(Configuracoes.NomeDaTecla(teclas[pista]), fonte, Brushes.Black, area, formato);
+                    using (Brush pincelTexto = new SolidBrush(tema.CorTexto))
+                        g.DrawString(Configuracoes.NomeDaTecla(teclas[pista]), fonte, pincelTexto, area, formato);
                 }
             }
         }

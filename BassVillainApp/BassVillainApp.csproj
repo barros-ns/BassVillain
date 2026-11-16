@@ -53,6 +53,7 @@
     <Compile Include="Nota.cs" />
     <Compile Include="RelogioMusica.cs" />
     <Compile Include="Configuracoes.cs" />
+    <Compile Include="TemaVisual.cs" />
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -164,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="Imagens\**\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MusicasMp3\DarkNecessities.mp3">

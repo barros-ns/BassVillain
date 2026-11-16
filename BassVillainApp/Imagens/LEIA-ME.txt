@@ -1,0 +1,23 @@
+IMAGENS DO BASS VILLAIN
+=======================
+Basta colocar os arquivos .png nas pastas abaixo, com EXATAMENTE estes nomes,
+e dar Rebuild. O que não existir é desenhado só com as cores do TemaVisual.cs.
+
+Pasta                      Usada em
+-------------------------  -----------------------------------------------
+Imagens\Menu\              Menu inicial, seleção de música/dificuldade,
+                           configurações e tela de resultados
+Imagens\SultansOfSwing\    Tela de jogo de Sultans of Swing
+Imagens\DarkNecessities\   Tela de jogo de Dark Necessities
+Imagens\SevenNationArmy\   Tela de jogo de Seven Nation Army
+
+Arquivo     Tamanho sugerido   O que é
+----------  -----------------  ---------------------------------------------
+fundo.png   800 x 750          Fundo da tela (é esticado para caber)
+nota.png    140 x 28           Imagem de uma nota caindo (todas as pistas)
+alvo.png    640 x 20           Faixa da linha onde se aperta a tecla
+
+Se todos os níveis tiverem a MESMA estética: copie os mesmos arquivos para
+as quatro pastas (ou ajuste CriarTema em TemaVisual.cs para usar a pasta "Menu").
+
+Os arquivos de rank do combo (rank_C.png, rank_B.png ...) entram na próxima etapa.
