@@ -54,6 +54,7 @@
     <Compile Include="RelogioMusica.cs" />
     <Compile Include="Configuracoes.cs" />
     <Compile Include="TemaVisual.cs" />
+    <Compile Include="RankCombo.cs" />
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>
     </Compile>

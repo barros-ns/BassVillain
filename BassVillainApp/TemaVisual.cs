@@ -31,6 +31,20 @@ namespace BassVillainApp
 
         public string Pasta { get; private set; }
 
+        // Imagens de rank (rank_C.png ...) são carregadas só quando precisam; null também fica guardado.
+        private readonly Dictionary<RankCombo.Rank, Image> imagensRank = new Dictionary<RankCombo.Rank, Image>();
+
+        public Image ImagemRank(RankCombo.Rank rank)
+        {
+            Image imagem;
+            if (!imagensRank.TryGetValue(rank, out imagem))
+            {
+                imagem = CarregarImagem(Pasta, RankCombo.NomeDoArquivo(rank));
+                imagensRank[rank] = imagem;
+            }
+            return imagem;
+        }
+
         private TemaVisual(string pasta)
         {
             Pasta = pasta;

@@ -20,4 +20,14 @@ alvo.png    640 x 20           Faixa da linha onde se aperta a tecla
 Se todos os níveis tiverem a MESMA estética: copie os mesmos arquivos para
 as quatro pastas (ou ajuste CriarTema em TemaVisual.cs para usar a pasta "Menu").
 
-Os arquivos de rank do combo (rank_C.png, rank_B.png ...) entram na próxima etapa.
+RANK DO COMBO (opcional, em cada pasta de nível; sem imagem aparece a letra)
+Arquivo          Aparece quando o combo chega a  (ajustável em RankCombo.cs)
+---------------  ------------------------------
+rank_C.png       10
+rank_B.png       25
+rank_A.png       50
+rank_Aplus.png   75
+rank_S.png       100
+rank_SS.png      150
+rank_SSplus.png  200
+Tamanho sugerido: 128 x 128 com fundo transparente (é desenhado em 64 x 64).

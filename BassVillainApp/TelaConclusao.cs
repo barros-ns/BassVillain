@@ -61,6 +61,7 @@ namespace BassVillainApp
             lb_resultados.Items.Add($"Miss: {resultado.Miss}");
             lb_resultados.Items.Add($"Pontuação: {resultado.Pontuacao}");
             lb_resultados.Items.Add($"Maior Combo: {resultado.MaiorCombo}");
+            lb_resultados.Items.Add($"Rank do combo: {RankCombo.Nome(RankCombo.Obter(resultado.MaiorCombo))}");
             lb_resultados.Items.Add($"% de Acerto: {pctgAcertos.ToString("F2")}%");
             lb_resultados.Items.Add($"Passou: {passou}");
         }

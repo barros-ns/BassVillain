@@ -44,6 +44,9 @@ namespace BassVillainApp
         // Teclas das pistas, lidas das configurações ao abrir a tela.
         private Keys[] teclas;
 
+        // Combo animado (C, B, A, A+, S, SS, SS+).
+        private readonly AnimacaoRank animacaoRank = new AnimacaoRank();
+
         // Tema da música que está tocando (cores e imagens opcionais).
         private TemaVisual tema;
 
@@ -379,6 +382,8 @@ namespace BassVillainApp
 
             DesenharTeclasDasPistas(e.Graphics, inicioX, larguraPista, yAlvo);
 
+            // Rank do combo na margem esquerda, ao lado das pistas.
+            animacaoRank.Desenhar(g, new RectangleF(0f, inicioY + altura * 0.25f, inicioX, 110f), tema);
         }
 
         private void DesenharTempoRestante(Graphics g)
@@ -482,6 +487,7 @@ namespace BassVillainApp
                 menorDiferenca <= ToleranciaAcertoMs)
             {
                 comboAtual ++;
+                animacaoRank.Pulsar();
 
                 if (menorDiferenca <= 50)
                 {
@@ -520,6 +526,7 @@ namespace BassVillainApp
             lbl_ComboAtual.Text = $"Combo Atual: {comboAtual}";
             lbl_ComboMax.Text = $"Combo Máximo: {resultadoPartida.MaiorCombo}";
             lbl_Pontuacao.Text = $"Pontuação: {resultadoPartida.Pontuacao}";
+            animacaoRank.Atualizar(comboAtual);
         }
         #endregion
 
