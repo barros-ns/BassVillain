@@ -21,7 +21,7 @@ namespace BassVillainApp
     {
 
         #region Variaveis do Jogo
-        private readonly Stopwatch relogio = new Stopwatch();
+        private readonly RelogioMusica relogio = new RelogioMusica();
 
         private readonly Nota notaTeste = new Nota(1, 3000);
 
@@ -40,6 +40,9 @@ namespace BassVillainApp
         private String caminho;
 
         private int comboAtual = 0;
+
+        // Teclas já pressionadas (evita que segurar a tecla conte como várias batidas).
+        private readonly HashSet<Keys> teclasSegurando = new HashSet<Keys>();
 
         #endregion
 
@@ -65,6 +68,8 @@ namespace BassVillainApp
             FormClosed += TelaJogo_FormClosed;
 
             KeyDown += TelaJogo_KeyDown;
+            KeyUp += TelaJogo_KeyUp;
+            Deactivate += delegate { teclasSegurando.Clear(); };
 
             btn_skipPass.Click += btn_skipPass_Click;
             btn_skipPass.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
@@ -234,6 +239,9 @@ namespace BassVillainApp
         {
             if (!partidaEmAndamento)
                 return;
+            // Ajusta o relógio à posição real da música antes de usar o tempo.
+            relogio.Corrigir(playerMusica.Position.TotalMilliseconds);
+
             long tempoAtualMs = relogio.ElapsedMilliseconds;
 
             foreach (Nota nota in notas)
@@ -396,8 +404,16 @@ namespace BassVillainApp
         #endregion
 
         #region Comandos do Jogo
+        private void TelaJogo_KeyUp(object sender, KeyEventArgs e)
+        {
+            teclasSegurando.Remove(e.KeyCode);
+        }
+
         private void TelaJogo_KeyDown(object sender, KeyEventArgs e)
         {
+            // Segurar a tecla gera KeyDown repetido; só a primeira batida vale.
+            if (e.KeyCode != Keys.Escape && !teclasSegurando.Add(e.KeyCode))
+                return;
 
             switch (e.KeyCode)
             {

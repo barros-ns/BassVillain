@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="EnumMusica.cs" />
     <Compile Include="Nota.cs" />
+    <Compile Include="RelogioMusica.cs" />
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>
     </Compile>
