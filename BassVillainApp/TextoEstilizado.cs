@@ -52,12 +52,21 @@ namespace BassVillainApp
             SmoothingMode anterior = g.SmoothingMode;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            using (var caminho = new GraphicsPath())
-            {
-                caminho.AddString(texto, tema.Familia, (int)tema.EstiloFonte, tamanhoPx,
-                                  PointF.Empty, StringFormat.GenericTypographic);
+            float tamanhoUsado = tamanhoPx;
+            GraphicsPath caminho = CriarCaminho(tema, texto, tamanhoUsado);
+            RectangleF limites = caminho.GetBounds();
 
-                RectangleF limites = caminho.GetBounds();
+            // Texto mais largo que a área: diminui a letra até caber (evita sobrepor vizinhos).
+            if (limites.Width > area.Width && area.Width > 10f)
+            {
+                tamanhoUsado = tamanhoPx * area.Width / limites.Width;
+                caminho.Dispose();
+                caminho = CriarCaminho(tema, texto, tamanhoUsado);
+                limites = caminho.GetBounds();
+            }
+
+            using (caminho)
+            {
                 if (limites.Width < 1f || limites.Height < 1f)
                 {
                     g.SmoothingMode = anterior;
@@ -77,7 +86,7 @@ namespace BassVillainApp
                     caminho.Transform(mover);
                 }
 
-                float espessura = Math.Max(2f, tamanhoPx / 7f);
+                float espessura = Math.Max(2f, tamanhoUsado / 7f);
 
                 // Sombra
                 using (var mover = new Matrix())
@@ -102,6 +111,14 @@ namespace BassVillainApp
             }
 
             g.SmoothingMode = anterior;
+        }
+
+        private static GraphicsPath CriarCaminho(TemaVisual tema, string texto, float tamanhoPx)
+        {
+            var caminho = new GraphicsPath();
+            caminho.AddString(texto, tema.Familia, (int)tema.EstiloFonte, tamanhoPx,
+                              PointF.Empty, StringFormat.GenericTypographic);
+            return caminho;
         }
 
         // Usa num_0.png ... num_9.png quando TODOS os caracteres têm imagem.

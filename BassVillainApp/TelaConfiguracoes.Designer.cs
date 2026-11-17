@@ -50,6 +50,7 @@
             this.btn_Tecla3 = new System.Windows.Forms.Button();
             this.lbl_avisoTecla = new System.Windows.Forms.Label();
             this.btn_Restaurar = new System.Windows.Forms.Button();
+            this.chk_Debug = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_voltar
@@ -224,11 +225,20 @@
             this.btn_Restaurar.Text = "Restaurar padrão";
             this.btn_Restaurar.UseVisualStyleBackColor = true;
             // 
+            // chk_Debug
+            // 
+            this.chk_Debug.AutoSize = true;
+            this.chk_Debug.Location = new System.Drawing.Point(50, 620);
+            this.chk_Debug.Name = "chk_Debug";
+            this.chk_Debug.Text = "Modo debug (mostra os botões Vencer / Perder durante a partida)";
+            this.chk_Debug.UseVisualStyleBackColor = true;
+            // 
             // frm_Configuracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chk_Debug);
             this.Controls.Add(this.btn_Restaurar);
             this.Controls.Add(this.lbl_avisoTecla);
             this.Controls.Add(this.btn_Tecla3);
@@ -284,5 +294,6 @@
         private System.Windows.Forms.Button btn_Tecla3;
         private System.Windows.Forms.Label lbl_avisoTecla;
         private System.Windows.Forms.Button btn_Restaurar;
+        private System.Windows.Forms.CheckBox chk_Debug;
     }
 }

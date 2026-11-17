@@ -110,9 +110,9 @@ namespace BassVillainApp
             Deactivate += delegate { teclasSegurando.Clear(); };
 
             btn_skipPass.Click += btn_skipPass_Click;
-            btn_skipPass.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
+            btn_skipPass.Visible = Configuracoes.ModoDebug; // ligado em Configurações > Modo debug
             btn_skipFail.Click += btn_skipFail_Click;
-            btn_skipFail.Visible = false; //Criar uma variavel global no settings para mexer na visibilidade desse botão
+            btn_skipFail.Visible = Configuracoes.ModoDebug;
         }
 
         private void DeclararComponentesMusica() 
@@ -535,6 +535,7 @@ namespace BassVillainApp
 
 
             resultadoPartida.Perfect = resultadoPartida.tamanhoDaMusica;
+            resultadoPartida.Simulado = true; // não entra no histórico de estatísticas
 
             mostrarTelaResultados();
         }
@@ -549,6 +550,7 @@ namespace BassVillainApp
             pnl_Jogo.Invalidate();
 
             resultadoPartida.Miss = resultadoPartida.tamanhoDaMusica;
+            resultadoPartida.Simulado = true;
 
             mostrarTelaResultados();
         }

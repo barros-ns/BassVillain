@@ -21,6 +21,9 @@ namespace BassVillainApp
             public int Volume { get; set; }
             public int OffsetMs { get; set; }
             public string[] Teclas { get; set; }
+
+            // Mostra os botões Vencer/Perder durante a partida (para testar desbloqueios etc.).
+            public bool ModoDebug { get; set; }
         }
 
         private static readonly string[] TeclasPadrao = { "A", "S", "K", "L" };
@@ -57,6 +60,13 @@ namespace BassVillainApp
         {
             get { return dados.OffsetMs; }
             set { dados.OffsetMs = Math.Max(OffsetMinimoMs, Math.Min(OffsetMaximoMs, value)); }
+        }
+
+        /// <summary>Quando ligado, a partida mostra os botões de debug (Vencer / Perder).</summary>
+        public static bool ModoDebug
+        {
+            get { return dados.ModoDebug; }
+            set { dados.ModoDebug = value; }
         }
 
         /// <summary>Teclas das 4 pistas (uma cópia, para ninguém alterar sem querer).</summary>

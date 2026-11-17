@@ -29,6 +29,7 @@ namespace BassVillainApp
         {
             trk_Volume.Value = Configuracoes.Volume;
             trk_Offset.Value = Configuracoes.OffsetMs;
+            chk_Debug.Checked = Configuracoes.ModoDebug;
             atualizarTextos();
             atualizarBotoesTecla();
         }
@@ -37,6 +38,7 @@ namespace BassVillainApp
         {
             btn_voltar.Click += btn_voltar_Click;
             btn_Restaurar.Click += btn_Restaurar_Click;
+            chk_Debug.CheckedChanged += delegate { Configuracoes.ModoDebug = chk_Debug.Checked; };
 
             trk_Volume.ValueChanged += trk_Volume_ValueChanged;
             trk_Offset.ValueChanged += trk_Offset_ValueChanged;

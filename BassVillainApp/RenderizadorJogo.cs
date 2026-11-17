@@ -63,8 +63,7 @@ namespace BassVillainApp
         #endregion
 
         private readonly TemaVisual tema;
-        private Bitmap fundoCache;
-        private Size fundoTamanho;
+        private readonly FundoCache fundo = new FundoCache();
 
         public RenderizadorJogo(TemaVisual tema)
         {
@@ -73,8 +72,7 @@ namespace BassVillainApp
 
         public void Dispose()
         {
-            if (fundoCache != null)
-                fundoCache.Dispose();
+            fundo.Dispose();
         }
 
         #region Geometria da perspectiva
@@ -140,29 +138,7 @@ namespace BassVillainApp
         #region Fundo e pista
         private void DesenharFundo(Graphics g, Size t)
         {
-            if (tema.ImagemFundo != null)
-            {
-                // Redimensiona uma vez só (e de novo se a janela mudar de tamanho).
-                if (fundoCache == null || fundoTamanho != t)
-                {
-                    if (fundoCache != null)
-                        fundoCache.Dispose();
-
-                    fundoCache = new Bitmap(t.Width, t.Height);
-                    using (Graphics gc = Graphics.FromImage(fundoCache))
-                    {
-                        gc.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                        gc.DrawImage(tema.ImagemFundo, 0, 0, t.Width, t.Height);
-                    }
-                    fundoTamanho = t;
-                }
-                g.DrawImage(fundoCache, 0, 0, t.Width, t.Height);
-                return;
-            }
-
-            using (var degrade = new LinearGradientBrush(new Rectangle(0, 0, t.Width, t.Height),
-                       TextoEstilizado.Clarear(tema.CorFundo, 0.25f), tema.CorFundo, 90f))
-                g.FillRectangle(degrade, 0, 0, t.Width, t.Height);
+            fundo.Desenhar(g, tema, t);
         }
 
         private void DesenharPista(Graphics g, Geometria geo, EstadoRender e)
@@ -393,50 +369,11 @@ namespace BassVillainApp
             }
         }
 
-        // Triângulo com os três cantos arredondados (curvas de Bézier nos vértices).
         private static GraphicsPath Triangulo(float cx, float cy, float largura, float altura)
         {
-            PointF[] v = TrianguloParaCima
-                ? new[]
-                {
-                    new PointF(cx, cy - altura / 2f),
-                    new PointF(cx + largura / 2f, cy + altura / 2f),
-                    new PointF(cx - largura / 2f, cy + altura / 2f)
-                }
-                : new[]
-                {
-                    new PointF(cx - largura / 2f, cy - altura / 2f),
-                    new PointF(cx + largura / 2f, cy - altura / 2f),
-                    new PointF(cx, cy + altura / 2f)
-                };
-
-            const float arredondar = 0.22f; // quanto de cada aresta vira curva
-            var caminho = new GraphicsPath();
-            PointF fimAnterior = PointF.Empty;
-
-            for (int i = 0; i < 3; i++)
-            {
-                PointF anterior = v[(i + 2) % 3];
-                PointF atual = v[i];
-                PointF proximo = v[(i + 1) % 3];
-
-                var entrada = new PointF(atual.X + (anterior.X - atual.X) * arredondar,
-                                         atual.Y + (anterior.Y - atual.Y) * arredondar);
-                var saida = new PointF(atual.X + (proximo.X - atual.X) * arredondar,
-                                       atual.Y + (proximo.Y - atual.Y) * arredondar);
-                var c1 = new PointF(entrada.X + (atual.X - entrada.X) * 0.6f,
-                                    entrada.Y + (atual.Y - entrada.Y) * 0.6f);
-                var c2 = new PointF(saida.X + (atual.X - saida.X) * 0.6f,
-                                    saida.Y + (atual.Y - saida.Y) * 0.6f);
-
-                if (i > 0)
-                    caminho.AddLine(fimAnterior, entrada);
-                caminho.AddBezier(entrada, c1, c2, saida);
-                fimAnterior = saida;
-            }
-
-            caminho.CloseFigure();
-            return caminho;
+            return TrianguloParaCima
+                ? Formas.TrianguloParaCima(cx, cy, largura, altura)
+                : Formas.TrianguloParaBaixo(cx, cy, largura, altura);
         }
         #endregion
 
@@ -505,14 +442,7 @@ namespace BassVillainApp
 
         private static GraphicsPath RetanguloArredondado(RectangleF r, float raio)
         {
-            float d = Math.Min(raio * 2f, Math.Min(r.Width, r.Height));
-            var p = new GraphicsPath();
-            p.AddArc(r.X, r.Y, d, d, 180, 90);
-            p.AddArc(r.Right - d, r.Y, d, d, 270, 90);
-            p.AddArc(r.Right - d, r.Bottom - d, d, d, 0, 90);
-            p.AddArc(r.X, r.Bottom - d, d, d, 90, 90);
-            p.CloseFigure();
-            return p;
+            return Formas.RetanguloArredondado(r, raio);
         }
         #endregion
     }

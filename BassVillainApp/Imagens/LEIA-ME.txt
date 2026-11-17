@@ -33,8 +33,20 @@ ARQUIVOS (todos opcionais, em cada pasta)
                        128 x 128, desenhados em 64 x 64. Aparecem quando o combo chega a
                        10 / 25 / 50 / 75 / 100 / 150 / 200 (ajustável em RankCombo.cs).
 
+MENU INICIAL (em Imagens\Menu\, opcionais)
+  titulo.png           ~640 x 240  Logo do jogo (substitui o título "BASS VILLAIN" em texto)
+  menu_botao.png       380 x 84    Fundo dos botões do menu, parado
+  menu_botao_hover.png 380 x 84    O mesmo, com o mouse em cima ou apertado
+  Sem essas imagens os botões são desenhados com cores e o triângulo de destaque.
+
+TELA DE ESTATÍSTICAS (aparece ao fim de cada fase)
+  Usa o fundo.png, a fonte e as cores da música que foi jogada, e os rank_*.png (se existirem)
+  no lugar das letras. O histórico fica em %AppData%\BassVillain\historico.json.
+
 ONDE MEXER NO CÓDIGO
   TemaVisual.cs (CriarTema)   cores, 4 cores das pistas e a FONTE de cada música
+  BotaoTema.cs                aparência dos botões do menu
+  RenderizadorEstatisticas.cs layout da tela de estatísticas
   RenderizadorJogo.cs         ajustes no topo: inclinação da pista (EscalaLonge), largura
                               (LarguraPistaRel), achatamento das notas, triângulos para
                               cima/baixo (TrianguloParaCima)

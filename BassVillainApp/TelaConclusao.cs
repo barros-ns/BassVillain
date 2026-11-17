@@ -10,62 +10,82 @@ using System.Windows.Forms;
 
 namespace BassVillainApp
 {
+    /// <summary>
+    /// Tela de estatísticas: aparece quando a fase termina e mostra as métricas da partida
+    /// comparadas ao histórico (guardado em %AppData%\BassVillain\historico.json).
+    /// </summary>
     public partial class TelaConclusao : FormularioBase
     {
 
         #region Globais
         double pctgAcertos;
         int dificuldade;
+
+        private RelatorioPartida relatorio;
+        private RenderizadorEstatisticas renderizador;
+        private TemaVisual tema;
+
+        // Mesmo visual da música que acabou de ser jogada.
+        protected override TemaVisual TemaDaTela
+        {
+            get { return tema ?? (tema = TemaVisual.ParaMusica(Properties.Settings.Default.MusicaSelecionada)); }
+        }
         #endregion
 
         #region Inicialização
 
         public TelaConclusao(ResultadoPartida resultado)
         {
-            
             InitializeComponent();
-            mostrarResultado(resultado);
+
+            dificuldade = Properties.Settings.Default.DificuldadeSelecionada;
+            relatorio = criarRelatorio(resultado);
+            pctgAcertos = relatorio.Percentual;
+
             desbloquearNiveis(resultado);
             declrararComponentes();
+        }
+
+        // Compara com o histórico da mesma fase e, só então, grava esta partida
+        // (partidas simuladas pelo debug aparecem na tela mas não são gravadas).
+        private RelatorioPartida criarRelatorio(ResultadoPartida resultado)
+        {
+            List<RegistroPartida> todas = HistoricoPartidas.Carregar();
+            List<RegistroPartida> daFase = HistoricoPartidas.DaFase(todas, resultado.NomeMusica, dificuldade);
+
+            RelatorioPartida novo = RelatorioPartida.Criar(resultado, dificuldade, daFase);
+
+            if (!novo.Simulado)
+                HistoricoPartidas.Adicionar(todas, novo.ParaRegistro());
+
+            return novo;
         }
         #endregion
 
         #region Declarar componentes
         private void declrararComponentes()
         {
+            renderizador = new RenderizadorEstatisticas(TemaDaTela);
+
+            pnl_Estatisticas.Paint += pnl_Estatisticas_Paint;
             btn_telaInicial.Click += btn_telaInicial_Click;
+            AcceptButton = btn_telaInicial;
+            FormClosed += delegate { renderizador.Dispose(); };
+        }
+
+        private void pnl_Estatisticas_Paint(object sender, PaintEventArgs e)
+        {
+            renderizador.Desenhar(e.Graphics, pnl_Estatisticas.ClientSize, relatorio);
         }
         #endregion
-
 
         #region Botões
         private void btn_telaInicial_Click(object sender, EventArgs e)
         {
-            TelaInicial telaInicial = new TelaInicial();   
+            TelaInicial telaInicial = new TelaInicial();
             telaInicial.Show();
-            this.Hide();
+            FecharParaVoltar();
         }
-        #endregion
-        #region Mostrar Resultado
-        private void mostrarResultado(ResultadoPartida resultado)
-        {
-            int totalNotas = resultado.tamanhoDaMusica;
-            int acertos = resultado.NotasAcertadasResultadoPartida;
-            pctgAcertos = totalNotas > 0 ? 100.0 * acertos / totalNotas: 0.0;
-            bool passou = pctgAcertos >= 70;
-
-            lbl_NomeMusica.Text = resultado.NomeMusica;
-            lb_resultados.Items.Add($"Perfect: {resultado.Perfect}");
-            lb_resultados.Items.Add($"Great: {resultado.Great}");
-            lb_resultados.Items.Add($"Good: {resultado.Good}");
-            lb_resultados.Items.Add($"Miss: {resultado.Miss}");
-            lb_resultados.Items.Add($"Pontuação: {resultado.Pontuacao}");
-            lb_resultados.Items.Add($"Maior Combo: {resultado.MaiorCombo}");
-            lb_resultados.Items.Add($"Rank do combo: {RankCombo.Nome(RankCombo.Obter(resultado.MaiorCombo))}");
-            lb_resultados.Items.Add($"% de Acerto: {pctgAcertos.ToString("F2")}%");
-            lb_resultados.Items.Add($"Passou: {passou}");
-        }
-
         #endregion
 
         #region Desbloquear Níveis

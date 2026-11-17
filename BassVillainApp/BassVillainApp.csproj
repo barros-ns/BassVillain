@@ -56,6 +56,12 @@
     <Compile Include="TemaVisual.cs" />
     <Compile Include="RankCombo.cs" />
     <Compile Include="TextoEstilizado.cs" />
+    <Compile Include="Formas.cs" />
+    <Compile Include="FundoCache.cs" />
+    <Compile Include="BotaoTema.cs" />
+    <Compile Include="DesenhoMenu.cs" />
+    <Compile Include="HistoricoPartidas.cs" />
+    <Compile Include="RenderizadorEstatisticas.cs" />
     <Compile Include="RenderizadorJogo.cs" />
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>

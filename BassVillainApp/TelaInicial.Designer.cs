@@ -28,46 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_Titulo = new System.Windows.Forms.Label();
-            this.btn_Iniciar = new System.Windows.Forms.Button();
-            this.btn_estatisticas = new System.Windows.Forms.Button();
-            this.btn_config = new System.Windows.Forms.Button();
+            this.btn_Iniciar = new BassVillainApp.BotaoTema();
+            this.btn_config = new BassVillainApp.BotaoTema();
             this.SuspendLayout();
-            // 
-            // lbl_Titulo
-            // 
-            this.lbl_Titulo.AutoSize = true;
-            this.lbl_Titulo.Location = new System.Drawing.Point(369, 138);
-            this.lbl_Titulo.Name = "lbl_Titulo";
-            this.lbl_Titulo.Size = new System.Drawing.Size(60, 13);
-            this.lbl_Titulo.TabIndex = 0;
-            this.lbl_Titulo.Text = "Bass Villain";
             // 
             // btn_Iniciar
             // 
-            this.btn_Iniciar.Location = new System.Drawing.Point(363, 190);
+            this.btn_Iniciar.Location = new System.Drawing.Point(210, 190);
             this.btn_Iniciar.Name = "btn_Iniciar";
-            this.btn_Iniciar.Size = new System.Drawing.Size(75, 23);
-            this.btn_Iniciar.TabIndex = 1;
-            this.btn_Iniciar.Text = "Iniciar";
+            this.btn_Iniciar.Size = new System.Drawing.Size(380, 84);
+            this.btn_Iniciar.TabIndex = 0;
+            this.btn_Iniciar.Text = "INICIAR";
             this.btn_Iniciar.UseVisualStyleBackColor = true;
-            // 
-            // btn_estatisticas
-            // 
-            this.btn_estatisticas.Location = new System.Drawing.Point(363, 245);
-            this.btn_estatisticas.Name = "btn_estatisticas";
-            this.btn_estatisticas.Size = new System.Drawing.Size(75, 23);
-            this.btn_estatisticas.TabIndex = 2;
-            this.btn_estatisticas.Text = "Estatisticas";
-            this.btn_estatisticas.UseVisualStyleBackColor = true;
             // 
             // btn_config
             // 
-            this.btn_config.Location = new System.Drawing.Point(723, 12);
+            this.btn_config.Location = new System.Drawing.Point(210, 296);
             this.btn_config.Name = "btn_config";
-            this.btn_config.Size = new System.Drawing.Size(65, 23);
-            this.btn_config.TabIndex = 3;
-            this.btn_config.Text = "Config";
+            this.btn_config.Size = new System.Drawing.Size(380, 72);
+            this.btn_config.TabIndex = 1;
+            this.btn_config.Text = "CONFIGURAÇÕES";
             this.btn_config.UseVisualStyleBackColor = true;
             // 
             // TelaInicial
@@ -76,22 +56,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_config);
-            this.Controls.Add(this.btn_estatisticas);
             this.Controls.Add(this.btn_Iniciar);
-            this.Controls.Add(this.lbl_Titulo);
             this.Name = "TelaInicial";
-            this.Text = "TelaInicial";
+            this.Text = "Bass Villain";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lbl_Titulo;
-        private System.Windows.Forms.Button btn_Iniciar;
-        private System.Windows.Forms.Button btn_estatisticas;
-        private System.Windows.Forms.Button btn_config;
+        private BassVillainApp.BotaoTema btn_Iniciar;
+        private BassVillainApp.BotaoTema btn_config;
     }
 }
-

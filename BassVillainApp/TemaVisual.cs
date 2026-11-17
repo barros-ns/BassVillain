@@ -87,6 +87,18 @@ namespace BassVillainApp
             return ImagemUnica("num_" + digito);
         }
 
+        /// <summary>Logo do jogo no menu (Imagens\Menu\titulo.png).</summary>
+        public Image ImagemTitulo
+        {
+            get { return ImagemUnica("titulo"); }
+        }
+
+        /// <summary>Fundo dos botões do menu: menu_botao.png e menu_botao_hover.png.</summary>
+        public Image ImagemBotaoMenu(bool sobre)
+        {
+            return ImagemUnica(sobre ? "menu_botao_hover" : "menu_botao");
+        }
+
         /// <summary>Rank do combo: rank_C.png, rank_Aplus.png ...</summary>
         public Image ImagemRank(RankCombo.Rank rank)
         {
@@ -205,7 +217,11 @@ namespace BassVillainApp
                     t.CorBotao = Color.FromArgb(40, 40, 70);
                     t.CorContorno = Color.FromArgb(100, 100, 150);
                     t.CorLinhaAlvo = Color.Red;
-                    t.CoresNotas = new[] { Color.DeepSkyBlue, Color.DeepSkyBlue, Color.DeepSkyBlue, Color.DeepSkyBlue };
+                    t.CoresNotas = new[]
+                    {
+                        Color.FromArgb(0, 190, 255), Color.FromArgb(160, 110, 255),
+                        Color.FromArgb(255, 90, 170), Color.FromArgb(90, 235, 220)
+                    };
                     break;
             }
 
@@ -259,7 +275,11 @@ namespace BassVillainApp
         {
             foreach (Control c in controles)
             {
-                if (c is Button)
+                if (c is BotaoTema)
+                {
+                    ((BotaoTema)c).Tema = this; // desenha a si mesmo, no estilo do tema
+                }
+                else if (c is Button)
                 {
                     var botao = (Button)c;
                     botao.FlatStyle = FlatStyle.Flat;
