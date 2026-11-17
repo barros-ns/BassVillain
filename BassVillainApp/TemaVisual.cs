@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace BassVillainApp
@@ -34,12 +35,24 @@ namespace BassVillainApp
             get
             {
                 if (familia == null)
-                {
-                    try { familia = new FontFamily(FamiliaFonte); }
-                    catch (ArgumentException) { familia = FontFamily.GenericSansSerif; }
-                }
+                    familia = EscolherFonte(FamiliaFonte);
                 return familia;
             }
+        }
+
+        /// <summary>Primeira fonte da lista (separada por vírgula) que estiver instalada.</summary>
+        private static FontFamily EscolherFonte(string lista)
+        {
+            FontFamily[] instaladas = new InstalledFontCollection().Families;
+            foreach (string nome in lista.Split(','))
+            {
+                foreach (FontFamily f in instaladas)
+                {
+                    if (string.Equals(f.Name, nome.Trim(), StringComparison.OrdinalIgnoreCase))
+                        return f;
+                }
+            }
+            return FontFamily.GenericSansSerif;
         }
 
         /// <summary>Negrito, se a fonte tiver; senão normal (evita erro em fontes sem negrito).</summary>
@@ -169,7 +182,7 @@ namespace BassVillainApp
             switch (pasta)
             {
                 case "SultansOfSwing":
-                    t.FamiliaFonte = "Georgia";
+                    t.FamiliaFonte = "Algerian, Bookman Old Style, Georgia"; // jazz: serifada decorativa
                     t.CorFundo = Color.FromArgb(32, 22, 12);
                     t.CorTexto = Color.FromArgb(255, 232, 170);
                     t.CorBotao = Color.FromArgb(70, 50, 25);
@@ -183,7 +196,7 @@ namespace BassVillainApp
                     break;
 
                 case "DarkNecessities":
-                    t.FamiliaFonte = "Impact";
+                    t.FamiliaFonte = "Showcard Gothic, Chiller, Impact";
                     t.CorFundo = Color.FromArgb(24, 8, 8);
                     t.CorTexto = Color.FromArgb(255, 210, 210);
                     t.CorBotao = Color.FromArgb(75, 20, 20);
@@ -197,7 +210,7 @@ namespace BassVillainApp
                     break;
 
                 case "SevenNationArmy":
-                    t.FamiliaFonte = "Arial Black";
+                    t.FamiliaFonte = "Stencil, Bauhaus 93, Arial Black"; // militar
                     t.CorFundo = Color.FromArgb(14, 14, 14);
                     t.CorTexto = Color.WhiteSmoke;
                     t.CorBotao = Color.FromArgb(45, 45, 45);
@@ -211,7 +224,7 @@ namespace BassVillainApp
                     break;
 
                 default: // "Menu"
-                    t.FamiliaFonte = "Segoe UI";
+                    t.FamiliaFonte = "Bauhaus 93, Segoe UI Black, Segoe UI";
                     t.CorFundo = Color.FromArgb(18, 18, 30);
                     t.CorTexto = Color.White;
                     t.CorBotao = Color.FromArgb(40, 40, 70);
@@ -225,9 +238,62 @@ namespace BassVillainApp
                     break;
             }
 
-            t.ImagemFundo = CarregarImagem(pasta, "fundo");
+            t.ImagemFundo = CarregarFundo(NomeDoFundo(pasta));
             t.ImagemPainel = CarregarImagem(pasta, "painel");
             return t;
+        }
+        #endregion
+
+        #region Imagens de fundo (Imagens\sultans.jpg, seven.jpg, dark.jpg, interface.jpg, stats.jpg)
+        private static string NomeDoFundo(string pasta)
+        {
+            switch (pasta)
+            {
+                case "SultansOfSwing": return "sultans";
+                case "SevenNationArmy": return "seven";
+                case "DarkNecessities": return "dark";
+                default: return "interface"; // menus, seleção e configurações
+            }
+        }
+
+        private static Image fundoEstatisticas;
+        private static bool fundoEstatisticasCarregado;
+
+        /// <summary>Fundo da tela de estatísticas (Imagens\stats.jpg). Null = degradê do tema.</summary>
+        public static Image ImagemEstatisticas
+        {
+            get
+            {
+                if (!fundoEstatisticasCarregado)
+                {
+                    fundoEstatisticas = CarregarFundo("stats");
+                    fundoEstatisticasCarregado = true;
+                }
+                return fundoEstatisticas;
+            }
+        }
+
+        /// <summary>Procura Imagens\nome.jpg (ou .jpeg / .png). Null se não existir.</summary>
+        private static Image CarregarFundo(string nome)
+        {
+            foreach (string ext in new[] { ".jpg", ".jpeg", ".png" })
+            {
+                string caminho = Path.Combine(Application.StartupPath, "Imagens", nome + ext);
+                if (!File.Exists(caminho))
+                    continue;
+
+                try
+                {
+                    using (Image original = Image.FromFile(caminho))
+                        return new Bitmap(original);
+                }
+                catch (Exception ex) when (ex is IOException || ex is OutOfMemoryException ||
+                                           ex is ArgumentException)
+                {
+                    // arquivo inválido: tenta o próximo / usa as cores
+                }
+            }
+            return null;
         }
         #endregion
 

@@ -133,8 +133,8 @@ namespace BassVillainApp
             r.Miss = resultado.Miss;
             r.MaiorCombo = resultado.MaiorCombo;
             r.TotalNotas = resultado.tamanhoDaMusica;
-            r.Acertos = resultado.NotasAcertadasResultadoPartida;
-            r.Percentual = r.TotalNotas > 0 ? 100.0 * r.Acertos / r.TotalNotas : 0.0;
+            r.Acertos = Math.Min(resultado.NotasAcertadasResultadoPartida, r.TotalNotas);
+            r.Percentual = r.TotalNotas > 0 ? Math.Min(100.0, 100.0 * r.Acertos / r.TotalNotas) : 0.0;
             r.Aprovado = r.Percentual >= PercentualParaPassar;
             r.Rank = RankCombo.Obter(r.MaiorCombo);
 

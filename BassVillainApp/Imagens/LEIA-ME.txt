@@ -1,4 +1,4 @@
-IMAGENS DO BASS VILLAIN
+﻿IMAGENS DO BASS VILLAIN
 =======================
 Coloque arquivos .png nas pastas abaixo, com EXATAMENTE estes nomes, e dê Rebuild.
 O que não existir é desenhado só com as cores/formas do TemaVisual.cs (nada quebra).
@@ -58,3 +58,17 @@ TELAS DE SELECAO E CONFIGURACOES
 Usam os mesmos botoes do menu: Imagens\Menu\menu_botao.png e menu_botao_hover.png (se existirem)
 e o fundo da tela: Imagens\Menu\fundo.png na escolha da musica e na tela de configuracoes,
 Imagens\<Musica>\fundo.png na escolha da dificuldade. Sem imagens, desenha com as cores do tema.
+
+
+=== FUNDOS DAS TELAS (valem no lugar dos fundo.png antigos) ===
+Solte na pasta Imagens\ (a mesma onde esta este arquivo), em .jpg:
+  sultans.jpg    tela do jogo de Sultans of Swing e a escolha de dificuldade dela
+  seven.jpg      tela do jogo de Seven Nation Army e a escolha de dificuldade dela
+  dark.jpg       tela do jogo de Dark Necessities e a escolha de dificuldade dela
+  interface.jpg  menu inicial, escolha de musica e configuracoes
+  stats.jpg      tela de estatisticas do fim da fase
+Sao esticadas para a tela (use proporcao parecida com 800x750). Ja ha imagens provisorias com esses nomes.
+(.png com o mesmo nome tambem funciona.)
+
+FONTES: cada tema tenta as fontes da lista em TemaVisual.CriarTema() e usa a primeira instalada
+(Algerian / Showcard Gothic / Stencil / Bauhaus 93 vem com o Office; senao cai em Georgia, Impact, Arial Black, Segoe UI).

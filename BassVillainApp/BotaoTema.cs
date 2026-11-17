@@ -33,6 +33,13 @@ namespace BassVillainApp
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Compacto { get; set; }
 
+        /// <summary>
+        /// Desenha o que fica atrás do botão quando o pai pinta o próprio fundo (ex.: tela de estatísticas).
+        /// O Graphics já vem deslocado para as coordenadas do pai.
+        /// </summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Action<Graphics> PintarFundoDoPai { get; set; }
+
         public BotaoTema()
         {
             SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer |
@@ -51,6 +58,36 @@ namespace BassVillainApp
         protected override void OnEnabledChanged(EventArgs e) { Invalidate(); base.OnEnabledChanged(e); }
         protected override void OnGotFocus(EventArgs e) { Invalidate(); base.OnGotFocus(e); }
         protected override void OnLostFocus(EventArgs e) { Invalidate(); base.OnLostFocus(e); }
+
+        // O fundo é pintado aqui, recortando o que há atrás do botão (imagem de fundo da tela ou cor).
+        // Assim não herdamos textos desenhados pelo pai nem cantos pretos da transparência.
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            if (PintarFundoDoPai != null)
+            {
+                var estado = g.Save();
+                g.TranslateTransform(-Left, -Top);
+                PintarFundoDoPai(g);
+                g.Restore(estado);
+                return;
+            }
+
+            Form form = FindForm();
+            if (form != null && form.BackgroundImage != null && form.ClientSize.Width > 0 && form.ClientSize.Height > 0)
+            {
+                Point pt = form.PointToClient(PointToScreen(Point.Empty));
+                Image img = form.BackgroundImage;
+                float sx = (float)img.Width / form.ClientSize.Width;
+                float sy = (float)img.Height / form.ClientSize.Height;
+                g.DrawImage(img, new Rectangle(0, 0, Width, Height),
+                            new RectangleF(pt.X * sx, pt.Y * sy, Width * sx, Height * sy), GraphicsUnit.Pixel);
+                return;
+            }
+
+            g.Clear(form != null ? form.BackColor : SystemColors.Control);
+        }
 
         protected override void OnPaint(PaintEventArgs e)
         {

@@ -13,9 +13,11 @@ namespace BassVillainApp
         private Bitmap cache;
         private Size tamanho;
 
-        public void Desenhar(Graphics g, TemaVisual tema, Size t)
+        public void Desenhar(Graphics g, TemaVisual tema, Size t, Image imagem = null)
         {
-            if (tema.ImagemFundo == null)
+            Image fundo = imagem ?? tema.ImagemFundo;
+
+            if (fundo == null)
             {
                 using (var degrade = new LinearGradientBrush(new Rectangle(0, 0, t.Width, t.Height),
                            TextoEstilizado.Clarear(tema.CorFundo, 0.25f), tema.CorFundo, 90f))
@@ -32,7 +34,7 @@ namespace BassVillainApp
                 using (Graphics gc = Graphics.FromImage(cache))
                 {
                     gc.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    gc.DrawImage(tema.ImagemFundo, 0, 0, t.Width, t.Height);
+                    gc.DrawImage(fundo, 0, 0, t.Width, t.Height);
                 }
                 tamanho = t;
             }

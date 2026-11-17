@@ -67,6 +67,7 @@ namespace BassVillainApp
         {
             renderizador = new RenderizadorEstatisticas(TemaDaTela);
 
+            btn_telaInicial.PintarFundoDoPai = g => renderizador.DesenharFundo(g, pnl_Estatisticas.ClientSize);
             pnl_Estatisticas.Paint += pnl_Estatisticas_Paint;
             btn_telaInicial.Click += btn_telaInicial_Click;
             AcceptButton = btn_telaInicial;

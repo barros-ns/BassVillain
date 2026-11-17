@@ -535,6 +535,9 @@ namespace BassVillainApp
 
 
             resultadoPartida.Perfect = resultadoPartida.tamanhoDaMusica;
+            resultadoPartida.Great = 0;
+            resultadoPartida.Good = 0;
+            resultadoPartida.Miss = 0;
             resultadoPartida.Simulado = true; // não entra no histórico de estatísticas
 
             mostrarTelaResultados();
@@ -549,6 +552,9 @@ namespace BassVillainApp
             playerMusica.Stop();
             pnl_Jogo.Invalidate();
 
+            resultadoPartida.Perfect = 0;
+            resultadoPartida.Great = 0;
+            resultadoPartida.Good = 0;
             resultadoPartida.Miss = resultadoPartida.tamanhoDaMusica;
             resultadoPartida.Simulado = true;
 

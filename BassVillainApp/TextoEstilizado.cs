@@ -88,6 +88,13 @@ namespace BassVillainApp
 
                 float espessura = Math.Max(2f, tamanhoUsado / 7f);
 
+                // Brilho (neon) na cor do texto
+                using (var brilho = new Pen(Color.FromArgb(70, cor), espessura * 2.8f))
+                {
+                    brilho.LineJoin = LineJoin.Round;
+                    g.DrawPath(brilho, caminho);
+                }
+
                 // Sombra
                 using (var mover = new Matrix())
                 using (GraphicsPath sombra = (GraphicsPath)caminho.Clone())
@@ -107,6 +114,13 @@ namespace BassVillainApp
                     contorno.LineJoin = LineJoin.Round;
                     g.DrawPath(contorno, caminho);
                     g.FillPath(degrade, caminho);
+                }
+
+                // Fio de luz por cima (acabamento)
+                using (var fio = new Pen(Color.FromArgb(110, 255, 255, 255), 1.2f))
+                {
+                    fio.LineJoin = LineJoin.Round;
+                    g.DrawPath(fio, caminho);
                 }
             }
 

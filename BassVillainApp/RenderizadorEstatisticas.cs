@@ -24,6 +24,12 @@ namespace BassVillainApp
             this.tema = tema;
         }
 
+        /// <summary>Fundo da tela (Imagens\stats.jpg ou, sem ela, um degradê do tema).</summary>
+        public void DesenharFundo(Graphics g, Size t)
+        {
+            fundo.Desenhar(g, tema, t, TemaVisual.ImagemEstatisticas);
+        }
+
         public void Dispose()
         {
             fundo.Dispose();
@@ -37,7 +43,7 @@ namespace BassVillainApp
             SmoothingMode anterior = g.SmoothingMode;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            fundo.Desenhar(g, tema, t);
+            DesenharFundo(g, t);
 
             const float M = 20f;
             float largura = t.Width - 2f * M;
