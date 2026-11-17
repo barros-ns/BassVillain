@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_voltar = new System.Windows.Forms.Button();
+            this.btn_voltar = new BassVillainApp.BotaoTema();
             this.lbl_titulo = new System.Windows.Forms.Label();
             this.lbl_secaoAudio = new System.Windows.Forms.Label();
             this.lbl_volume = new System.Windows.Forms.Label();
@@ -41,23 +41,23 @@
             this.lbl_offsetDica = new System.Windows.Forms.Label();
             this.lbl_secaoTeclas = new System.Windows.Forms.Label();
             this.lbl_pista0 = new System.Windows.Forms.Label();
-            this.btn_Tecla0 = new System.Windows.Forms.Button();
+            this.btn_Tecla0 = new BassVillainApp.BotaoTema();
             this.lbl_pista1 = new System.Windows.Forms.Label();
-            this.btn_Tecla1 = new System.Windows.Forms.Button();
+            this.btn_Tecla1 = new BassVillainApp.BotaoTema();
             this.lbl_pista2 = new System.Windows.Forms.Label();
-            this.btn_Tecla2 = new System.Windows.Forms.Button();
+            this.btn_Tecla2 = new BassVillainApp.BotaoTema();
             this.lbl_pista3 = new System.Windows.Forms.Label();
-            this.btn_Tecla3 = new System.Windows.Forms.Button();
+            this.btn_Tecla3 = new BassVillainApp.BotaoTema();
             this.lbl_avisoTecla = new System.Windows.Forms.Label();
-            this.btn_Restaurar = new System.Windows.Forms.Button();
+            this.btn_Restaurar = new BassVillainApp.BotaoTema();
             this.chk_Debug = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_voltar
             // 
-            this.btn_voltar.Location = new System.Drawing.Point(22, 20);
+            this.btn_voltar.Location = new System.Drawing.Point(22, 14);
             this.btn_voltar.Name = "btn_voltar";
-            this.btn_voltar.Size = new System.Drawing.Size(75, 23);
+            this.btn_voltar.Size = new System.Drawing.Size(160, 50);
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
             // 
@@ -160,7 +160,7 @@
             // 
             this.btn_Tecla0.Location = new System.Drawing.Point(120, 440);
             this.btn_Tecla0.Name = "btn_Tecla0";
-            this.btn_Tecla0.Size = new System.Drawing.Size(100, 45);
+            this.btn_Tecla0.Size = new System.Drawing.Size(110, 52);
             this.btn_Tecla0.Text = "A";
             this.btn_Tecla0.UseVisualStyleBackColor = true;
             // 
@@ -175,7 +175,7 @@
             // 
             this.btn_Tecla1.Location = new System.Drawing.Point(260, 440);
             this.btn_Tecla1.Name = "btn_Tecla1";
-            this.btn_Tecla1.Size = new System.Drawing.Size(100, 45);
+            this.btn_Tecla1.Size = new System.Drawing.Size(110, 52);
             this.btn_Tecla1.Text = "A";
             this.btn_Tecla1.UseVisualStyleBackColor = true;
             // 
@@ -190,7 +190,7 @@
             // 
             this.btn_Tecla2.Location = new System.Drawing.Point(400, 440);
             this.btn_Tecla2.Name = "btn_Tecla2";
-            this.btn_Tecla2.Size = new System.Drawing.Size(100, 45);
+            this.btn_Tecla2.Size = new System.Drawing.Size(110, 52);
             this.btn_Tecla2.Text = "A";
             this.btn_Tecla2.UseVisualStyleBackColor = true;
             // 
@@ -205,7 +205,7 @@
             // 
             this.btn_Tecla3.Location = new System.Drawing.Point(540, 440);
             this.btn_Tecla3.Name = "btn_Tecla3";
-            this.btn_Tecla3.Size = new System.Drawing.Size(100, 45);
+            this.btn_Tecla3.Size = new System.Drawing.Size(110, 52);
             this.btn_Tecla3.Text = "A";
             this.btn_Tecla3.UseVisualStyleBackColor = true;
             // 
@@ -221,7 +221,7 @@
             // 
             this.btn_Restaurar.Location = new System.Drawing.Point(50, 560);
             this.btn_Restaurar.Name = "btn_Restaurar";
-            this.btn_Restaurar.Size = new System.Drawing.Size(130, 30);
+            this.btn_Restaurar.Size = new System.Drawing.Size(260, 52);
             this.btn_Restaurar.Text = "Restaurar padrão";
             this.btn_Restaurar.UseVisualStyleBackColor = true;
             // 
@@ -272,7 +272,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_voltar;
+        private BassVillainApp.BotaoTema btn_voltar;
         private System.Windows.Forms.Label lbl_titulo;
         private System.Windows.Forms.Label lbl_secaoAudio;
         private System.Windows.Forms.Label lbl_volume;
@@ -285,15 +285,15 @@
         private System.Windows.Forms.Label lbl_offsetDica;
         private System.Windows.Forms.Label lbl_secaoTeclas;
         private System.Windows.Forms.Label lbl_pista0;
-        private System.Windows.Forms.Button btn_Tecla0;
+        private BassVillainApp.BotaoTema btn_Tecla0;
         private System.Windows.Forms.Label lbl_pista1;
-        private System.Windows.Forms.Button btn_Tecla1;
+        private BassVillainApp.BotaoTema btn_Tecla1;
         private System.Windows.Forms.Label lbl_pista2;
-        private System.Windows.Forms.Button btn_Tecla2;
+        private BassVillainApp.BotaoTema btn_Tecla2;
         private System.Windows.Forms.Label lbl_pista3;
-        private System.Windows.Forms.Button btn_Tecla3;
+        private BassVillainApp.BotaoTema btn_Tecla3;
         private System.Windows.Forms.Label lbl_avisoTecla;
-        private System.Windows.Forms.Button btn_Restaurar;
+        private BassVillainApp.BotaoTema btn_Restaurar;
         private System.Windows.Forms.CheckBox chk_Debug;
     }
 }

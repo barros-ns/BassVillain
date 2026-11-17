@@ -20,9 +20,36 @@ namespace BassVillainApp
             this.telaInicial = telaInicial;
 
             botoesTecla = new[] { btn_Tecla0, btn_Tecla1, btn_Tecla2, btn_Tecla3 };
+            configEstiloDosBotoes();
 
             carregarValoresNaTela();
             configEventos();
+        }
+
+        // Botões no mesmo estilo do menu (a cor de cada tecla é a da pista correspondente).
+        private void configEstiloDosBotoes()
+        {
+            for (int i = 0; i < botoesTecla.Length; i++)
+            {
+                btn_TeclaN(i).Compacto = true;
+                btn_TeclaN(i).TamanhoTexto = 24f;
+                btn_TeclaN(i).CorDestaque = TemaVisual.Menu.CorNota(i);
+            }
+
+            btn_voltar.TamanhoTexto = 22f;
+            btn_voltar.Text = "VOLTAR";
+            btn_voltar.CorDestaque = TemaVisual.Menu.CorNota(2);
+
+            btn_Restaurar.TamanhoTexto = 20f;
+            btn_Restaurar.Text = "RESTAURAR PADRÃO";
+            btn_Restaurar.CorDestaque = TemaVisual.Menu.CorNota(3);
+
+            CancelButton = btn_voltar; // Esc volta (a não ser que uma tecla esteja sendo escolhida)
+        }
+
+        private BotaoTema btn_TeclaN(int i)
+        {
+            return (BotaoTema)botoesTecla[i];
         }
 
         private void carregarValoresNaTela()

@@ -28,31 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_titulo = new System.Windows.Forms.Label();
-            this.lbl_nomeDaMusica = new System.Windows.Forms.Label();
-            this.btn_facil = new System.Windows.Forms.Button();
-            this.btn_medio = new System.Windows.Forms.Button();
-            this.btn_dificil = new System.Windows.Forms.Button();
-            this.btn_voltar = new System.Windows.Forms.Button();
+            this.btn_facil = new BassVillainApp.BotaoTema();
+            this.btn_medio = new BassVillainApp.BotaoTema();
+            this.btn_dificil = new BassVillainApp.BotaoTema();
+            this.btn_voltar = new BassVillainApp.BotaoTema();
             this.SuspendLayout();
-            // 
-            // lbl_titulo
-            // 
-            this.lbl_titulo.AutoSize = true;
-            this.lbl_titulo.Location = new System.Drawing.Point(313, 30);
-            this.lbl_titulo.Name = "lbl_titulo";
-            this.lbl_titulo.Size = new System.Drawing.Size(151, 13);
-            this.lbl_titulo.TabIndex = 0;
-            this.lbl_titulo.Text = "SELECIONE A DIFICULDADE";
-            // 
-            // lbl_nomeDaMusica
-            // 
-            this.lbl_nomeDaMusica.AutoSize = true;
-            this.lbl_nomeDaMusica.Location = new System.Drawing.Point(370, 69);
-            this.lbl_nomeDaMusica.Name = "lbl_nomeDaMusica";
-            this.lbl_nomeDaMusica.Size = new System.Drawing.Size(40, 13);
-            this.lbl_nomeDaMusica.TabIndex = 1;
-            this.lbl_nomeDaMusica.Text = "musica";
             // 
             // btn_facil
             // 
@@ -99,8 +79,6 @@
             this.Controls.Add(this.btn_dificil);
             this.Controls.Add(this.btn_medio);
             this.Controls.Add(this.btn_facil);
-            this.Controls.Add(this.lbl_nomeDaMusica);
-            this.Controls.Add(this.lbl_titulo);
             this.Name = "TelaSelecaoDificuldade";
             this.Text = "TelaSelecaoDificuldade";
             this.ResumeLayout(false);
@@ -110,11 +88,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbl_titulo;
-        private System.Windows.Forms.Label lbl_nomeDaMusica;
-        private System.Windows.Forms.Button btn_facil;
-        private System.Windows.Forms.Button btn_medio;
-        private System.Windows.Forms.Button btn_dificil;
-        private System.Windows.Forms.Button btn_voltar;
+        private BassVillainApp.BotaoTema btn_facil;
+        private BassVillainApp.BotaoTema btn_medio;
+        private BassVillainApp.BotaoTema btn_dificil;
+        private BassVillainApp.BotaoTema btn_voltar;
     }
 }

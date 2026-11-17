@@ -52,3 +52,9 @@ ONDE MEXER NO CÓDIGO
                               cima/baixo (TrianguloParaCima)
   Todos os níveis iguais?     copie os mesmos arquivos para as quatro pastas e use as
                               mesmas cores/fonte em CriarTema.
+
+
+TELAS DE SELECAO E CONFIGURACOES
+Usam os mesmos botoes do menu: Imagens\Menu\menu_botao.png e menu_botao_hover.png (se existirem)
+e o fundo da tela: Imagens\Menu\fundo.png na escolha da musica e na tela de configuracoes,
+Imagens\<Musica>\fundo.png na escolha da dificuldade. Sem imagens, desenha com as cores do tema.

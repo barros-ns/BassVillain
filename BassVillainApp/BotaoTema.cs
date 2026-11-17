@@ -29,6 +29,10 @@ namespace BassVillainApp
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float TamanhoTexto { get; set; }
 
+        /// <summary>Botão pequeno (ex.: teclas): sem o triângulo, com o texto centralizado.</summary>
+        [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public bool Compacto { get; set; }
+
         public BotaoTema()
         {
             SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer |
@@ -58,12 +62,12 @@ namespace BassVillainApp
                           : (sobre || Focused) ? Estado.Sobre
                           : Estado.Normal;
 
-            Pintar(e.Graphics, ClientRectangle, Text, estado, tema, destaque, TamanhoTexto);
+            Pintar(e.Graphics, ClientRectangle, Text, estado, tema, destaque, TamanhoTexto, Compacto);
         }
 
         /// <summary>O desenho em si (estático, para poder ser testado sem janela).</summary>
         internal static void Pintar(Graphics g, Rectangle area, string texto, Estado estado,
-                                    TemaVisual tema, Color destaque, float tamanhoTexto)
+                                    TemaVisual tema, Color destaque, float tamanhoTexto, bool compacto = false)
         {
             SmoothingMode anterior = g.SmoothingMode;
             g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -118,26 +122,30 @@ namespace BassVillainApp
                     g.DrawPath(contorno, forma);
                 }
 
-                // Triângulo de destaque, igual aos botões da pista.
-                float lado = r.Height * (realce ? 0.40f : 0.34f);
-                float cx = r.X + r.Height * 0.55f;
-                float cy = r.Y + r.Height / 2f;
-                using (GraphicsPath tri = Formas.TrianguloParaDireita(cx, cy, lado, lado * 1.1f))
+                if (!compacto)
                 {
-                    using (var preench = new LinearGradientBrush(
-                               new RectangleF(cx - lado / 2f, cy - lado / 2f, lado, lado * 1.1f),
-                               TextoEstilizado.Clarear(destaque, 0.55f), destaque, 90f))
-                        g.FillPath(preench, tri);
-                    using (var borda = new Pen(Color.FromArgb(220, 255, 255, 255), 2f))
+                    // Triângulo de destaque, igual aos botões da pista.
+                    float lado = r.Height * (realce ? 0.40f : 0.34f);
+                    float cx = r.X + r.Height * 0.55f;
+                    float cy = r.Y + r.Height / 2f;
+                    using (GraphicsPath tri = Formas.TrianguloParaDireita(cx, cy, lado, lado * 1.1f))
                     {
-                        borda.LineJoin = LineJoin.Round;
-                        g.DrawPath(borda, tri);
+                        using (var preench = new LinearGradientBrush(
+                                   new RectangleF(cx - lado / 2f, cy - lado / 2f, lado, lado * 1.1f),
+                                   TextoEstilizado.Clarear(destaque, 0.55f), destaque, 90f))
+                            g.FillPath(preench, tri);
+                        using (var borda = new Pen(Color.FromArgb(220, 255, 255, 255), 2f))
+                        {
+                            borda.LineJoin = LineJoin.Round;
+                            g.DrawPath(borda, tri);
+                        }
                     }
+
                 }
 
                 // Texto, deslocado para não cobrir o triângulo.
-                float recuo = r.Height * 1.0f;
-                var areaTexto = new RectangleF(r.X + recuo, r.Y, r.Width - recuo - r.Height * 0.3f, r.Height);
+                float recuo = compacto ? 0f : r.Height * 1.0f;
+                var areaTexto = new RectangleF(r.X + recuo, r.Y, r.Width - recuo - (compacto ? 0f : r.Height * 0.3f), r.Height);
                 Color corTexto = realce ? Color.White : tema.CorTexto;
                 TextoEstilizado.Desenhar(g, tema, texto, areaTexto, tamanhoTexto, corTexto, StringAlignment.Center);
 
