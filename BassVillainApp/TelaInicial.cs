@@ -84,6 +84,7 @@ namespace BassVillainApp
             {
                 mostrarTutorial();
                 settings.Tutorial = true;
+                settings.Save();
             }
 
             frm_TelaSelecaoMusica PagSelecaoMusc = new frm_TelaSelecaoMusica(this);
