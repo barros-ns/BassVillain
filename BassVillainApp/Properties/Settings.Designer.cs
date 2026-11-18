@@ -154,5 +154,17 @@ namespace BassVillainApp.Properties {
                 this["DificuldadeSelecionada"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Tutorial {
+            get {
+                return ((bool)(this["Tutorial"]));
+            }
+            set {
+                this["Tutorial"] = value;
+            }
+        }
     }
 }
