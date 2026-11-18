@@ -228,6 +228,7 @@ namespace BassVillainApp
             FecharParaVoltar();
         }
         #endregion
+
         #region Propriedades do Formulário
         #endregion
 

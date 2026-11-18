@@ -433,7 +433,11 @@ namespace BassVillainApp
 
                 atualizarPlacar();
                 resultadoPartida.MaiorCombo = Math.Max(resultadoPartida.MaiorCombo, comboAtual);
-                resultadoPartida.Pontuacao += pontos;
+                var rankAtual = RankCombo.Obter(comboAtual);
+                decimal pontosComBonus = pontos * RankCombo.Multiplicador(rankAtual);
+
+                resultadoPartida.Pontuacao += (int)Math.Round(
+                    pontosComBonus, MidpointRounding.AwayFromZero);
                 pnl_Jogo.Invalidate();
             }
         }
