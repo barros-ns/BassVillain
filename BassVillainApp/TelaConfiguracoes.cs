@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace BassVillainApp
 {
@@ -9,6 +10,9 @@ namespace BassVillainApp
         private readonly TelaInicial telaInicial;
         private Button[] botoesTecla;
         private ControleTelaCheia controleTelaCheia;
+        private readonly System.Collections.Generic.Dictionary<Control, Point> posicoesOriginais =
+            new System.Collections.Generic.Dictionary<Control, Point>();
+
 
         // Pista que está esperando uma nova tecla (-1 = nenhuma).
         private int pistaAguardando = -1;
@@ -21,11 +25,46 @@ namespace BassVillainApp
             this.telaInicial = telaInicial;
             controleTelaCheia = new ControleTelaCheia(this);
 
+            foreach (Control controle in Controls)
+            {
+                posicoesOriginais[controle] = controle.Location;
+            }
+
             botoesTecla = new[] { btn_Tecla0, btn_Tecla1, btn_Tecla2, btn_Tecla3 };
             configEstiloDosBotoes();
 
             carregarValoresNaTela();
             configEventos();
+        }
+
+
+        private void CentralizarLayout()
+        {
+            bool telaCheia = FormularioBase.TelaCheiaAtiva;
+
+            int deslocamentoX = telaCheia
+                ? (ClientSize.Width - 800) / 2
+                : 0;
+
+            int deslocamentoY = telaCheia
+                ? (ClientSize.Height - 750) / 2
+                : 0;
+
+            foreach (var item in posicoesOriginais)
+            {
+                item.Key.Location = new Point(
+                    item.Value.X + deslocamentoX,
+                    item.Value.Y + deslocamentoY
+                );
+            }
+        }
+
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+
+            if (posicoesOriginais.Count > 0)
+                CentralizarLayout();
         }
 
         // Botões no mesmo estilo do menu (a cor de cada tecla é a da pista correspondente).
@@ -47,6 +86,14 @@ namespace BassVillainApp
             btn_Restaurar.CorDestaque = TemaVisual.Menu.CorNota(3);
 
             CancelButton = btn_voltar; // Esc volta (a não ser que uma tecla esteja sendo escolhida)
+
+            btn_TelaCheia.Tema = TemaVisual.Menu;
+            btn_TelaCheia.CorDestaque = TemaVisual.Menu.CorNota(0);
+            btn_TelaCheia.TamanhoTexto = 14f;
+            btn_TelaCheia.Compacto = true;
+            btn_TelaCheia.Text = FormularioBase.TelaCheiaAtiva
+                ? "SAIR TELA CHEIA"
+                : "TELA CHEIA";
         }
 
         private BotaoTema btn_TeclaN(int i)

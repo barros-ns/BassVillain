@@ -175,73 +175,93 @@ namespace BassVillainApp
 
         // >>> A ESTÉTICA DE CADA NÍVEL SE DEFINE AQUI <<<
         // Para todos os níveis iguais, devolva as mesmas cores em todos os casos.
+
         private static TemaVisual CriarTema(string pasta)
         {
             var t = new TemaVisual(pasta);
 
+            // Mesma tipografia em todas as telas.
+            // Cada música mantém sua própria identidade de cores.
+            t.FamiliaFonte = "Segoe UI";
+
             switch (pasta)
             {
                 case "SultansOfSwing":
-                    t.FamiliaFonte = "Algerian, Bookman Old Style, Georgia"; // jazz: serifada decorativa
-                    t.CorFundo = Color.FromArgb(32, 22, 12);
-                    t.CorTexto = Color.FromArgb(255, 232, 170);
-                    t.CorBotao = Color.FromArgb(70, 50, 25);
-                    t.CorContorno = Color.FromArgb(190, 150, 60);
-                    t.CorLinhaAlvo = Color.Goldenrod;
+                    // Identidade quente: madeira, dourado e âmbar.
+                    t.CorFundo = Color.FromArgb(17, 15, 13);
+                    t.CorTexto = Color.FromArgb(245, 235, 215);
+                    t.CorBotao = Color.FromArgb(39, 31, 23);
+                    t.CorContorno = Color.FromArgb(145, 105, 52);
+                    t.CorLinhaAlvo = Color.FromArgb(220, 165, 65);
+
                     t.CoresNotas = new[]
                     {
-                        Color.FromArgb(255, 205, 60), Color.FromArgb(255, 130, 40),
-                        Color.FromArgb(235, 90, 110), Color.FromArgb(255, 235, 190)
-                    };
+                Color.FromArgb(245, 185, 55),
+                Color.FromArgb(220, 115, 45),
+                Color.FromArgb(190, 75, 85),
+                Color.FromArgb(245, 220, 175)
+            };
                     break;
 
                 case "DarkNecessities":
-                    t.FamiliaFonte = "Showcard Gothic, Chiller, Impact";
-                    t.CorFundo = Color.FromArgb(24, 8, 8);
-                    t.CorTexto = Color.FromArgb(255, 210, 210);
-                    t.CorBotao = Color.FromArgb(75, 20, 20);
-                    t.CorContorno = Color.FromArgb(170, 50, 50);
-                    t.CorLinhaAlvo = Color.Crimson;
+                    // Identidade escura: vermelho e vinho.
+                    t.CorFundo = Color.FromArgb(17, 11, 14);
+                    t.CorTexto = Color.FromArgb(250, 225, 230);
+                    t.CorBotao = Color.FromArgb(43, 22, 29);
+                    t.CorContorno = Color.FromArgb(145, 55, 75);
+                    t.CorLinhaAlvo = Color.FromArgb(220, 45, 75);
+
                     t.CoresNotas = new[]
                     {
-                        Color.FromArgb(235, 50, 60), Color.FromArgb(255, 140, 40),
-                        Color.FromArgb(210, 50, 160), Color.FromArgb(150, 90, 235)
-                    };
+                Color.FromArgb(225, 45, 65),
+                Color.FromArgb(240, 115, 55),
+                Color.FromArgb(195, 55, 145),
+                Color.FromArgb(135, 75, 205)
+            };
                     break;
 
                 case "SevenNationArmy":
-                    t.FamiliaFonte = "Stencil, Bauhaus 93, Arial Black"; // militar
-                    t.CorFundo = Color.FromArgb(14, 14, 14);
-                    t.CorTexto = Color.WhiteSmoke;
-                    t.CorBotao = Color.FromArgb(45, 45, 45);
-                    t.CorContorno = Color.Gray;
-                    t.CorLinhaAlvo = Color.FromArgb(230, 40, 40);
+                    // Identidade industrial: preto, cinza e vermelho.
+                    t.CorFundo = Color.FromArgb(13, 14, 16);
+                    t.CorTexto = Color.FromArgb(235, 235, 238);
+                    t.CorBotao = Color.FromArgb(34, 36, 40);
+                    t.CorContorno = Color.FromArgb(100, 103, 110);
+                    t.CorLinhaAlvo = Color.FromArgb(220, 40, 45);
+
                     t.CoresNotas = new[]
                     {
-                        Color.FromArgb(230, 40, 40), Color.FromArgb(240, 240, 240),
-                        Color.FromArgb(160, 165, 175), Color.FromArgb(150, 20, 30)
-                    };
+                Color.FromArgb(220, 40, 45),
+                Color.FromArgb(230, 230, 230),
+                Color.FromArgb(145, 150, 160),
+                Color.FromArgb(125, 25, 35)
+            };
                     break;
 
-                default: // "Menu"
-                    t.FamiliaFonte = "Bauhaus 93, Segoe UI Black, Segoe UI";
-                    t.CorFundo = Color.FromArgb(18, 18, 30);
-                    t.CorTexto = Color.White;
-                    t.CorBotao = Color.FromArgb(40, 40, 70);
-                    t.CorContorno = Color.FromArgb(100, 100, 150);
-                    t.CorLinhaAlvo = Color.Red;
+                default:
+                    // Menu, configurações e telas gerais.
+                    // Identidade principal: preto, grafite e roxo.
+                    t.CorFundo = Color.FromArgb(13, 12, 18);
+                    t.CorTexto = Color.FromArgb(240, 235, 250);
+                    t.CorBotao = Color.FromArgb(32, 27, 43);
+                    t.CorContorno = Color.FromArgb(105, 75, 155);
+                    t.CorLinhaAlvo = Color.FromArgb(165, 95, 255);
+
                     t.CoresNotas = new[]
                     {
-                        Color.FromArgb(0, 190, 255), Color.FromArgb(160, 110, 255),
-                        Color.FromArgb(255, 90, 170), Color.FromArgb(90, 235, 220)
-                    };
+                Color.FromArgb(155, 95, 255),
+                Color.FromArgb(190, 125, 255),
+                Color.FromArgb(125, 75, 210),
+                Color.FromArgb(205, 175, 255)
+            };
                     break;
             }
 
             t.ImagemFundo = CarregarFundo(NomeDoFundo(pasta));
             t.ImagemPainel = CarregarImagem(pasta, "painel");
+
             return t;
         }
+
         #endregion
 
         #region Imagens de fundo (Imagens\sultans.jpg, seven.jpg, dark.jpg, interface.jpg, stats.jpg)

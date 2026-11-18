@@ -51,19 +51,7 @@
             this.lbl_avisoTecla = new System.Windows.Forms.Label();
             this.btn_Restaurar = new BassVillainApp.BotaoTema();
             this.chk_Debug = new System.Windows.Forms.CheckBox();
-            this.btn_TelaCheia = new System.Windows.Forms.Button();
-
-            this.btn_TelaCheia.Name = "btn_TelaCheia";
-            this.btn_TelaCheia.Text = "TELA CHEIA";
-            this.btn_TelaCheia.Size = new System.Drawing.Size(150, 35);
-            this.btn_TelaCheia.Location = new System.Drawing.Point(600, 14);
-            this.btn_TelaCheia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_TelaCheia.ForeColor = System.Drawing.Color.White;
-            this.btn_TelaCheia.BackColor = System.Drawing.Color.FromArgb(25, 35, 55);
-            this.btn_TelaCheia.FlatAppearance.BorderSize = 0;
-            this.btn_TelaCheia.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            this.Controls.Add(this.btn_TelaCheia);
+            this.btn_TelaCheia = new BassVillainApp.BotaoTema();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Volume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Offset)).BeginInit();
             this.SuspendLayout();
@@ -73,9 +61,11 @@
             this.btn_voltar.BackColor = System.Drawing.Color.Transparent;
             this.btn_voltar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_voltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_voltar.Location = new System.Drawing.Point(22, 14);
+            this.btn_voltar.ForeColor = System.Drawing.Color.White;
+            this.btn_voltar.Location = new System.Drawing.Point(29, 17);
+            this.btn_voltar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_voltar.Name = "btn_voltar";
-            this.btn_voltar.Size = new System.Drawing.Size(160, 50);
+            this.btn_voltar.Size = new System.Drawing.Size(213, 62);
             this.btn_voltar.TabIndex = 22;
             this.btn_voltar.Text = "Voltar";
             this.btn_voltar.UseVisualStyleBackColor = true;
@@ -84,9 +74,10 @@
             // 
             this.lbl_titulo.AutoSize = true;
             this.lbl_titulo.Font = new System.Drawing.Font("Bauhaus 93", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_titulo.Location = new System.Drawing.Point(300, 25);
+            this.lbl_titulo.Location = new System.Drawing.Point(400, 31);
+            this.lbl_titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_titulo.Name = "lbl_titulo";
-            this.lbl_titulo.Size = new System.Drawing.Size(233, 30);
+            this.lbl_titulo.Size = new System.Drawing.Size(292, 39);
             this.lbl_titulo.TabIndex = 21;
             this.lbl_titulo.Text = "CONFIGURAÇÕES";
             // 
@@ -94,9 +85,10 @@
             // 
             this.lbl_secaoAudio.AutoSize = true;
             this.lbl_secaoAudio.Font = new System.Drawing.Font("Bauhaus 93", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_secaoAudio.Location = new System.Drawing.Point(50, 100);
+            this.lbl_secaoAudio.Location = new System.Drawing.Point(67, 123);
+            this.lbl_secaoAudio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_secaoAudio.Name = "lbl_secaoAudio";
-            this.lbl_secaoAudio.Size = new System.Drawing.Size(71, 21);
+            this.lbl_secaoAudio.Size = new System.Drawing.Size(89, 28);
             this.lbl_secaoAudio.TabIndex = 20;
             this.lbl_secaoAudio.Text = "ÁUDIO";
             // 
@@ -104,18 +96,20 @@
             // 
             this.lbl_volume.AutoSize = true;
             this.lbl_volume.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_volume.Location = new System.Drawing.Point(50, 130);
+            this.lbl_volume.Location = new System.Drawing.Point(67, 160);
+            this.lbl_volume.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_volume.Name = "lbl_volume";
-            this.lbl_volume.Size = new System.Drawing.Size(112, 15);
+            this.lbl_volume.Size = new System.Drawing.Size(144, 19);
             this.lbl_volume.TabIndex = 19;
             this.lbl_volume.Text = "Volume da música";
             // 
             // trk_Volume
             // 
-            this.trk_Volume.Location = new System.Drawing.Point(200, 130);
+            this.trk_Volume.Location = new System.Drawing.Point(267, 160);
+            this.trk_Volume.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trk_Volume.Maximum = 100;
             this.trk_Volume.Name = "trk_Volume";
-            this.trk_Volume.Size = new System.Drawing.Size(420, 45);
+            this.trk_Volume.Size = new System.Drawing.Size(560, 56);
             this.trk_Volume.TabIndex = 18;
             this.trk_Volume.TickFrequency = 10;
             // 
@@ -123,9 +117,10 @@
             // 
             this.lbl_volumeValor.AutoSize = true;
             this.lbl_volumeValor.Font = new System.Drawing.Font("Bauhaus 93", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_volumeValor.Location = new System.Drawing.Point(640, 140);
+            this.lbl_volumeValor.Location = new System.Drawing.Point(853, 172);
+            this.lbl_volumeValor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_volumeValor.Name = "lbl_volumeValor";
-            this.lbl_volumeValor.Size = new System.Drawing.Size(29, 13);
+            this.lbl_volumeValor.Size = new System.Drawing.Size(36, 16);
             this.lbl_volumeValor.TabIndex = 17;
             this.lbl_volumeValor.Text = "70%";
             // 
@@ -133,9 +128,10 @@
             // 
             this.lbl_secaoSincronia.AutoSize = true;
             this.lbl_secaoSincronia.Font = new System.Drawing.Font("Bauhaus 93", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_secaoSincronia.Location = new System.Drawing.Point(50, 230);
+            this.lbl_secaoSincronia.Location = new System.Drawing.Point(67, 283);
+            this.lbl_secaoSincronia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_secaoSincronia.Name = "lbl_secaoSincronia";
-            this.lbl_secaoSincronia.Size = new System.Drawing.Size(111, 21);
+            this.lbl_secaoSincronia.Size = new System.Drawing.Size(139, 28);
             this.lbl_secaoSincronia.TabIndex = 16;
             this.lbl_secaoSincronia.Text = "SINCRONIA";
             // 
@@ -143,19 +139,21 @@
             // 
             this.lbl_offset.AutoSize = true;
             this.lbl_offset.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_offset.Location = new System.Drawing.Point(50, 260);
+            this.lbl_offset.Location = new System.Drawing.Point(67, 320);
+            this.lbl_offset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_offset.Name = "lbl_offset";
-            this.lbl_offset.Size = new System.Drawing.Size(75, 15);
+            this.lbl_offset.Size = new System.Drawing.Size(96, 19);
             this.lbl_offset.TabIndex = 15;
             this.lbl_offset.Text = "Calibração";
             // 
             // trk_Offset
             // 
-            this.trk_Offset.Location = new System.Drawing.Point(200, 260);
+            this.trk_Offset.Location = new System.Drawing.Point(267, 320);
+            this.trk_Offset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trk_Offset.Maximum = 300;
             this.trk_Offset.Minimum = -300;
             this.trk_Offset.Name = "trk_Offset";
-            this.trk_Offset.Size = new System.Drawing.Size(420, 45);
+            this.trk_Offset.Size = new System.Drawing.Size(560, 56);
             this.trk_Offset.TabIndex = 14;
             this.trk_Offset.TickFrequency = 50;
             // 
@@ -163,18 +161,20 @@
             // 
             this.lbl_offsetValor.AutoSize = true;
             this.lbl_offsetValor.Font = new System.Drawing.Font("Bauhaus 93", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_offsetValor.Location = new System.Drawing.Point(640, 270);
+            this.lbl_offsetValor.Location = new System.Drawing.Point(853, 332);
+            this.lbl_offsetValor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_offsetValor.Name = "lbl_offsetValor";
-            this.lbl_offsetValor.Size = new System.Drawing.Size(29, 13);
+            this.lbl_offsetValor.Size = new System.Drawing.Size(35, 16);
             this.lbl_offsetValor.TabIndex = 13;
             this.lbl_offsetValor.Text = "0 ms";
             // 
             // lbl_offsetDica
             // 
             this.lbl_offsetDica.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_offsetDica.Location = new System.Drawing.Point(50, 310);
+            this.lbl_offsetDica.Location = new System.Drawing.Point(67, 382);
+            this.lbl_offsetDica.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_offsetDica.Name = "lbl_offsetDica";
-            this.lbl_offsetDica.Size = new System.Drawing.Size(700, 36);
+            this.lbl_offsetDica.Size = new System.Drawing.Size(933, 44);
             this.lbl_offsetDica.TabIndex = 12;
             this.lbl_offsetDica.Text = "Notas chegando tarde demais em relação à música? Aumente. Cedo demais? Diminua.\nS" +
     "e o som chega atrasado (ex.: fone Bluetooth), use valores negativos.";
@@ -183,9 +183,10 @@
             // 
             this.lbl_secaoTeclas.AutoSize = true;
             this.lbl_secaoTeclas.Font = new System.Drawing.Font("Bauhaus 93", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_secaoTeclas.Location = new System.Drawing.Point(50, 375);
+            this.lbl_secaoTeclas.Location = new System.Drawing.Point(67, 462);
+            this.lbl_secaoTeclas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_secaoTeclas.Name = "lbl_secaoTeclas";
-            this.lbl_secaoTeclas.Size = new System.Drawing.Size(74, 21);
+            this.lbl_secaoTeclas.Size = new System.Drawing.Size(92, 28);
             this.lbl_secaoTeclas.TabIndex = 11;
             this.lbl_secaoTeclas.Text = "TECLAS";
             // 
@@ -193,9 +194,11 @@
             // 
             this.lbl_pista0.AutoSize = true;
             this.lbl_pista0.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_pista0.Location = new System.Drawing.Point(155, 413);
+            this.lbl_pista0.ForeColor = System.Drawing.Color.Black;
+            this.lbl_pista0.Location = new System.Drawing.Point(207, 508);
+            this.lbl_pista0.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_pista0.Name = "lbl_pista0";
-            this.lbl_pista0.Size = new System.Drawing.Size(45, 15);
+            this.lbl_pista0.Size = new System.Drawing.Size(60, 19);
             this.lbl_pista0.TabIndex = 10;
             this.lbl_pista0.Text = "Pista 1";
             // 
@@ -204,9 +207,11 @@
             this.btn_Tecla0.BackColor = System.Drawing.Color.Transparent;
             this.btn_Tecla0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Tecla0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Tecla0.Location = new System.Drawing.Point(120, 440);
+            this.btn_Tecla0.ForeColor = System.Drawing.Color.White;
+            this.btn_Tecla0.Location = new System.Drawing.Point(160, 542);
+            this.btn_Tecla0.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Tecla0.Name = "btn_Tecla0";
-            this.btn_Tecla0.Size = new System.Drawing.Size(110, 52);
+            this.btn_Tecla0.Size = new System.Drawing.Size(147, 64);
             this.btn_Tecla0.TabIndex = 9;
             this.btn_Tecla0.Text = "A";
             this.btn_Tecla0.UseVisualStyleBackColor = true;
@@ -215,9 +220,11 @@
             // 
             this.lbl_pista1.AutoSize = true;
             this.lbl_pista1.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_pista1.Location = new System.Drawing.Point(295, 413);
+            this.lbl_pista1.ForeColor = System.Drawing.Color.Black;
+            this.lbl_pista1.Location = new System.Drawing.Point(393, 508);
+            this.lbl_pista1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_pista1.Name = "lbl_pista1";
-            this.lbl_pista1.Size = new System.Drawing.Size(45, 15);
+            this.lbl_pista1.Size = new System.Drawing.Size(60, 19);
             this.lbl_pista1.TabIndex = 8;
             this.lbl_pista1.Text = "Pista 2";
             // 
@@ -226,9 +233,11 @@
             this.btn_Tecla1.BackColor = System.Drawing.Color.Transparent;
             this.btn_Tecla1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Tecla1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Tecla1.Location = new System.Drawing.Point(260, 440);
+            this.btn_Tecla1.ForeColor = System.Drawing.Color.White;
+            this.btn_Tecla1.Location = new System.Drawing.Point(347, 542);
+            this.btn_Tecla1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Tecla1.Name = "btn_Tecla1";
-            this.btn_Tecla1.Size = new System.Drawing.Size(110, 52);
+            this.btn_Tecla1.Size = new System.Drawing.Size(147, 64);
             this.btn_Tecla1.TabIndex = 7;
             this.btn_Tecla1.Text = "A";
             this.btn_Tecla1.UseVisualStyleBackColor = true;
@@ -237,9 +246,11 @@
             // 
             this.lbl_pista2.AutoSize = true;
             this.lbl_pista2.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_pista2.Location = new System.Drawing.Point(435, 413);
+            this.lbl_pista2.ForeColor = System.Drawing.Color.Black;
+            this.lbl_pista2.Location = new System.Drawing.Point(580, 508);
+            this.lbl_pista2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_pista2.Name = "lbl_pista2";
-            this.lbl_pista2.Size = new System.Drawing.Size(45, 15);
+            this.lbl_pista2.Size = new System.Drawing.Size(60, 19);
             this.lbl_pista2.TabIndex = 6;
             this.lbl_pista2.Text = "Pista 3";
             // 
@@ -248,9 +259,11 @@
             this.btn_Tecla2.BackColor = System.Drawing.Color.Transparent;
             this.btn_Tecla2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Tecla2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Tecla2.Location = new System.Drawing.Point(400, 440);
+            this.btn_Tecla2.ForeColor = System.Drawing.Color.White;
+            this.btn_Tecla2.Location = new System.Drawing.Point(533, 542);
+            this.btn_Tecla2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Tecla2.Name = "btn_Tecla2";
-            this.btn_Tecla2.Size = new System.Drawing.Size(110, 52);
+            this.btn_Tecla2.Size = new System.Drawing.Size(147, 64);
             this.btn_Tecla2.TabIndex = 5;
             this.btn_Tecla2.Text = "A";
             this.btn_Tecla2.UseVisualStyleBackColor = true;
@@ -259,9 +272,11 @@
             // 
             this.lbl_pista3.AutoSize = true;
             this.lbl_pista3.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_pista3.Location = new System.Drawing.Point(575, 413);
+            this.lbl_pista3.ForeColor = System.Drawing.Color.Black;
+            this.lbl_pista3.Location = new System.Drawing.Point(767, 508);
+            this.lbl_pista3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_pista3.Name = "lbl_pista3";
-            this.lbl_pista3.Size = new System.Drawing.Size(45, 15);
+            this.lbl_pista3.Size = new System.Drawing.Size(60, 19);
             this.lbl_pista3.TabIndex = 4;
             this.lbl_pista3.Text = "Pista 4";
             // 
@@ -270,9 +285,11 @@
             this.btn_Tecla3.BackColor = System.Drawing.Color.Transparent;
             this.btn_Tecla3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Tecla3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Tecla3.Location = new System.Drawing.Point(540, 440);
+            this.btn_Tecla3.ForeColor = System.Drawing.Color.White;
+            this.btn_Tecla3.Location = new System.Drawing.Point(720, 542);
+            this.btn_Tecla3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Tecla3.Name = "btn_Tecla3";
-            this.btn_Tecla3.Size = new System.Drawing.Size(110, 52);
+            this.btn_Tecla3.Size = new System.Drawing.Size(147, 64);
             this.btn_Tecla3.TabIndex = 3;
             this.btn_Tecla3.Text = "A";
             this.btn_Tecla3.UseVisualStyleBackColor = true;
@@ -280,9 +297,10 @@
             // lbl_avisoTecla
             // 
             this.lbl_avisoTecla.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_avisoTecla.Location = new System.Drawing.Point(50, 500);
+            this.lbl_avisoTecla.Location = new System.Drawing.Point(67, 615);
+            this.lbl_avisoTecla.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_avisoTecla.Name = "lbl_avisoTecla";
-            this.lbl_avisoTecla.Size = new System.Drawing.Size(700, 20);
+            this.lbl_avisoTecla.Size = new System.Drawing.Size(933, 25);
             this.lbl_avisoTecla.TabIndex = 2;
             this.lbl_avisoTecla.Text = "Clique em uma tecla e depois pressione a nova (Esc cancela).";
             // 
@@ -291,9 +309,11 @@
             this.btn_Restaurar.BackColor = System.Drawing.Color.Transparent;
             this.btn_Restaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Restaurar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Restaurar.Location = new System.Drawing.Point(50, 560);
+            this.btn_Restaurar.ForeColor = System.Drawing.Color.White;
+            this.btn_Restaurar.Location = new System.Drawing.Point(67, 689);
+            this.btn_Restaurar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_Restaurar.Name = "btn_Restaurar";
-            this.btn_Restaurar.Size = new System.Drawing.Size(260, 52);
+            this.btn_Restaurar.Size = new System.Drawing.Size(347, 64);
             this.btn_Restaurar.TabIndex = 1;
             this.btn_Restaurar.Text = "Restaurar padrão";
             this.btn_Restaurar.UseVisualStyleBackColor = true;
@@ -302,18 +322,35 @@
             // 
             this.chk_Debug.AutoSize = true;
             this.chk_Debug.Font = new System.Drawing.Font("Bauhaus 93", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_Debug.Location = new System.Drawing.Point(50, 620);
+            this.chk_Debug.Location = new System.Drawing.Point(67, 763);
+            this.chk_Debug.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chk_Debug.Name = "chk_Debug";
-            this.chk_Debug.Size = new System.Drawing.Size(402, 19);
+            this.chk_Debug.Size = new System.Drawing.Size(515, 23);
             this.chk_Debug.TabIndex = 0;
             this.chk_Debug.Text = "Modo debug (mostra os botões Vencer / Perder durante a partida)";
             this.chk_Debug.UseVisualStyleBackColor = true;
             // 
+            // btn_TelaCheia
+            // 
+            this.btn_TelaCheia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(35)))), ((int)(((byte)(55)))));
+            this.btn_TelaCheia.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_TelaCheia.FlatAppearance.BorderSize = 0;
+            this.btn_TelaCheia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_TelaCheia.ForeColor = System.Drawing.Color.White;
+            this.btn_TelaCheia.Location = new System.Drawing.Point(800, 17);
+            this.btn_TelaCheia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_TelaCheia.Name = "btn_TelaCheia";
+            this.btn_TelaCheia.Size = new System.Drawing.Size(200, 43);
+            this.btn_TelaCheia.TabIndex = 0;
+            this.btn_TelaCheia.Text = "TELA CHEIA";
+            this.btn_TelaCheia.UseVisualStyleBackColor = false;
+            // 
             // frm_Configuracoes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 642);
+            this.ClientSize = new System.Drawing.Size(1084, 790);
+            this.Controls.Add(this.btn_TelaCheia);
             this.Controls.Add(this.chk_Debug);
             this.Controls.Add(this.btn_Restaurar);
             this.Controls.Add(this.lbl_avisoTecla);
@@ -338,6 +375,7 @@
             this.Controls.Add(this.lbl_titulo);
             this.Controls.Add(this.btn_voltar);
             this.ForeColor = System.Drawing.Color.White;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frm_Configuracoes";
             this.Text = "Configurações";
             ((System.ComponentModel.ISupportInitialize)(this.trk_Volume)).EndInit();
@@ -372,6 +410,6 @@
         private System.Windows.Forms.Label lbl_avisoTecla;
         private BassVillainApp.BotaoTema btn_Restaurar;
         private System.Windows.Forms.CheckBox chk_Debug;
-        private System.Windows.Forms.Button btn_TelaCheia;
+        private BotaoTema btn_TelaCheia;
     }
 }
