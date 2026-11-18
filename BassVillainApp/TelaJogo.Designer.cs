@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnl_Pontuacao = new System.Windows.Forms.Panel();
+            this.btn_skipFail = new System.Windows.Forms.Button();
             this.btn_skipPass = new System.Windows.Forms.Button();
             this.lbl_Pontuacao = new System.Windows.Forms.Label();
             this.lbl_ComboMax = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.lbl_Acertos = new System.Windows.Forms.Label();
             this.timerJogo = new System.Windows.Forms.Timer(this.components);
             this.pnl_Jogo = new BassVillainApp.PainelJogo();
-            this.btn_skipFail = new System.Windows.Forms.Button();
             this.pnl_Pontuacao.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +57,15 @@
             this.pnl_Pontuacao.Name = "pnl_Pontuacao";
             this.pnl_Pontuacao.Size = new System.Drawing.Size(800, 100);
             this.pnl_Pontuacao.TabIndex = 0;
+            // 
+            // btn_skipFail
+            // 
+            this.btn_skipFail.Location = new System.Drawing.Point(618, 54);
+            this.btn_skipFail.Name = "btn_skipFail";
+            this.btn_skipFail.Size = new System.Drawing.Size(75, 23);
+            this.btn_skipFail.TabIndex = 9;
+            this.btn_skipFail.Text = "Perder";
+            this.btn_skipFail.UseVisualStyleBackColor = true;
             // 
             // btn_skipPass
             // 
@@ -130,15 +139,6 @@
             this.pnl_Jogo.Size = new System.Drawing.Size(800, 514);
             this.pnl_Jogo.TabIndex = 1;
             // 
-            // btn_skipFail
-            // 
-            this.btn_skipFail.Location = new System.Drawing.Point(618, 54);
-            this.btn_skipFail.Name = "btn_skipFail";
-            this.btn_skipFail.Size = new System.Drawing.Size(75, 23);
-            this.btn_skipFail.TabIndex = 9;
-            this.btn_skipFail.Text = "Perder";
-            this.btn_skipFail.UseVisualStyleBackColor = true;
-            // 
             // TelaJogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,6 +146,7 @@
             this.ClientSize = new System.Drawing.Size(800, 614);
             this.Controls.Add(this.pnl_Jogo);
             this.Controls.Add(this.pnl_Pontuacao);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "TelaJogo";
             this.Text = "TelaJogo";
             this.pnl_Pontuacao.ResumeLayout(false);

@@ -20,26 +20,28 @@ namespace BassVillainApp
             public readonly string Nome;
             public readonly string Arquivo; // nome do PNG opcional: Imagens\<tema>\<Arquivo>.png
             public readonly Color Cor;      // cor usada quando não há imagem
+            public readonly decimal Multiplicador;
 
-            public Faixa(int comboMinimo, string nome, string arquivo, Color cor)
+            public Faixa(int comboMinimo, string nome, string arquivo, Color cor, decimal multiplicador)
             {
                 ComboMinimo = comboMinimo;
                 Nome = nome;
                 Arquivo = arquivo;
                 Cor = cor;
+                Multiplicador = multiplicador;
             }
         }
 
         // Na mesma ordem do enum (sem o "Nenhum"). Combos mínimos em ordem crescente.
         private static readonly Faixa[] faixas =
         {
-            new Faixa(10,  "C",   "rank_C",      Color.LightGray),
-            new Faixa(25,  "B",   "rank_B",      Color.LimeGreen),
-            new Faixa(50,  "A",   "rank_A",      Color.DeepSkyBlue),
-            new Faixa(75,  "A+",  "rank_Aplus",  Color.Cyan),
-            new Faixa(100, "S",   "rank_S",      Color.Gold),
-            new Faixa(150, "SS",  "rank_SS",     Color.Orange),
-            new Faixa(200, "SS+", "rank_SSplus", Color.Magenta)
+            new Faixa(10,  "C",   "rank_C",      Color.LightGray,   1.10m),
+            new Faixa(25,  "B",   "rank_B",      Color.LimeGreen,   1.20m),
+            new Faixa(50,  "A",   "rank_A",      Color.DeepSkyBlue, 1.30m),
+            new Faixa(75,  "A+",  "rank_Aplus",  Color.Cyan,        1.40m),
+            new Faixa(100, "S",   "rank_S",      Color.Gold,        1.50m),
+            new Faixa(150, "SS",  "rank_SS",     Color.Orange,      1.75m),
+            new Faixa(200, "SS+", "rank_SSplus", Color.Magenta,     2.00m)
         };
 
         public static Rank Obter(int combo)
@@ -51,6 +53,10 @@ namespace BassVillainApp
                     rank = (Rank)(i + 1);
             }
             return rank;
+        }
+        public static decimal Multiplicador(Rank rank)
+        {
+            return rank == Rank.Nenhum ? 1m : faixas[(int)rank - 1].Multiplicador;
         }
 
         public static string Nome(Rank rank)
