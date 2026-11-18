@@ -8,6 +8,7 @@ namespace BassVillainApp
         #region Variaveis Globais
         private readonly TelaInicial telaInicial;
         private Button[] botoesTecla;
+        private ControleTelaCheia controleTelaCheia;
 
         // Pista que está esperando uma nova tecla (-1 = nenhuma).
         private int pistaAguardando = -1;
@@ -18,6 +19,7 @@ namespace BassVillainApp
         {
             InitializeComponent();
             this.telaInicial = telaInicial;
+            controleTelaCheia = new ControleTelaCheia(this);
 
             botoesTecla = new[] { btn_Tecla0, btn_Tecla1, btn_Tecla2, btn_Tecla3 };
             configEstiloDosBotoes();
@@ -66,6 +68,15 @@ namespace BassVillainApp
             btn_voltar.Click += btn_voltar_Click;
             btn_Restaurar.Click += btn_Restaurar_Click;
             chk_Debug.CheckedChanged += delegate { Configuracoes.ModoDebug = chk_Debug.Checked; };
+
+            btn_TelaCheia.Click += delegate
+            {
+                AlternarTelaCheiaGlobal();
+
+                btn_TelaCheia.Text = FormularioBase.TelaCheiaAtiva
+                    ? "SAIR TELA CHEIA"
+                    : "TELA CHEIA";
+            };
 
             trk_Volume.ValueChanged += trk_Volume_ValueChanged;
             trk_Offset.ValueChanged += trk_Offset_ValueChanged;

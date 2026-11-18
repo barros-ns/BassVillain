@@ -11,16 +11,39 @@ namespace BassVillainApp
     public  class FormularioBase : Form
     {
         private bool fechandoParaVoltar;
+        private static bool telaCheiaGlobal = false;
+        private readonly ControleTelaCheia controleTelaCheia;
         public FormularioBase()
         {
+            controleTelaCheia = new ControleTelaCheia(this);
+
             StartPosition = FormStartPosition.CenterScreen;
             MaximizeBox = false;
             MinimizeBox = false;
             ShowIcon = false;
             FormClosing += new FormClosingEventHandler(FormularioBase_FormClosing);
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            
+        }
 
+        public void AlternarTelaCheiaGlobal()
+        {
+            telaCheiaGlobal = !telaCheiaGlobal;
+            controleTelaCheia.Aplicar(telaCheiaGlobal);
+        }
+
+        protected override void OnVisibleChanged(System.EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+
+            if (Visible && controleTelaCheia != null)
+            {
+                controleTelaCheia.Aplicar(telaCheiaGlobal);
+            }
+        }
+
+        public static bool TelaCheiaAtiva
+        {
+            get { return telaCheiaGlobal; }
         }
 
         // Cada tela pode escolher seu tema; o padrão é o do menu.

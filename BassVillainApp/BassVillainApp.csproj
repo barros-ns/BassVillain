@@ -49,6 +49,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControleTelaCheia.cs" />
     <Compile Include="EnumMusica.cs" />
     <Compile Include="Nota.cs" />
     <Compile Include="RelogioMusica.cs" />

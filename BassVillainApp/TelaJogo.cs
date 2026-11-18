@@ -72,6 +72,7 @@ namespace BassVillainApp
         public TelaJogo()
         {
             InitializeComponent();
+
             DeclararComponentesJogo();
             DeclararComponentesMusica();
         }
