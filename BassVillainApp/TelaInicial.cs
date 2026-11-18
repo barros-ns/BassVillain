@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -77,6 +78,14 @@ namespace BassVillainApp
 
         private void btn_Iniciar_Click(object sender, EventArgs e)
         {
+            var settings = Properties.Settings.Default;
+
+            if (!settings.Tutorial) 
+            {
+                mostrarTutorial();
+                settings.Tutorial = true;
+            }
+
             frm_TelaSelecaoMusica PagSelecaoMusc = new frm_TelaSelecaoMusica(this);
             PagSelecaoMusc.Show();
             this.Hide();
@@ -96,6 +105,41 @@ namespace BassVillainApp
         }
 
 
+        #endregion
+
+        #region Mostrar Tutorial
+        private void mostrarTutorial()
+        {
+            Keys[] teclas = Configuracoes.Teclas;
+
+            msgBox(
+            "Bem-vindo ao Bass Villain!\n\n" +
+            "Bass Villain é um jogo de ritmo inspirado em Guitar Hero. " +
+            "As notas descem por quatro pistas. Quando uma nota chegar à linha de acerto, " +
+            "pressione a tecla da pista correspondente.\n\n" +
+            "Quanto mais perto do momento certo, melhor o julgamento: Perfect, Great ou Good.\n\n" +
+            "Acerte várias notas seguidas para aumentar o combo. Conforme o combo cresce, " +
+            "você sobe de rank, de C até SS+, e ganha mais pontos por acerto. " +
+            "Se deixar uma nota passar, o combo volta a zero.",
+            "Bass Villain | Como jogar",
+            MessageBoxButtons.OK,
+            MessageBoxIcon.Information
+            );
+
+            msgBox(
+                "As pistas estão numeradas da esquerda para a direita.\n\n" +
+                $"Pista 1: {Configuracoes.NomeDaTecla(teclas[0])}\n" +
+                $"Pista 2: {Configuracoes.NomeDaTecla(teclas[1])}\n" +
+                $"Pista 3: {Configuracoes.NomeDaTecla(teclas[2])}\n" +
+                $"Pista 4: {Configuracoes.NomeDaTecla(teclas[3])}\n\n" +
+                "Pressione Esc durante a partida para pausar. " +
+                "Você pode trocar as teclas no menu Configurações.\n\n" +
+                "Clique em OK para escolher sua primeira música.",
+                "Bass Villain | Controles",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
+        }
         #endregion
 
         #region Lixeira
