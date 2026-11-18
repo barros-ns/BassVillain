@@ -21,6 +21,11 @@ namespace BassVillainApp
         public TelaInicial()
         {
             InitializeComponent();
+            btn_Sair = new BotaoTema();
+            btn_Sair.Name = "btn_Sair";
+            btn_Sair.Size = new Size(380, 60);
+            btn_Sair.Text = "SAIR";
+            Controls.Add(btn_Sair);
             configDaPagina();
             configEventoDosBotoes();
 
@@ -37,7 +42,14 @@ namespace BassVillainApp
             AcceptButton = btn_Iniciar;
             Paint += TelaInicial_Paint;
             SizeChanged += delegate { posicionarControles(); };
+
+            btn_Sair.Tema = TemaVisual.Menu;
+            btn_Sair.CorDestaque = TemaVisual.Menu.CorNota(2);
+            btn_Sair.TamanhoTexto = 24f;
+            btn_Sair.Compacto = true;
         }
+
+        private BotaoTema btn_Sair;
 
         // Título no estilo do jogo (ou a logo Imagens\Menu\titulo.png, se existir).
         private void TelaInicial_Paint(object sender, PaintEventArgs e)
@@ -58,14 +70,23 @@ namespace BassVillainApp
         {
             btn_Iniciar.Location = new Point((ClientSize.Width - btn_Iniciar.Width) / 2, 376);
             btn_config.Location = new Point((ClientSize.Width - btn_config.Width) / 2, btn_Iniciar.Bottom + 22);
+            btn_Sair.Location = new Point(
+            (ClientSize.Width - btn_Sair.Width) / 2,
+            btn_config.Bottom + 18
+            );
         }
 
         private void configEventoDosBotoes()
         {
             btn_config.Click += btn_config_Click;
             btn_Iniciar.Click += btn_Iniciar_Click;
+            btn_Sair.Click += btn_Sair_Click;
         }
 
+        private void btn_Sair_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         #endregion
 
         #region Evento dos Botões do Formulário
