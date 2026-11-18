@@ -2,15 +2,9 @@
 {
     partial class TelaInicial
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +16,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.btn_Iniciar = new BassVillainApp.BotaoTema();
@@ -34,21 +24,31 @@
             // 
             // btn_Iniciar
             // 
+            this.btn_Iniciar.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Iniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Iniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Iniciar.Font = new System.Drawing.Font("Freestyle Script", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Iniciar.Location = new System.Drawing.Point(210, 190);
+            this.btn_Iniciar.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Iniciar.Name = "btn_Iniciar";
             this.btn_Iniciar.Size = new System.Drawing.Size(380, 84);
             this.btn_Iniciar.TabIndex = 0;
             this.btn_Iniciar.Text = "INICIAR";
-            this.btn_Iniciar.UseVisualStyleBackColor = true;
+            this.btn_Iniciar.UseVisualStyleBackColor = false;
             // 
             // btn_config
             // 
+            this.btn_config.BackColor = System.Drawing.Color.Transparent;
+            this.btn_config.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_config.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_config.Font = new System.Drawing.Font("Microsoft Uighur", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_config.Location = new System.Drawing.Point(210, 296);
+            this.btn_config.Margin = new System.Windows.Forms.Padding(0);
             this.btn_config.Name = "btn_config";
             this.btn_config.Size = new System.Drawing.Size(380, 72);
             this.btn_config.TabIndex = 1;
             this.btn_config.Text = "CONFIGURAÇÕES";
-            this.btn_config.UseVisualStyleBackColor = true;
+            this.btn_config.UseVisualStyleBackColor = false;
             // 
             // TelaInicial
             // 
@@ -57,6 +57,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_config);
             this.Controls.Add(this.btn_Iniciar);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "TelaInicial";
             this.Text = "Bass Villain";
             this.ResumeLayout(false);

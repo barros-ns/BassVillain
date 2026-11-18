@@ -1,49 +1,151 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace BassVillainApp
 {
-    /// <summary>Desenho do título do menu inicial (separado para poder ser testado sem janela).</summary>
+    /// Desenho do título do menu inicial (separado para poder ser testado sem janela).
     internal static class DesenhoMenu
     {
+
         public static void Titulo(Graphics g, TemaVisual tema, Size tela)
         {
             Image logo = tema.ImagemTitulo;
+
             if (logo != null)
             {
-                // Logo própria (Imagens\Menu\titulo.png), ajustada para caber.
                 float escala = Math.Min(640f / logo.Width, 240f / logo.Height);
                 float w = logo.Width * escala;
                 float h = logo.Height * escala;
-                g.DrawImage(logo, (tela.Width - w) / 2f, 60f + (240f - h) / 2f, w, h);
+
+                g.DrawImage(
+                    logo,
+                    (tela.Width - w) / 2f,
+                    60f + (240f - h) / 2f,
+                    w,
+                    h
+                );
             }
             else
             {
-                TextoEstilizado.Desenhar(g, tema, "BASS",
-                    new RectangleF(0f, 56f, tela.Width, 125f), 112f, tema.CorNota(0), StringAlignment.Center);
-                TextoEstilizado.Desenhar(g, tema, "VILLAIN",
-                    new RectangleF(0f, 172f, tela.Width, 125f), 112f, tema.CorNota(2), StringAlignment.Center);
+                using (Font fonte = new Font("Arial", 68f, FontStyle.Bold))
+                using (Brush sombra = new SolidBrush(Color.FromArgb(130, 0, 0, 0)))
+                using (Brush texto = new SolidBrush(Color.White))
+                using (StringFormat formato = new StringFormat())
+                {
+                    formato.Alignment = StringAlignment.Center;
+                    formato.LineAlignment = StringAlignment.Center;
+
+                    RectangleF areaBass = new RectangleF(0, 65, tela.Width, 100);
+                    RectangleF areaVillain = new RectangleF(0, 155, tela.Width, 100);
+
+                    RectangleF sombraBass = areaBass;
+                    sombraBass.Offset(3, 4);
+
+                    RectangleF sombraVillain = areaVillain;
+                    sombraVillain.Offset(3, 4);
+
+                    g.DrawString("BASS", fonte, sombra, sombraBass, formato);
+                    g.DrawString("VILLAIN", fonte, sombra, sombraVillain, formato);
+
+                    g.DrawString("BASS", fonte, texto, areaBass, formato);
+                    g.DrawString("VILLAIN", fonte, texto, areaVillain, formato);
+                }
             }
 
-            // Quatro triângulos, uma cor por pista: o mesmo símbolo dos botões do jogo.
+            // Símbolos das quatro pistas
+            // Notas estilizadas no padrão Guitar Hero
             for (int i = 0; i < 4; i++)
             {
                 float cx = tela.Width / 2f + (i - 1.5f) * 62f;
-                using (var forma = Formas.TrianguloParaCima(cx, 322f, 40f, 34f))
+                float cy = 322f;
+
+                Color cor = tema.CorNota(i);
+                Color corClara = TextoEstilizado.Clarear(cor, 0.55f);
+                Color roxo = Color.FromArgb(155, 65, 255);
+
+                PointF[] pontosSombra =
                 {
-                    using (var preench = new System.Drawing.Drawing2D.LinearGradientBrush(
-                               new RectangleF(cx - 20f, 305f, 40f, 34f),
-                               TextoEstilizado.Clarear(tema.CorNota(i), 0.5f), tema.CorNota(i), 90f))
-                        g.FillPath(preench, forma);
-                    using (var borda = new Pen(Color.FromArgb(230, 255, 255, 255), 2f))
+        new PointF(cx, cy - 23),
+        new PointF(cx + 25, cy + 20),
+        new PointF(cx - 25, cy + 20)
+    };
+
+                PointF[] pontosExternos =
+                {
+        new PointF(cx, cy - 21),
+        new PointF(cx + 23, cy + 17),
+        new PointF(cx - 23, cy + 17)
+    };
+
+                PointF[] pontosInternos =
+                {
+        new PointF(cx, cy - 14),
+        new PointF(cx + 16, cy + 11),
+        new PointF(cx - 16, cy + 11)
+    };
+
+                using (GraphicsPath sombra = new GraphicsPath())
+                using (GraphicsPath externo = new GraphicsPath())
+                using (GraphicsPath interno = new GraphicsPath())
+                {
+                    sombra.AddPolygon(pontosSombra);
+                    externo.AddPolygon(pontosExternos);
+                    interno.AddPolygon(pontosInternos);
+
+                    // Sombra externa
+                    using (SolidBrush pincel = new SolidBrush(Color.FromArgb(190, 0, 0, 0)))
                     {
-                        borda.LineJoin = System.Drawing.Drawing2D.LineJoin.Round;
-                        g.DrawPath(borda, forma);
+                        g.FillPath(pincel, sombra);
+                    }
+
+                    // Base preta
+                    using (SolidBrush pincel = new SolidBrush(Color.FromArgb(255, 8, 5, 15)))
+                    {
+                        g.FillPath(pincel, externo);
+                    }
+
+                    // Contorno roxo metálico
+                    using (Pen borda = new Pen(roxo, 3f))
+                    {
+                        borda.LineJoin = LineJoin.Round;
+                        g.DrawPath(borda, externo);
+                    }
+
+                    // Interior com degradê
+                    RectangleF area = new RectangleF(
+                        cx - 17, cy - 15, 34, 28
+                    );
+
+                    using (LinearGradientBrush degradê = new LinearGradientBrush(
+                        area, corClara, cor, 90f))
+                    {
+                        g.FillPath(degradê, interno);
+                    }
+
+                    // Contorno interno
+                    using (Pen bordaInterna = new Pen(Color.FromArgb(220, 255, 255, 255), 1.3f))
+                    {
+                        g.DrawPath(bordaInterna, interno);
+                    }
+
+                    // Reflexo na parte superior
+                    using (Pen brilho = new Pen(Color.FromArgb(180, 255, 255, 255), 2f))
+                    {
+                        brilho.StartCap = LineCap.Round;
+                        brilho.EndCap = LineCap.Round;
+
+                        g.DrawLine(
+                            brilho,
+                            cx - 9, cy - 7,
+                            cx, cy - 13
+                        );
                     }
                 }
             }
         }
+
 
         /// <summary>Cabeçalho das telas de seleção: título grande, subtítulo e os quatro triângulos do jogo.</summary>
         public static void TituloDeTela(Graphics g, TemaVisual tema, string titulo, string subtitulo, Size tela, float topo)

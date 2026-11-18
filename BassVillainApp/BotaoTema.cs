@@ -18,25 +18,24 @@ namespace BassVillainApp
         private bool sobre;
         private bool apertado;
 
-        /// <summary>Tema usado no desenho (se não definido, o do menu).</summary>
+        /// Tema usado no desenho (se não definido, o do menu).
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TemaVisual Tema { get; set; }
 
-        /// <summary>Cor do triângulo e do brilho. Vazia = primeira cor do tema.</summary>
+        /// Cor do triângulo e do brilho. Vazia = primeira cor do tema.
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color CorDestaque { get; set; }
 
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public float TamanhoTexto { get; set; }
 
-        /// <summary>Botão pequeno (ex.: teclas): sem o triângulo, com o texto centralizado.</summary>
+        /// Botão pequeno (ex.: teclas): sem o triângulo, com o texto centralizado.
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Compacto { get; set; }
 
-        /// <summary>
         /// Desenha o que fica atrás do botão quando o pai pinta o próprio fundo (ex.: tela de estatísticas).
         /// O Graphics já vem deslocado para as coordenadas do pai.
-        /// </summary>
+        
         [Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<Graphics> PintarFundoDoPai { get; set; }
 
@@ -49,6 +48,10 @@ namespace BassVillainApp
             Cursor = Cursors.Hand;
             FlatStyle = FlatStyle.Flat;
             TamanhoTexto = 28f;
+
+            FlatStyle = FlatStyle.Flat;
+            FlatAppearance.BorderSize = 0;
+            UseVisualStyleBackColor = false;
         }
 
         protected override void OnMouseEnter(EventArgs e) { sobre = true; Invalidate(); base.OnMouseEnter(e); }
@@ -61,6 +64,7 @@ namespace BassVillainApp
 
         // O fundo é pintado aqui, recortando o que há atrás do botão (imagem de fundo da tela ou cor).
         // Assim não herdamos textos desenhados pelo pai nem cantos pretos da transparência.
+        
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -74,23 +78,20 @@ namespace BassVillainApp
                 return;
             }
 
-            Form form = FindForm();
-            if (form != null && form.BackgroundImage != null && form.ClientSize.Width > 0 && form.ClientSize.Height > 0)
-            {
-                Point pt = form.PointToClient(PointToScreen(Point.Empty));
-                Image img = form.BackgroundImage;
-                float sx = (float)img.Width / form.ClientSize.Width;
-                float sy = (float)img.Height / form.ClientSize.Height;
-                g.DrawImage(img, new Rectangle(0, 0, Width, Height),
-                            new RectangleF(pt.X * sx, pt.Y * sy, Width * sx, Height * sy), GraphicsUnit.Pixel);
-                return;
-            }
-
-            g.Clear(form != null ? form.BackColor : SystemColors.Control);
+            // Deixa o próprio WinForms reconstruir o fundo do controle,
+            // respeitando imagens, cores e desenhos personalizados do formulário.
+            base.OnPaintBackground(e);
         }
+
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if (Parent != null)
+            {
+                using (SolidBrush fundo = new SolidBrush(Parent.BackColor))
+                    e.Graphics.FillRectangle(fundo, ClientRectangle);
+            }
+
             TemaVisual tema = Tema ?? TemaVisual.Menu;
             Color destaque = CorDestaque.IsEmpty ? tema.CorNota(0) : CorDestaque;
 

@@ -58,7 +58,9 @@
     <Compile Include="TextoEstilizado.cs" />
     <Compile Include="Formas.cs" />
     <Compile Include="FundoCache.cs" />
-    <Compile Include="BotaoTema.cs" />
+    <Compile Include="BotaoTema.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DesenhoMenu.cs" />
     <Compile Include="HistoricoPartidas.cs" />
     <Compile Include="RenderizadorEstatisticas.cs" />
