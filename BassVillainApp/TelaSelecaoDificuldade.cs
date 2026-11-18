@@ -21,6 +21,15 @@ namespace BassVillainApp
         private EnumMusica musicaEnum;
         frm_TelaSelecaoMusica telaAnterior;
 
+        private BotaoTema[] botoes;
+        private readonly string[] legendas = new string[3];
+
+        // A tela usa o tema da música escolhida (fundo, fonte e cores).
+        protected override TemaVisual TemaDaTela
+        {
+            get { return TemaVisual.ParaMusica(getMusica(musicaEnum)); }
+        }
+
         #endregion
 
 
@@ -33,14 +42,102 @@ namespace BassVillainApp
             this.musicaEnum = musicaEnum;
             telaAnterior = telaSelecaoMusica;
             InitializeComponent();
-            MudarNomeDoFormulario();
+            botoes = new[] { btn_facil, btn_medio, btn_dificil };
             checarNiveisDesbloqueados();
             configEventoDosBotoes();
+            configDaPagina();
         }
 
-        private void MudarNomeDoFormulario()
+        private void configDaPagina()
         {
-            lbl_nomeDaMusica.Text = nomeMusicaSelecionada;
+            TemaVisual tema = TemaDaTela;
+            string[] textos = { "FÁCIL", "MÉDIO", "DIFÍCIL" };
+
+            for (int i = 0; i < botoes.Length; i++)
+            {
+                botoes[i].Tema = tema;
+                botoes[i].CorDestaque = tema.CorNota(i);
+                botoes[i].TamanhoTexto = 34f;
+                botoes[i].Text = textos[i];
+            }
+
+            btn_voltar.Tema = tema;
+            btn_voltar.CorDestaque = tema.CorNota(3);
+            btn_voltar.TamanhoTexto = 22f;
+            btn_voltar.Text = "VOLTAR";
+
+            CancelButton = btn_voltar; // Esc volta
+            Paint += TelaSelecaoDificuldade_Paint;
+            SizeChanged += delegate { posicionarControles(); };
+
+            // Ao voltar de uma partida, atualiza os desbloqueios e as melhores pontuações.
+            VisibleChanged += delegate
+            {
+                if (Visible)
+                {
+                    checarNiveisDesbloqueados();
+                    atualizarLegendas();
+                    Invalidate();
+                }
+            };
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            posicionarControles();
+            atualizarLegendas();
+        }
+
+        private void posicionarControles()
+        {
+            int y = 250;
+            foreach (BotaoTema b in botoes)
+            {
+                b.Size = new Size(520, 96);
+                b.Location = new Point((ClientSize.Width - b.Width) / 2, y);
+                y += 128;
+            }
+
+            btn_voltar.Size = new Size(190, 56);
+            btn_voltar.Location = new Point(30, ClientSize.Height - btn_voltar.Height - 24);
+        }
+
+        private void atualizarLegendas()
+        {
+            List<RegistroPartida> historico = HistoricoPartidas.Carregar();
+
+            for (int i = 0; i < botoes.Length; i++)
+            {
+                if (!botoes[i].Enabled)
+                {
+                    legendas[i] = "BLOQUEADA";
+                    continue;
+                }
+
+                List<RegistroPartida> partidas = HistoricoPartidas.DaFase(historico, nomeMusicaSelecionada, i);
+
+                legendas[i] = partidas.Count == 0
+                    ? "Ainda não jogada"
+                    : "Melhor: " + partidas.Max(r => r.Pontuacao).ToString("N0") + " pts   |   " +
+                      partidas.Count + (partidas.Count == 1 ? " partida" : " partidas");
+            }
+        }
+
+        private void TelaSelecaoDificuldade_Paint(object sender, PaintEventArgs e)
+        {
+            TemaVisual tema = TemaDaTela;
+            DesenhoMenu.TituloDeTela(e.Graphics, tema, nomeMusicaSelecionada.ToUpper(),
+                "SELECIONE A DIFICULDADE", ClientSize, 36f);
+
+            for (int i = 0; i < botoes.Length; i++)
+            {
+                if (legendas[i] == null)
+                    continue;
+
+                DesenhoMenu.LegendaDoBotao(e.Graphics, tema, botoes[i], legendas[i],
+                    botoes[i].Enabled ? tema.CorTexto : Color.Gray);
+            }
         }
 
         private void checarNiveisDesbloqueados()

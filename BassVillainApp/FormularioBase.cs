@@ -23,9 +23,16 @@ namespace BassVillainApp
 
         }
 
+        // Cada tela pode escolher seu tema; o padrão é o do menu.
+        protected virtual TemaVisual TemaDaTela
+        {
+            get { return TemaVisual.Menu; }
+        }
+
         protected override void OnLoad(EventArgs e) //Define um tamanho fixo de formulário
         {
             Size = new System.Drawing.Size(800, 750);
+            TemaDaTela.AplicarEm(this);
             base.OnLoad(e);
         }
         public void FormularioBase_FormClosing(object sender, FormClosingEventArgs e)

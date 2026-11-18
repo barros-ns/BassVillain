@@ -17,6 +17,9 @@ namespace BassVillainApp
         public String NomeMusica { get; set; }
         public int tamanhoDaMusica { get; set; }
 
+        // Partida criada pelos botões de debug (Vencer/Perder): não entra no histórico.
+        public bool Simulado { get; set; }
+
         public int NotasAcertadasResultadoPartida
         {
             get { return Perfect + Great + Good; }

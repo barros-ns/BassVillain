@@ -51,6 +51,20 @@
   <ItemGroup>
     <Compile Include="EnumMusica.cs" />
     <Compile Include="Nota.cs" />
+    <Compile Include="RelogioMusica.cs" />
+    <Compile Include="Configuracoes.cs" />
+    <Compile Include="TemaVisual.cs" />
+    <Compile Include="RankCombo.cs" />
+    <Compile Include="TextoEstilizado.cs" />
+    <Compile Include="Formas.cs" />
+    <Compile Include="FundoCache.cs" />
+    <Compile Include="BotaoTema.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DesenhoMenu.cs" />
+    <Compile Include="HistoricoPartidas.cs" />
+    <Compile Include="RenderizadorEstatisticas.cs" />
+    <Compile Include="RenderizadorJogo.cs" />
     <Compile Include="PainelJogo.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -162,6 +176,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="Imagens\**\*.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Imagens\**\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MusicasMp3\DarkNecessities.mp3">

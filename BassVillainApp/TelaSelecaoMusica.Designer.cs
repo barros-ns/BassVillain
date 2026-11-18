@@ -28,41 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_msc1 = new System.Windows.Forms.Label();
-            this.lbl_Msc2 = new System.Windows.Forms.Label();
-            this.lbl_Msc3 = new System.Windows.Forms.Label();
-            this.btn_Msc1 = new System.Windows.Forms.Button();
-            this.btn_Msc2 = new System.Windows.Forms.Button();
-            this.btn_Msc3 = new System.Windows.Forms.Button();
-            this.btn_voltar = new System.Windows.Forms.Button();
+            this.btn_Msc1 = new BassVillainApp.BotaoTema();
+            this.btn_Msc2 = new BassVillainApp.BotaoTema();
+            this.btn_Msc3 = new BassVillainApp.BotaoTema();
+            this.btn_voltar = new BassVillainApp.BotaoTema();
             this.SuspendLayout();
-            // 
-            // lbl_msc1
-            // 
-            this.lbl_msc1.AutoSize = true;
-            this.lbl_msc1.Location = new System.Drawing.Point(163, 97);
-            this.lbl_msc1.Name = "lbl_msc1";
-            this.lbl_msc1.Size = new System.Drawing.Size(86, 13);
-            this.lbl_msc1.TabIndex = 0;
-            this.lbl_msc1.Text = "Sultans of Swing";
-            // 
-            // lbl_Msc2
-            // 
-            this.lbl_Msc2.AutoSize = true;
-            this.lbl_Msc2.Location = new System.Drawing.Point(331, 97);
-            this.lbl_Msc2.Name = "lbl_Msc2";
-            this.lbl_Msc2.Size = new System.Drawing.Size(87, 13);
-            this.lbl_Msc2.TabIndex = 1;
-            this.lbl_Msc2.Text = "Dark Necessities";
-            // 
-            // lbl_Msc3
-            // 
-            this.lbl_Msc3.AutoSize = true;
-            this.lbl_Msc3.Location = new System.Drawing.Point(504, 97);
-            this.lbl_Msc3.Name = "lbl_Msc3";
-            this.lbl_Msc3.Size = new System.Drawing.Size(98, 13);
-            this.lbl_Msc3.TabIndex = 2;
-            this.lbl_Msc3.Text = "Seven Nation Army";
             // 
             // btn_Msc1
             // 
@@ -109,9 +79,6 @@
             this.Controls.Add(this.btn_Msc3);
             this.Controls.Add(this.btn_Msc2);
             this.Controls.Add(this.btn_Msc1);
-            this.Controls.Add(this.lbl_Msc3);
-            this.Controls.Add(this.lbl_Msc2);
-            this.Controls.Add(this.lbl_msc1);
             this.Name = "frm_TelaSelecaoMusica";
             this.Text = "SelecaoMusica";
             this.ResumeLayout(false);
@@ -121,12 +88,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbl_msc1;
-        private System.Windows.Forms.Label lbl_Msc2;
-        private System.Windows.Forms.Label lbl_Msc3;
-        private System.Windows.Forms.Button btn_Msc1;
-        private System.Windows.Forms.Button btn_Msc2;
-        private System.Windows.Forms.Button btn_Msc3;
-        private System.Windows.Forms.Button btn_voltar;
+        private BassVillainApp.BotaoTema btn_Msc1;
+        private BassVillainApp.BotaoTema btn_Msc2;
+        private BassVillainApp.BotaoTema btn_Msc3;
+        private BassVillainApp.BotaoTema btn_voltar;
     }
 }
