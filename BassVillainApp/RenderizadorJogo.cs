@@ -81,17 +81,33 @@ namespace BassVillainApp
         {
             public readonly Size Tela;
             public readonly float Cx, YTopo, YAlvo, YFuga, MeiaBase, ZLonge, SBase;
+            public readonly float LarguraElemento;
 
             public Geometria(Size tela)
             {
                 Tela = tela;
+
                 Cx = tela.Width / 2f;
                 YTopo = MargemPainel + AlturaPainel + 14f;
-                YAlvo = tela.Height - FolgaInferior;
-                ZLonge = 1f / EscalaLonge;
-                YFuga = (YTopo - YAlvo * EscalaLonge) / (1f - EscalaLonge);
+
                 MeiaBase = tela.Width * LarguraPistaRel / 2f;
-                SBase = (tela.Height - YFuga) / (YAlvo - YFuga); // escala na borda de baixo da tela
+
+                // Impede que os botões cresçam demais em telas largas.
+                LarguraElemento = Math.Min(
+                    LarguraPistaBase * 0.80f,
+                    tela.Height * 0.16f
+                );
+
+                // Reserva espaço para o botão, a imagem e o texto da tecla.
+                float folgaNecessaria = LarguraElemento * 0.55f + 40f;
+
+                YAlvo = tela.Height - Math.Max(FolgaInferior, folgaNecessaria);
+
+                ZLonge = 1f / EscalaLonge;
+
+                YFuga = (YTopo - YAlvo * EscalaLonge) / (1f - EscalaLonge);
+
+                SBase = (tela.Height - YFuga) / (YAlvo - YFuga);
             }
 
             // progresso da nota (0 = surgindo lá no fundo, 1 = em cima do botão) -> escala
@@ -199,7 +215,7 @@ namespace BassVillainApp
         #region Botões e notas
         private void DesenharBotoes(Graphics g, Geometria geo, EstadoRender e)
         {
-            float largura = geo.LarguraPistaBase * 0.80f;
+            float largura = geo.LarguraElemento;
             float altura = largura * 0.86f;
 
             for (int pista = 0; pista < NumPistas; pista++)
@@ -318,7 +334,7 @@ namespace BassVillainApp
                 float s = geo.Escala(progresso);
                 float cx = geo.X(s, geo.U(pista));
                 float cy = geo.Y(s);
-                float largura = geo.LarguraPistaBase * 0.80f * s;
+                float largura = geo.LarguraElemento * s;
                 float altura = largura * 0.86f * AchatamentoNota;
                 float opacidade = Math.Min(1f, progresso / 0.10f); // surge suavemente no fundo
 

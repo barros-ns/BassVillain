@@ -24,6 +24,8 @@ namespace BassVillainApp
 
             // Mostra os botões Vencer/Perder durante a partida (para testar desbloqueios etc.).
             public bool ModoDebug { get; set; }
+
+            public bool TelaCheia { get; set; }
         }
 
         private static readonly string[] TeclasPadrao = { "A", "S", "K", "L" };
@@ -67,6 +69,12 @@ namespace BassVillainApp
         {
             get { return dados.ModoDebug; }
             set { dados.ModoDebug = value; }
+        }
+
+        public static bool TelaCheia
+        {
+            get { return dados.TelaCheia; }
+            set { dados.TelaCheia = value; }
         }
 
         /// <summary>Teclas das 4 pistas (uma cópia, para ninguém alterar sem querer).</summary>
@@ -143,7 +151,8 @@ namespace BassVillainApp
             {
                 Volume = 70,
                 OffsetMs = 0,
-                Teclas = (string[])TeclasPadrao.Clone()
+                Teclas = (string[])TeclasPadrao.Clone(),
+                TelaCheia = false
             };
         }
 

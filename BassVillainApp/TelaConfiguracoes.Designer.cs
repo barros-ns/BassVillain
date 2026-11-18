@@ -51,6 +51,19 @@
             this.lbl_avisoTecla = new System.Windows.Forms.Label();
             this.btn_Restaurar = new BassVillainApp.BotaoTema();
             this.chk_Debug = new System.Windows.Forms.CheckBox();
+            this.btn_TelaCheia = new System.Windows.Forms.Button();
+
+            this.btn_TelaCheia.Name = "btn_TelaCheia";
+            this.btn_TelaCheia.Text = "TELA CHEIA";
+            this.btn_TelaCheia.Size = new System.Drawing.Size(150, 35);
+            this.btn_TelaCheia.Location = new System.Drawing.Point(600, 14);
+            this.btn_TelaCheia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_TelaCheia.ForeColor = System.Drawing.Color.White;
+            this.btn_TelaCheia.BackColor = System.Drawing.Color.FromArgb(25, 35, 55);
+            this.btn_TelaCheia.FlatAppearance.BorderSize = 0;
+            this.btn_TelaCheia.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            this.Controls.Add(this.btn_TelaCheia);
             ((System.ComponentModel.ISupportInitialize)(this.trk_Volume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trk_Offset)).BeginInit();
             this.SuspendLayout();
@@ -359,5 +372,6 @@
         private System.Windows.Forms.Label lbl_avisoTecla;
         private BassVillainApp.BotaoTema btn_Restaurar;
         private System.Windows.Forms.CheckBox chk_Debug;
+        private System.Windows.Forms.Button btn_TelaCheia;
     }
 }
